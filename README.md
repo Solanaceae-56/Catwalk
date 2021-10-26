@@ -1,3 +1,3 @@
 # Catwalk
 FEC project <br>
-Using **Webpack/Babel**, **React**, **Axios**
+Using **Webpack/Babel**, **React**, **Axios**, **JEST**
