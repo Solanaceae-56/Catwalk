@@ -7,7 +7,7 @@ class RelatedItemsComparison extends React.Component {
 
     render() {
         return (
-            <div>This is a placeholder for Related Items Comparison</div>
+            <div>This is a placeholder for Related Items Comparison!</div>
         )
     }
 }
