@@ -10,7 +10,7 @@ class QuestionsAnswers extends React.Component {
 
   render() {
     return(
-      <div>test</div>
+      <div>PR Pull</div>
     );
   }
 }
