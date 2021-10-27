@@ -7,7 +7,7 @@ class RatingsReviews extends React.Component {
 
   render () {
     return (
-      <div>RatingsReviews</div>
+      <div>RatingsReviews test pull request</div>
     )
   }
 }
