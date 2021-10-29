@@ -68,26 +68,34 @@ app.get('/qa/questions', (req, res) => {
 })
 
 app.post('/qa/questions', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   var path = req.body.path;
   var questionId = {
     question_id: req.body.questionId
   }
-  var obj = {
+  var questobj = {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
     product_id: req.body.productId,
+  }
+  console.log(questobj);
+  var ansobj = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
     photos: req.body.photos
   }
-  if (questionId) {
-    axios.post(apiPath + `/qa/questions/${questionId}/answers`, obj).then((response) => {
+  if (path === '/answers') {
+    //console.log('questionid');
+    axios.post(apiPath + `/qa/questions/${questionId}/answers`, ansobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created answer');
       console.log(response);
       res.sendStatus(201);
     });
   } else {
-    axios.post(apiPath + '/qa/questions', obj).then((response) => {
+    console.log('here');
+    axios.post(apiPath + '/qa/questions', questobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created question');
       console.log(response);
       res.sendStatus(201);
@@ -100,25 +108,25 @@ app.put('/qa/questions/put', (req, res) => {
   var questionId = req.body.questionId;
   var answerId = req.body.answerId;
   if (path === 'helpfulquestion') {
-    axios.put(apiPath + `/qa/questions/${questionId}/helpful`, {question_helpfulness: question_helpfulness + 1 || 1})
+    axios.put(apiPath + `/qa/questions/${questionId}/helpful`, {"question_helpfulness": 1 }, { headers: { 'Authorization': API_KEYS.token }})
     .then((response) => {
       console.log(response);
       res.sendStatus(204);
     });
   } else if (path === 'reportquestion') {
-      axios.put(apiPath + `/qa/questions/${questionId}/report`, {reported: true})
+      axios.put(apiPath + `/qa/questions/${questionId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'helpfulanswer') {
-      axios.put(apiPath + `/qa/answers/${answerId}/helpful`, {helpfulness: helpfulness + 1 || 1})
+      axios.put(apiPath + `/qa/answers/${answerId}/helpful`, {"helpfulness": 1}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'reportanswer') {
-      axios.put(apiPath + `/qa/answers/${answerId}/report`, {reported: true})
+      axios.put(apiPath + `/qa/answers/${answerId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
