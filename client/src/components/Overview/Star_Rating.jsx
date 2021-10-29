@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../../../config.js';
 
 function Star_Rating(props) {
-  axios.get("http://localhost:3000/reviews", {params: {id: props.productId, path: "/reviews/meta"}})
+  axios.get("http://localhost:3000/reviews/meta", {params: {id: props.productId, path: "/reviews/meta"}})
     .then((data) => {
       console.log(data);
       return <div>Success</div>;
