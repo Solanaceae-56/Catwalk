@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --mode development --watch",
-    "server-dev": "npx live-server",
+    "server-dev": " npx nodemon server",
     "test": "jest"
   },
   "author": "Pepper",
