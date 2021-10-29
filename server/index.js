@@ -153,6 +153,7 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  console.log(req.body)
   var path = req.body.path;
   var paramsObj = {
     product_id: req.body.id,
@@ -213,12 +214,12 @@ app.post('/reviews', (req, res) => {
   }).catch((err) => {
     res.send(err);
   })
-
 });
 
 app.put('reviews/:review_id/helpful',(req,res)=>{
+  console.log(req.body);
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'helpful', {'review_id':review_id})
+  axios.put(`/reviews/:review_id/helpful?review_id=${review_id}`)
   .then((results)=>{
     res.send(results)
   }).catch((err)=>{
