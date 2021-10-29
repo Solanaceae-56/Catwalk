@@ -167,7 +167,6 @@ app.get('/reviews', (req, res) => {
     reviewCount: req.query.count,
     reviewSort: req.query.sort
   }
-
   if (path === '/reviews') {
     axios.get(apiPath + "/reviews", {
       headers: { 'Authorization': API_KEYS.token },
@@ -177,14 +176,17 @@ app.get('/reviews', (req, res) => {
     }).catch((err) => {
       res.send(err);
     });
-  } else if (path === "/reviews/meta") {
-    axios.get(apiPath + "/reviews/meta", {
+  }
+})
+
+  app.get('/reviews/meta', (req, res) => {
+    var path = req.body.path;
+  if (path === "/reviews/meta") {
+    axios.get(`${apiPath}/reviews/meta?product_id=${req.body.id}`, {
       headers: {
         'Authorization': API_KEYS.token
-      },
-      params: {
-        product_id: paramsObj.productId
       }
+
     }).then((data) => {
         res.send(data.data);
       }).catch((err) => {
@@ -195,20 +197,22 @@ app.get('/reviews', (req, res) => {
 
 
 app.post('/reviews', (req, res) => {
-  var paramsObj = {
-    product_id: req.body.id,
-    rating:req.body.rating,
-    summary:req.body.summary,
-    body:req.body.body,
-    recomend:req.body.recomend,
-    name:req.body.name,
-    email:req.body.email,
-    photo:req.body.photo,
-    characteristics:req.body.characteristics
-  };
-  axios.post(apiPath + '/reviews', {
-    headers: { 'Authorization': API_KEYS.token },
-    params: paramsObj
+  var fakeData = {
+    "product_id": 40344,
+    "rating": 3,
+    "summary": "123",
+    "body": "abcd",
+    "recommend": true,
+    "name": "km",
+    "email": "km@gmail.com",
+    "photos": [],
+    "characteristics": {
+    }
+
+}
+  var paramsObj = req.body.data || fakeData;
+  axios.post(apiPath + '/reviews',paramsObj, {
+    headers: { 'Authorization': API_KEYS.token }
   }).then((results) => {
     res.send(results);
   }).catch((err) => {
@@ -227,7 +231,7 @@ app.put('reviews/:review_id/helpful',(req,res)=>{
   })
 });
 
-app.put('reviews/:review_id/report',(req,res)=>{
+app.put('/reviews/:review_id/report',(req,res)=>{
   var review_id = req.body.review_id;
   axios.put('reviews/:'+review_id+'report', {'review_id':review_id})
   .then((results)=>{
@@ -236,7 +240,6 @@ app.put('reviews/:review_id/report',(req,res)=>{
     res.send(err);
   })
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${3000}!`);
