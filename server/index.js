@@ -181,14 +181,11 @@ app.get('/reviews', (req, res) => {
 
   app.get('/reviews/meta', (req, res) => {
     var path = req.query.path;
-    console.log(req.query);
-    console.log(typeof req.query.id)
   if (path === "/reviews/meta") {
     axios.get(`${apiPath}/reviews/meta?product_id=${req.query.id}`, {
       headers: {
         'Authorization': API_KEYS.token
       }
-
     }).then((data) => {
         res.send(data.data);
       }).catch((err) => {
