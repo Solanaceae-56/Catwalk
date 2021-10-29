@@ -16,12 +16,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
-<<<<<<< HEAD
- bundle.js
-=======
 bundle.js
-
->>>>>>> e99e9005e952c8341466f7bfaa5a9e4016facf2a
+config.js
 
 npm-debug.log*
 yarn-debug.log*

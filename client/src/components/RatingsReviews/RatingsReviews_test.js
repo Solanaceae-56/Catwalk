@@ -4,7 +4,7 @@ import {setupServer} from 'msw/node'
 import {render, fireEvent, waitFor, screen} from '@testing-library/react'
 import regeneratorRuntime from "regenerator-runtime";
 import '@testing-library/jest-dom'
-import Overview from './Overview.jsx'
+import RatingsReviews from './RatingsReviews.jsx'
 
 const server = setupServer(
   rest.get('/greeting', (req, res, ctx) => {
