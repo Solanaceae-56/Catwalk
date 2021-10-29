@@ -155,12 +155,11 @@ app.post('/cart', (req, res) => {
 app.get('/reviews', (req, res) => {
   var path = req.body.path;
   var paramsObj = {
-    productId: req.body.id,
-    reviewPage: req.body.page,
-    reviewCount: req.body.count,
-    reviewSort: req.body.sort
+    product_id: req.body.id,
+    page: req.body.page,
+    count: req.body.count,
+    sort: req.body.sort
   }
-
   if (path === '/reviews') {
     axios.get(apiPath + "/reviews", {
       headers: { 'Authorization': API_KEYS.token },
@@ -171,14 +170,17 @@ app.get('/reviews', (req, res) => {
     }).catch((err) => {
       res.send(err);
     });
-  } else if (path === "/reviews/meta") {
-    axios.get(apiPath + "/reviews/meta", {
+  }
+})
+
+  app.get('/reviews/meta', (req, res) => {
+    var path = req.body.path;
+  if (path === "/reviews/meta") {
+    axios.get(`${apiPath}/reviews/meta?product_id=${req.body.id}`, {
       headers: {
         'Authorization': API_KEYS.token
-      },
-      params: {
-        product_id: paramsObj.productId
       }
+
     }).then((data) => {
         console.log(data.data);
         res.send(data.data);
@@ -190,20 +192,10 @@ app.get('/reviews', (req, res) => {
 
 
 app.post('/reviews', (req, res) => {
-  var paramsObj = {
-    product_id: req.body.id,
-    rating:req.body.rating,
-    summary:req.body.summary,
-    body:req.body.body,
-    recomend:req.body.recomend,
-    name:req.body.name,
-    email:req.body.email,
-    photo:req.body.photo,
-    characteristics:req.body.characteristics
-  };
-  axios.post(apiPath + '/reviews', {
-    headers: { 'Authorization': API_KEYS.token },
-    params: paramsObj
+  var paramsObj = req.body.data;
+  axios.post(apiPath + '/reviews',paramsObj, {
+    headers: { 'Authorization': API_KEYS.token }
+
   }).then((results) => {
     res.send(results);
   }).catch((err) => {
