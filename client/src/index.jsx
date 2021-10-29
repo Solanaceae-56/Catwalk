@@ -15,11 +15,11 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <div><Overview /></div>
-        <div><RatingsReviews /></div>
-        <div><QuestionsAnswers /></div>
-        <div><RelatedItemsComparison /></div>
+      <div className='app-container'>
+        <div id='overview'><Overview /></div>
+        <div id='ratingsReviews'><RatingsReviews /></div>
+        <div id='questionsAnswers'><QuestionsAnswers /></div>
+        <div id='relatedItems'><RelatedItemsComparison /></div>
       </div>
     )
   }
