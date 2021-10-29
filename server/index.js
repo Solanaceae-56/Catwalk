@@ -12,9 +12,8 @@ app.use(express.static(path.join(__dirname, '../client', 'dist')));
 app.use(express.json());
 
 app.get('/products', (req, res) => {
-  console.log(req.body);
-  var path = req.body.path;
-  var productId = req.body.productId;
+  var path = req.query.path;
+  var productId = req.query.productId;
   if (path === '/products') {
     axios.get(apiPath + '/products', {
       headers: { 'Authorization': API_KEYS.token }
@@ -51,9 +50,9 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/qa/questions', (req, res) => {
-  var productId = req.body.productId;
-  var questionId = req.body.questionId;
-  var path = req.body.path;
+  var productId = req.query.productId;
+  var questionId = req.query.questionId;
+  var path = req.query.path;
   if (path === '/answers') {
     axios.get(apiPath + '/qa/questions/' + questionId + '/answers', { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
       console.log(response.data);
@@ -68,26 +67,34 @@ app.get('/qa/questions', (req, res) => {
 })
 
 app.post('/qa/questions', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   var path = req.body.path;
   var questionId = {
     question_id: req.body.questionId
   }
-  var obj = {
+  var questobj = {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
     product_id: req.body.productId,
+  }
+  console.log(questobj);
+  var ansobj = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
     photos: req.body.photos
   }
-  if (questionId) {
-    axios.post(apiPath + `/qa/questions/${questionId}/answers`, obj).then((response) => {
+  if (path === '/answers') {
+    //console.log('questionid');
+    axios.post(apiPath + `/qa/questions/${questionId}/answers`, ansobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created answer');
       console.log(response);
       res.sendStatus(201);
     });
   } else {
-    axios.post(apiPath + '/qa/questions', obj).then((response) => {
+    console.log('here');
+    axios.post(apiPath + '/qa/questions', questobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created question');
       console.log(response);
       res.sendStatus(201);
@@ -100,25 +107,25 @@ app.put('/qa/questions/put', (req, res) => {
   var questionId = req.body.questionId;
   var answerId = req.body.answerId;
   if (path === 'helpfulquestion') {
-    axios.put(apiPath + `/qa/questions/${questionId}/helpful`, {question_helpfulness: question_helpfulness + 1 || 1})
+    axios.put(apiPath + `/qa/questions/${questionId}/helpful`, {"question_helpfulness": 1 }, { headers: { 'Authorization': API_KEYS.token }})
     .then((response) => {
       console.log(response);
       res.sendStatus(204);
     });
   } else if (path === 'reportquestion') {
-      axios.put(apiPath + `/qa/questions/${questionId}/report`, {reported: true})
+      axios.put(apiPath + `/qa/questions/${questionId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'helpfulanswer') {
-      axios.put(apiPath + `/qa/answers/${answerId}/helpful`, {helpfulness: helpfulness + 1 || 1})
+      axios.put(apiPath + `/qa/answers/${answerId}/helpful`, {"helpfulness": 1}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'reportanswer') {
-      axios.put(apiPath + `/qa/answers/${answerId}/report`, {reported: true})
+      axios.put(apiPath + `/qa/answers/${answerId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
         console.log(response);
         res.sendStatus(204);
@@ -153,20 +160,18 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  console.log(req.body)
-  var path = req.body.path;
+  var path = req.query.path;
   var paramsObj = {
-    product_id: req.body.id,
-    page: req.body.page,
-    count: req.body.count,
-    sort: req.body.sort
+    productId: req.query.id,
+    reviewPage: req.query.page,
+    reviewCount: req.query.count,
+    reviewSort: req.query.sort
   }
   if (path === '/reviews') {
     axios.get(apiPath + "/reviews", {
       headers: { 'Authorization': API_KEYS.token },
       params: paramsObj
     }).then((data) => {
-      console.log(data.data);
       res.send(data.data);
     }).catch((err) => {
       res.send(err);
@@ -183,7 +188,6 @@ app.get('/reviews', (req, res) => {
       }
 
     }).then((data) => {
-        console.log(data.data);
         res.send(data.data);
       }).catch((err) => {
         res.send(err);
@@ -216,12 +220,13 @@ app.post('/reviews', (req, res) => {
   })
 });
 
-app.put('reviews/:review_id/helpful',(req,res)=>{
-  console.log(req.body);
+app.put('/reviews/:review_id/helpful',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put(`/reviews/:review_id/helpful?review_id=${review_id}`)
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/helpful`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
@@ -229,9 +234,11 @@ app.put('reviews/:review_id/helpful',(req,res)=>{
 
 app.put('/reviews/:review_id/report',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'report', {'review_id':review_id})
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/report`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
