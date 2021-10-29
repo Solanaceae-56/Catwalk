@@ -6,14 +6,14 @@ const config = require('../../../config.js');
 function QuestionsAnswers () {
   const [list, setList] = useState([]);
   const options = {
-    url: 'url',
+    url: '/qa/questions?product_id=',
     headers: {
       'User-Agent': 'request',
-      'Authorization': `token ${config.QATOKEN}`
+      'Authorization': `token ${config.TOKEN}`
     }
   }
   useEffect( () => {
-    axios.get(options.url, options.headers).then( (response) => {
+    axios.get(options.url + product_id).then((response) => {
       setList(response);
     });
   });
