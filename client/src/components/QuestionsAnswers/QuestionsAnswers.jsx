@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import QuestionsList from './QuestionsList.jsx';
 const axios = require('axios');
-const config = require('../../../config.js');
+const config = require('../../../../config.js');
 
 function QuestionsAnswers () {
   const [list, setList] = useState([]);
-  const options = {
-    url: '/qa/questions?product_id=',
-    headers: {
-      'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
-    }
-  }
   useEffect( () => {
-    axios.get(options.url + product_id).then((response) => {
+    axios.get("http://localhost:3000/qa/questions", {params: {productId: props.productid}}).then((response) => {
+      console.log(response);
       setList(response);
     });
   });
