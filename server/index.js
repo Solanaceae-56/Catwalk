@@ -12,9 +12,8 @@ app.use(express.static(path.join(__dirname, '../client', 'dist')));
 app.use(express.json());
 
 app.get('/products', (req, res) => {
-  console.log(req.body);
-  var path = req.body.path;
-  var productId = req.body.productId;
+  var path = req.query.path;
+  var productId = req.query.productId;
   if (path === '/products') {
     axios.get(apiPath + '/products', {
       headers: { 'Authorization': API_KEYS.token }
@@ -51,9 +50,9 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/qa/questions', (req, res) => {
-  var productId = req.body.productId;
-  var questionId = req.body.questionId;
-  var path = req.body.path;
+  var productId = req.query.productId;
+  var questionId = req.query.questionId;
+  var path = req.query.path;
   if (path === '/answers') {
     axios.get(apiPath + '/qa/questions/' + questionId + '/answers', { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
       console.log(response.data);
@@ -161,12 +160,12 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var path = req.body.path;
+  var path = req.query.path;
   var paramsObj = {
-    productId: req.body.id,
-    reviewPage: req.body.page,
-    reviewCount: req.body.count,
-    reviewSort: req.body.sort
+    productId: req.query.id,
+    reviewPage: req.query.page,
+    reviewCount: req.query.count,
+    reviewSort: req.query.sort
   }
 
   if (path === '/reviews') {
@@ -174,7 +173,6 @@ app.get('/reviews', (req, res) => {
       headers: { 'Authorization': API_KEYS.token },
       params: paramsObj
     }).then((data) => {
-      console.log(data.data);
       res.send(data.data);
     }).catch((err) => {
       res.send(err);
@@ -188,7 +186,6 @@ app.get('/reviews', (req, res) => {
         product_id: paramsObj.productId
       }
     }).then((data) => {
-        console.log(data.data);
         res.send(data.data);
       }).catch((err) => {
         res.send(err);
