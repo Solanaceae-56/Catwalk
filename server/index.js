@@ -192,10 +192,22 @@ app.get('/reviews', (req, res) => {
 
 
 app.post('/reviews', (req, res) => {
-  var paramsObj = req.body.data;
+  var fakeData = {
+    "product_id": 40344,
+    "rating": 3,
+    "summary": "123",
+    "body": "abcd",
+    "recommend": true,
+    "name": "km",
+    "email": "km@gmail.com",
+    "photos": [],
+    "characteristics": {
+    }
+
+}
+  var paramsObj = req.body.data || fakeData;
   axios.post(apiPath + '/reviews',paramsObj, {
     headers: { 'Authorization': API_KEYS.token }
-
   }).then((results) => {
     res.send(results);
   }).catch((err) => {
@@ -214,7 +226,7 @@ app.put('reviews/:review_id/helpful',(req,res)=>{
   })
 });
 
-app.put('reviews/:review_id/report',(req,res)=>{
+app.put('/reviews/:review_id/report',(req,res)=>{
   var review_id = req.body.review_id;
   axios.put('reviews/:'+review_id+'report', {'review_id':review_id})
   .then((results)=>{
@@ -223,7 +235,6 @@ app.put('reviews/:review_id/report',(req,res)=>{
     res.send(err);
   })
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${3000}!`);
