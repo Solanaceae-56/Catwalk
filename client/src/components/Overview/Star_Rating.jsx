@@ -4,6 +4,7 @@ import API_KEY from '../../../../config.js';
 
 function Star_Rating(props) {
   const [rating, setRating] = useState(0);
+  const [reviewTotal, setReviewTotal] = useState(0);
   axios.get("http://localhost:3000/reviews/meta", {params: {id: props.productId, path: "/reviews/meta"}})
     .then((data) => {
       var total = 0;
@@ -12,15 +13,19 @@ function Star_Rating(props) {
         total += key * parseInt(data.data.ratings[key], 10);
         votes += parseInt(data.data.ratings[key], 10);
       }
-      setRating(Math.round(100*total/votes)/100);
+      var average = Math.round(1000*total/votes)/1000;
+      setRating('width:' + (average/5 * 100) + "%");
+      setReviewTotal(votes);
     })
     .catch((err) => {
-      console.log('here');
       setRating(0);
     });
 
   return (
-    <div>{rating}</div>
+    <div>
+      {rating}
+      <a> Read all {reviewTotal} reviews</a>
+    </div>
   );
 }
 

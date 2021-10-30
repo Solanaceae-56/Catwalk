@@ -19,17 +19,18 @@ class Overview extends React.Component {
     };
   }
 
+
   render () {
     return (
       <div id='Overview'>
         <div id='product-info'>
           <div id='star-rating'><Star_Rating productId={this.state.current_Product.id}/></div>
-          <div id='product-category'></div>
-          <div id='product-title'></div>
-          <div id='price'></div>
-          <div id='product-overview'></div>
+          <div id='product-category'>{this.state.current_Product.category}</div>
+          <div id='product-title'>{this.state.current_Product.name}</div>
+          <div id='price'>{this.state.current_Product.default_price}</div>
           <div id='social-media'></div>
         </div>
+        <div id='product-overview'>{this.state.current_Product.description}</div>
         <div id='style-selector'></div>
         <div id='add-to-cart'>
           <div id='size-selector'></div>
