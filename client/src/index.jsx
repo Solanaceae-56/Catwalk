@@ -16,7 +16,7 @@ class App extends React.Component {
   render () {
     return (
       <div className='app-container'>
-        <div id='overview'><Overview /></div>
+        {/* <div id='overview'><Overview /></div> */}
         <div id='ratingsReviews'><RatingsReviews /></div>
         <div id='questionsAnswers'><QuestionsAnswers /></div>
         <div id='relatedItems'><RelatedItemsComparison /></div>

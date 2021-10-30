@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import AnswersList from './AnswersList.jsx';
+
 
 function Question(props) {
+  console.log(props.data, 'data');
+  console.log(props.data.answers);
   if (props.data.answers.length > 2) {
     //
   }
@@ -9,11 +13,12 @@ function Question(props) {
   return (
     <div>
       <li id={props.data['question_id']}>
-        <div class='question'>Q: {props.data['question_body']}</div>
-        <div class='answer'>A: {props.data.answers.body}</div>
-        <div class='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
-        <div class='misc'>Helpful? 'yes'</div>
-        <div class='misc'>Add Answer</div>
+        <div className='question'>Q: {props.data['question_body']}</div>
+        <div className='answer'>A: {props.data.answers.body}</div>
+        <AnswersList data={props.data.answers}/>
+        {/* <div className='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
+        <div className='misc'>Helpful? 'yes'</div>
+        <div className='misc'>Add Answer</div> */}
       </li>
     </div>
   );
