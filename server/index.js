@@ -130,6 +130,8 @@ app.put('/qa/questions/put', (req, res) => {
         console.log(response);
         res.sendStatus(204);
       });
+    } else {
+      res.sendStatus(400);
     }
 });
 

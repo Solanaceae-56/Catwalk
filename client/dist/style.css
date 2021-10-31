@@ -32,3 +32,42 @@
   display: grid;
   grid-row: 2;
 }
+
+.question {
+  padding-bottom: 10px;
+}
+
+.answer {
+  padding-top: 8px;
+}
+
+.addanswer {
+  padding-bottom: 4px;
+}
+
+.help {
+  display: inline-block;
+  padding-inline-end: 10px;
+}
+
+.helpful {
+  display: inline-block;
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+  padding-inline-end: 5px;
+}
+
+.helpful:hover {
+  color:darkblue
+}
+
+.report {
+  display: inline-block;
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+  padding-inline-start: 5px;
+}
+
+.report:hover {
+  color:darkblue;
+}
