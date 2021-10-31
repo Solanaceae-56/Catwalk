@@ -23,7 +23,7 @@ class Overview extends React.Component {
     return (
       <div id='Overview'>
         <div id='product-info'>
-          <div id='star-rating'><Star_Rating productId={this.state.current_Product.id}/></div>
+          <div id='star-rating'></div>
           <div id='product-category'></div>
           <div id='product-title'></div>
           <div id='price'></div>
