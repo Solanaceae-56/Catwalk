@@ -160,23 +160,22 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var path = req.query.path;
   var paramsObj = {
-    productId: req.query.id,
-    reviewPage: req.query.page,
-    reviewCount: req.query.count,
-    reviewSort: req.query.sort
+    product_id: req.query.product_id,
+    page: req.query.page,
+    count: req.query.count,
+    sort: req.query.sort
   }
-  if (path === '/reviews') {
     axios.get(apiPath + "/reviews", {
       headers: { 'Authorization': API_KEYS.token },
       params: paramsObj
     }).then((data) => {
+
       res.send(data.data);
     }).catch((err) => {
       res.send(err);
     });
-  }
+
 })
 
   app.get('/reviews/meta', (req, res) => {

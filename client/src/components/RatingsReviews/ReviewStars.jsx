@@ -20,7 +20,7 @@ export default function ReviewStars(value) {
       }
     }
     stars.push(starObj);
-    console.log(stars)
+
   }
 
 return (
