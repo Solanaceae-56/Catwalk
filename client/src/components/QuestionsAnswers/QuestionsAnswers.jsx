@@ -14,14 +14,14 @@ function QuestionsAnswers (props) {
     // });
     axios.get("http://localhost:3000/qa/questions", {params: {productId: 40344}}).then((response) => {
       //console.log(response);
-      //console.log(response.data);
+      console.log(response.data);
       setQuestions(response.data.results);
       //console.log(questions, 'yo');
     });
     axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 426460}}).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);  //move this to answerlist??
       setAnswers(response.data.results);
-      console.log(answers, 'yo');
+      //console.log(answers, 'yo');
     });
   }, []);
 

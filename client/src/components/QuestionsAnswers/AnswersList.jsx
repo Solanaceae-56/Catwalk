@@ -24,7 +24,7 @@ function AnswersList(props) {
   if (!list) {
     return (
       <div>
-        empty
+        Loading...
       </div>
     )
   }
