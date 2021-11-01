@@ -170,7 +170,6 @@ app.get('/reviews', (req, res) => {
       headers: { 'Authorization': API_KEYS.token },
       params: paramsObj
     }).then((data) => {
-
       res.send(data.data);
     }).catch((err) => {
       res.send(err);
@@ -179,7 +178,7 @@ app.get('/reviews', (req, res) => {
 })
 
   app.get('/reviews/meta', (req, res) => {
-    axios.get(`${apiPath}/reviews/meta?product_id=${req.body.id}`, {
+    axios.get(`${apiPath}/reviews/meta?product_id=${req.query.product_id}`, {
       headers: {
         'Authorization': API_KEYS.token
       }
