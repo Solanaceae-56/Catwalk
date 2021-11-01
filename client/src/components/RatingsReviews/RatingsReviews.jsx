@@ -5,7 +5,7 @@ export default function RatingsReviews() {
 
     return (
       <div className="review">
-        <ReviewList />
+        <ReviewList product_id="40344"/>
         <ReviewBreakdown />
       </div>
     )
