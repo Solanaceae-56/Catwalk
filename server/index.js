@@ -217,14 +217,15 @@ app.post('/reviews', (req, res) => {
   }).catch((err) => {
     res.send(err);
   })
-
 });
 
-app.put('reviews/:review_id/helpful',(req,res)=>{
+app.put('/reviews/:review_id/helpful',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'helpful', {'review_id':review_id})
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/helpful`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
@@ -232,9 +233,11 @@ app.put('reviews/:review_id/helpful',(req,res)=>{
 
 app.put('/reviews/:review_id/report',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'report', {'review_id':review_id})
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/report`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
