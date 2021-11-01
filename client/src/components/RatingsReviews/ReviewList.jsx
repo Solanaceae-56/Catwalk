@@ -4,35 +4,30 @@ import axios from 'axios'
 
 export default function ReviewList(props) {
   const [reviews, setReviews] = useState([]);
-  const [count, setCount] = useState(5);
-  const [sort, setSort] = useState('newest');
+  const [count, setCount] = useState(2);
+  const [sort, setSort] = useState('relevant');
   const [page, setPage] = useState(1);
   const [product_id, setProduct_id] = useState(props.product_id);
   const [totalReviews, setTotalReviews] = useState(0);
 
   useEffect(() => {
-    console.log(sort);
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
       .then(
         response => {
           console.log('called reviews api');
-          console.log(response.data)
+          console.log(response.data.results.length);
           setReviews(response.data.results);
         })
       .catch(err => {
         console.log(err);
       })
   }
-    , [sort]);
+    , [sort,count,page]);
   useEffect(() => {
-    axios.get('/reviews/meta', { params: { product_id: product_id } })
+    axios.get('/reviews', { params: {product_id: product_id,sort: sort, page: page, count: 10000 }})
       .then(
         response => {
-          let total = 0;
-          for (let i = 1; i <= 5; i++) {
-            total += Number(response.data.ratings[i]);
-          }
-          setTotalReviews(total);
+          setTotalReviews(response.data.results.length);
         })
       .catch(err => {
         console.log(err);
@@ -40,13 +35,15 @@ export default function ReviewList(props) {
   }
     , [product_id]);
 
+  const addmoreReviews = ()=>{
+
+  }
   return (
     <div className="reviewListContainer">
-      <div>{totalReviews}reviews, sorted by<select name="sort" id="sort-select" onChange={(e)=>{setSort(e.target.value)}}>
-        <option value="">--Please choose an option--</option>
-        <option value="helpful">Helpful</option>
-        <option value="newiest">Newest</option>
+      <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e)=>{setSort(e.target.value)}}>
         <option value="relevant">Relevant</option>
+        <option value="helpful">Helpful</option>
+        <option value="newest">Newest</option>
       </select></div>
       <div className="reviewListContent">{
         reviews.map(review => {
@@ -56,6 +53,10 @@ export default function ReviewList(props) {
           />
         })
       }
+      </div>
+      <div className="reviewListFooter">
+        <button id="moreReviews"onClick={()=>{setCount(count+2)}} style={(totalReviews-count<2)?{display:'none'}:{display:'inline'}}>MORE REVIEWS</button>
+        <button id ="addReview">ADD A REVIEW +</button>
       </div>
     </div>
   )
