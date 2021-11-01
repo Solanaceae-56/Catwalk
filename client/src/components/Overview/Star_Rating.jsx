@@ -14,7 +14,7 @@ function Star_Rating(props) {
         votes += parseInt(data.data.ratings[key], 10);
       }
       var average = Math.round(1000*total/votes)/1000;
-      setRating('width:' + (average/5 * 100) + "%");
+      setRating((average/5 * 100) + "%");
       setReviewTotal(votes);
     })
     .catch((err) => {

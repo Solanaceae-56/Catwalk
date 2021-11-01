@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/Overview/Overview.jsx';
+import axios from 'axios';
 // import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 // import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 // import RelatedItemsComparison from './components/RelatedItemsComparison.jsx';
@@ -9,14 +10,45 @@ import Overview from './components/Overview/Overview.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      rating: 0,
+      num_Of_Ratings: 0,
+      product_id: 0,
+    }
   }
 
-
+  componentDidMount() {
+    axios.get("http://localhost:3000/products",  {params: {path: "/products"}})
+      .then((data) => {
+        this.setState({
+          product_id: data.data['0']['id'],
+        });
+      })
+      .then(() => {
+        axios.get("http://localhost:3000/reviews/meta", {params: {id: this.state.product_id, path: "/reviews/meta"}})
+          .then((data) => {
+            var total = 0;
+            var votes = 0;
+            for (var key = 1; key <= 5; key++) {
+              total += key * parseInt(data.data.ratings[key], 10);
+              votes += parseInt(data.data.ratings[key], 10);
+            }
+            var average = Math.round(1000*total/votes)/1000;
+            this.setState({
+              rating: average,
+              num_Of_Ratings: votes,
+            });
+          })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render () {
     return (
       <div className='app-container'>
-        <div id='overview'><Overview /></div>
+        <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/></div>
         {/* <div id='ratingsReviews'><RatingsReviews /></div>
         <div id='questionsAnswers'><QuestionsAnswers /></div>
         <div id='relatedItems'><RelatedItemsComparison /></div> */}

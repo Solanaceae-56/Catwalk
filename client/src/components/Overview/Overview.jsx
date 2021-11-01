@@ -1,24 +1,25 @@
 import React from 'react';
 import Star_Rating from './Star_Rating.jsx';
+import axios from 'axios';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current_Product: {
-        "id": 40344,
-        "campus": "hr-rfp",
-        "name": "Camo Onesie",
-        "slogan": "Blend in to your crowd",
-        "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-        "category": "Jackets",
-        "default_price": "140.00",
-        "created_at": "2021-08-13T14:38:44.509Z",
-        "updated_at": "2021-08-13T14:38:44.509Z"
-      },
+      product_id: props.product_id,
+      current_Product: {},
     };
   }
 
+  componentDidUpdate() {
+    axios.get("http://localhost:3000/products",  {params: {productId: this.state.product_id, path: "/products/:product_id"}})
+      .then((data) => {
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render () {
     return (
