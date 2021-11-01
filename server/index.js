@@ -182,13 +182,12 @@ app.get('/reviews', (req, res) => {
 })
 
   app.get('/reviews/meta', (req, res) => {
-    var path = req.body.path;
+    var path = req.query.path;
   if (path === "/reviews/meta") {
-    axios.get(`${apiPath}/reviews/meta?product_id=${req.body.id}`, {
+    axios.get(`${apiPath}/reviews/meta?product_id=${req.query.id}`, {
       headers: {
         'Authorization': API_KEYS.token
       }
-
     }).then((data) => {
         res.send(data.data);
       }).catch((err) => {
@@ -220,14 +219,15 @@ app.post('/reviews', (req, res) => {
   }).catch((err) => {
     res.send(err);
   })
-
 });
 
-app.put('reviews/:review_id/helpful',(req,res)=>{
+app.put('/reviews/:review_id/helpful',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'helpful', {'review_id':review_id})
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/helpful`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
@@ -235,9 +235,11 @@ app.put('reviews/:review_id/helpful',(req,res)=>{
 
 app.put('/reviews/:review_id/report',(req,res)=>{
   var review_id = req.body.review_id;
-  axios.put('reviews/:'+review_id+'report', {'review_id':review_id})
-  .then((results)=>{
-    res.send(results)
+  axios.put(apiPath+`/reviews/${review_id}/report`,{},{
+    headers: { 'Authorization': API_KEYS.token }
+  })
+  .then(()=>{
+    res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);
   })
