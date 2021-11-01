@@ -10,11 +10,29 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.findRating = this.findRating.bind(this);
     this.state = {
       rating: 0,
       num_Of_Ratings: 0,
       product_id: 0,
     }
+  }
+
+  findRating(p_id) {
+    axios.get("http://localhost:3000/reviews/meta", {params: {id: p_id, path: "/reviews/meta"}})
+    .then((data) => {
+      var total = 0;
+      var votes = 0;
+      for (var key = 1; key <= 5; key++) {
+        total += key * parseInt(data.data.ratings[key], 10);
+        votes += parseInt(data.data.ratings[key], 10);
+      }
+      var average = Math.round(1000*total/votes)/1000;
+      return average;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   componentDidMount() {

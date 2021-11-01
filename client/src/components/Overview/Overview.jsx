@@ -6,7 +6,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: props.product_id,
+      product_id: 40344,
       current_Product: {},
     };
   }
