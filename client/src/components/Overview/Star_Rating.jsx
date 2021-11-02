@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import API_KEY from '../../../../config.js';
+import React from 'react';
 
 function Star_Rating(props) {
+<<<<<<< HEAD
   const [rating, setRating] = useState(0);
   const [reviewTotal, setReviewTotal] = useState(0);
   axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.productId}})
@@ -20,11 +19,13 @@ function Star_Rating(props) {
     .catch((err) => {
       setRating(0);
     });
+=======
+>>>>>>> 1a2b98830573f7a928bb50f4b7b03cbece4933f1
 
   return (
     <div>
-      {rating}
-      <a> Read all {reviewTotal} reviews</a>
+      {props.rating}
+      <a> Read all {props.reviewTotal} reviews</a>
     </div>
   );
 }
