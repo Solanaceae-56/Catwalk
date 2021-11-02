@@ -8,7 +8,15 @@ export default function ReviewItem(props) {
       <ReviewStars value={props.reviewData.rating} />
       <div className="reviewUserDateContainer"><span className="reviewUserName">{props.reviewData.reviewer_name}, </span><span className="reviewDate">{moment(props.reviewData.date).format("LL")}</span></div>
       <div className="reviewSummary">{props.reviewData.summary}</div>
-      <div className="reviewBody">{props.reviewData.body}</div>
+      <div className="reviewBody">
+        {
+          (props.reviewData.photos.length !== 0)?
+          props.reviewData.photos.map((photo)=> <img className="reviewItemPhoto" src={photo.url} key={photo.id}/>
+          ):null
+        }
+
+        {props.reviewData.body}
+      </div>
       <div className="reviewRecommend" style={(props.reviewData.recommend) ? { display: 'inline' } : { display: 'none' }}>✓ I recommend this product</div>
       {(props.reviewData.response) ? <div className="reviewReponse">Response: {props.reviewData.response}</div> : null}
 
