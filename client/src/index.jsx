@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
 // import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
-// import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
+import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 // import RelatedItemsComparison from './components/RelatedItemsComparison.jsx';
 //import  from 'react-hook';
 
@@ -38,8 +38,10 @@ class App extends React.Component {
   componentDidMount() {
     axios.get("http://localhost:3000/products",  {params: {path: "/products"}})
       .then((data) => {
+        console.log(data.data['0']['name'], 'index');
         this.setState({
           product_id: data.data['0']['id'],
+          name: data.data['0']['name'],
         });
       })
       .then(() => {
@@ -67,6 +69,7 @@ class App extends React.Component {
     return (
       <div className='app-container'>
         <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/></div>
+        <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id}/></div>
         {/* <div id='ratingsReviews'><RatingsReviews /></div>
         <div id='questionsAnswers'><QuestionsAnswers /></div>
         <div id='relatedItems'><RelatedItemsComparison /></div> */}
