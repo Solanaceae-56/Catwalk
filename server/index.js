@@ -182,7 +182,6 @@ app.get('/reviews', (req, res) => {
       headers: {
         'Authorization': API_KEYS.token
       }
-
     }).then((data) => {
         res.send(data.data);
       }).catch((err) => {
