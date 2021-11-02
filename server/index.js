@@ -162,14 +162,12 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var path = req.query.path;
-  var paramsObj = {
-    productId: req.query.id,
-    reviewPage: req.query.page,
-    reviewCount: req.query.count,
-    reviewSort: req.query.sort
+  let paramsObj = {
+    product_id: req.query.product_id,
+    page: req.query.page,
+    count: req.query.count,
+    sort: req.query.sort
   }
-  if (path === '/reviews') {
     axios.get(apiPath + "/reviews", {
       headers: { 'Authorization': API_KEYS.token },
       params: paramsObj
@@ -178,13 +176,11 @@ app.get('/reviews', (req, res) => {
     }).catch((err) => {
       res.send(err);
     });
-  }
+
 })
 
   app.get('/reviews/meta', (req, res) => {
-    var path = req.query.path;
-  if (path === "/reviews/meta") {
-    axios.get(`${apiPath}/reviews/meta?product_id=${req.query.id}`, {
+    axios.get(`${apiPath}/reviews/meta?product_id=${req.query.product_id}`, {
       headers: {
         'Authorization': API_KEYS.token
       }
@@ -193,7 +189,7 @@ app.get('/reviews', (req, res) => {
       }).catch((err) => {
         res.send(err);
       });
-  }
+
 });
 
 
@@ -211,7 +207,7 @@ app.post('/reviews', (req, res) => {
     }
 
 }
-  var paramsObj = req.body.data || fakeData;
+  let paramsObj = req.body.data || fakeData;
   axios.post(apiPath + '/reviews',paramsObj, {
     headers: { 'Authorization': API_KEYS.token }
   }).then((results) => {
@@ -222,7 +218,7 @@ app.post('/reviews', (req, res) => {
 });
 
 app.put('/reviews/:review_id/helpful',(req,res)=>{
-  var review_id = req.body.review_id;
+  let review_id = req.params.review_id;
   axios.put(apiPath+`/reviews/${review_id}/helpful`,{},{
     headers: { 'Authorization': API_KEYS.token }
   })
@@ -234,7 +230,8 @@ app.put('/reviews/:review_id/helpful',(req,res)=>{
 });
 
 app.put('/reviews/:review_id/report',(req,res)=>{
-  var review_id = req.body.review_id;
+
+  let review_id = req.params.review_id;
   axios.put(apiPath+`/reviews/${review_id}/report`,{},{
     headers: { 'Authorization': API_KEYS.token }
   })

@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import ReviewList from "./ReviewList.jsx";
+import ReviewBreakdown from "./ReviewBreakdown.jsx";
+export default function RatingsReviews() {
 
-class RatingsReviews extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render () {
     return (
-      <div>RatingsReviews test pull request</div>
+      <div className="review">
+        <ReviewList product_id="40344"/>
+        <ReviewBreakdown />
+      </div>
     )
   }
-}
-
-export default RatingsReviews;

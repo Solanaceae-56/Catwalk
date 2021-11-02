@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
-// import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
-import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
+import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
+// import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 // import RelatedItemsComparison from './components/RelatedItemsComparison.jsx';
 //import  from 'react-hook';
 
@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   findRating(p_id) {
-    axios.get("http://localhost:3000/reviews/meta", {params: {id: p_id, path: "/reviews/meta"}})
+    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: p_id}})
     .then((data) => {
       var total = 0;
       var votes = 0;
@@ -45,7 +45,7 @@ class App extends React.Component {
         });
       })
       .then(() => {
-        axios.get("http://localhost:3000/reviews/meta", {params: {id: this.state.product_id, path: "/reviews/meta"}})
+        axios.get("http://localhost:3000/reviews/meta", {params: {product_id: this.state.product_id}})
           .then((data) => {
             var total = 0;
             var votes = 0;
@@ -68,11 +68,10 @@ class App extends React.Component {
   render () {
     return (
       <div className='app-container'>
-        <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/></div>
+       {/* <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/></div>
         <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id}/></div>
-        {/* <div id='ratingsReviews'><RatingsReviews /></div>
-        <div id='questionsAnswers'><QuestionsAnswers /></div>
-        <div id='relatedItems'><RelatedItemsComparison /></div> */}
+           <div id='relatedItems'><RelatedItemsComparison /></div>*/}
+           <div id='ratingsReviews'><RatingsReviews /></div>
       </div>
     )
   }
