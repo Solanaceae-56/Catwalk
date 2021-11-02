@@ -8,12 +8,12 @@ function AnswersList(props) {
   const [isHidden, setIsHidden] = useState(true);
 
   function moreanswers() {
-    debugger;
+    //debugger;
     setIsHidden(false);
   }
 
   useEffect(() => {
-    debugger;
+    //debugger;
     setList(props.data);
     //console.log(list, 'list')
     var list_keys = Object.keys(list);
