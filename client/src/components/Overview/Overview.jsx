@@ -30,11 +30,7 @@ class Overview extends React.Component {
     return (
       <div id='Overview'>
         <div id='product-info'>
-<<<<<<< HEAD
-         { /*<div id='star-rating'><Star_Rating productId={this.state.current_Product.id}/></div>*/}
-=======
           <div id='star-rating'><Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/></div>
->>>>>>> 1a2b98830573f7a928bb50f4b7b03cbece4933f1
           <div id='product-category'>{this.state.current_Product.category}</div>
           <div id='product-title'>{this.state.current_Product.name}</div>
           <div id='price'>{this.state.current_Product.default_price}</div>

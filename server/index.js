@@ -219,10 +219,12 @@ app.post('/reviews', (req, res) => {
 
 app.put('/reviews/:review_id/helpful',(req,res)=>{
   let review_id = req.params.review_id;
+  console.log(review_id);
   axios.put(apiPath+`/reviews/${review_id}/helpful`,{},{
     headers: { 'Authorization': API_KEYS.token }
   })
   .then(()=>{
+    console.log("put req success")
     res.sendStatus(204)
   }).catch((err)=>{
     res.send(err);

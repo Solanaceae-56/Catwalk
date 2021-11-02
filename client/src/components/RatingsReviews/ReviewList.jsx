@@ -55,7 +55,10 @@ export default function ReviewList(props) {
       }
       </div>
       <div className="reviewListFooter">
-        <button id="moreReviews"onClick={()=>{setCount(count+2)}} style={(totalReviews-count<2)?{display:'none'}:{display:'inline'}}>MORE REVIEWS</button>
+        <button
+        id="moreReviews"
+        onClick={()=>{setCount(count+2)}}
+        style={(totalReviews-count<2)?{display:'none'}:{display:'inline'}}>MORE REVIEWS</button>
         <button id ="addReview">ADD A REVIEW +</button>
       </div>
     </div>
