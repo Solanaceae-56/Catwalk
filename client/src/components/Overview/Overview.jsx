@@ -20,7 +20,7 @@ class Overview extends React.Component {
         });
       })
       .catch((err) => {
-        consol.log(err);
+        console.log(err);
       });
     }
   }
