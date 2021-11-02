@@ -64,7 +64,12 @@
 }
 
 .addanswer {
-  padding-bottom: 4px;
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+}
+
+.addanswer:hover {
+  color:darkblue
 }
 
 .help {
@@ -92,4 +97,19 @@
 
 .report:hover {
   color:darkblue;
+}
+
+textarea {
+  display:block;
+  font-family:"Arial";
+  font-size: 12px;
+}
+
+input[name="nickname"], input[name="email"], label {
+  display:block;
+}
+
+.questions {
+  height: 450px;
+  overflow-y: auto;
 }

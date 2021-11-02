@@ -7,28 +7,34 @@ function QuestionsAnswers (props) {
   const [questions, setQuestions] = useState([]);
   const [question_Id, setQuestionId] = useState('');
   const [answers, setAnswers] = useState([]);
+  const [product_Id, setProductId] = useState('');
+  //const [productName, setProductName] = useState(props.productName);
+  //console.log(props.productName);
   useEffect( () => {
     // axios.get("http://localhost:3000/qa/questions", {params: {productId: props.productid}}).then((response) => {
     //   console.log(response);
     //   setList(response);
     // });
-    axios.get("http://localhost:3000/qa/questions", {params: {productId: 40344}}).then((response) => {
+
+    /*setProductId(props.productId)*/
+    /* use state product id instead below*/
+    axios.get("http://localhost:3000/qa/questions", {params: {productId: 40346}}).then((response) => {
       //console.log(response);
-      console.log(response.data);
+      console.log(response.data, 'what');
       setQuestions(response.data.results);
       //console.log(questions, 'yo');
     });
-    axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 426460}}).then((response) => {
-      //console.log(response.data);  //move this to answerlist??
-      setAnswers(response.data.results);
-      //console.log(answers, 'yo');
-    });
+    // axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 329015}}).then((response) => {
+    //   //console.log(response.data);  //move this to answerlist??
+    //   setAnswers(response.data.results);
+    //   //console.log(answers, 'yo');
+    // });
   }, []);
 
   return (
     <div>
       <div>Questions and Answers</div>
-      <QuestionsList questions={questions} answers={answers}/>
+      <QuestionsList questions={questions} name={props.productName} id={props.id}/>
     </div>
   );
 
