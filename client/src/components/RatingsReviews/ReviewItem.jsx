@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewStars from "./ReviewStars.jsx";
 import Helpful from "./Helpful.jsx";
 import moment from 'moment';
+import "./ReviewItem.css"
 export default function ReviewItem(props) {
   return (
     <div className="reviewItemContainer">
@@ -9,10 +10,12 @@ export default function ReviewItem(props) {
       <div className="reviewUserDateContainer"><span className="reviewUserName">{props.reviewData.reviewer_name}, </span><span className="reviewDate">{moment(props.reviewData.date).format("LL")}</span></div>
       <div className="reviewSummary">{props.reviewData.summary}</div>
       <div className="reviewBody">
+        <div className="imageRow">
         {
           (props.reviewData.photos.length !== 0) ?
             props.reviewData.photos.map((photo) => <img className="reviewItemPhoto" src={photo.url} key={photo.id} />) : null
         }
+        </div>
         {props.reviewData.body}
       </div>
       <div className="reviewRecommend" style={(props.reviewData.recommend) ? { display: 'inline' } : { display: 'none' }}>✓ I recommend this product</div>
