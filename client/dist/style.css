@@ -202,3 +202,8 @@ input[name="nickname"], input[name="email"], label {
   height: 450px;
   overflow-y: auto;
 }
+
+.answerslist {
+  height: 400px;
+  overflow-y: auto;
+}
