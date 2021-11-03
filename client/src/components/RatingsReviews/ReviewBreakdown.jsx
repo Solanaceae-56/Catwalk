@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "./ReviewBreakdown.css"
 export default function ReviewBreakdown(props) {
-  console.log(props.ratingData)
   const [ratingData,setRatingData]=useState(props.ratingData);
   const [totalStar, setTotalStar]=useState('');
   useEffect(()=>{
@@ -9,12 +9,12 @@ export default function ReviewBreakdown(props) {
   },[props])
     return (
       <div className="reviewBreakdown">
-      <div><span>5 stars </span>{ratingData['5']}</div>
-      <div><span>4 stars </span>{ratingData['4']}</div>
-      <div><span>3 stars </span>{ratingData['3']}</div>
-      <div><span>2 stars </span>{ratingData['2']}</div>
-      <div><span>1 star  </span>{ratingData['1']}</div>
-      <div>{totalStar}</div>
+      <div className="reviewBarContainer"><span>5 stars</span><div className = "reviewBar"><div style={{width:`${((+ratingData['5'])/(+totalStar))*100}%`}}></div></div></div>
+      <div className="reviewBarContainer"><div>4 stars </div><div className = "reviewBar"><div style={{width:`${((+ratingData['4'])/(+totalStar))*100}%`}}></div></div></div>
+      <div className="reviewBarContainer"><div>3 stars </div><div className = "reviewBar"><div style={{width:`${((+ratingData['3'])/(+totalStar))*100}%`}}></div></div></div>
+      <div className="reviewBarContainer"><div>2 stars </div><div className = "reviewBar"><div style={{width:`${((+ratingData['2'])/(+totalStar))*100}%`}}></div></div></div>
+      <div className="reviewBarContainer"><div>1 stars </div><div className = "reviewBar"><div style={{width:`${((+ratingData['1'])/(+totalStar))*100}%`}}></div></div></div>
+
       </div>
     )
   }
