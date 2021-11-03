@@ -8,7 +8,7 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       current_Product: {},
-    };
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -16,7 +16,7 @@ class Overview extends React.Component {
     axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
       .then((data) => {
         this.setState({
-          current_Product: data.data
+          current_Product: data.data,
         });
       })
       .catch((err) => {
@@ -25,8 +25,7 @@ class Overview extends React.Component {
     }
   }
 
-
-  render () {
+  render() {
     return (
       <div id='Overview'>
         <div id='product-info'>
@@ -42,7 +41,7 @@ class Overview extends React.Component {
           <div id='expanded-view'></div>
         </div>
       </div>
-    )
+    );
   }
 }
 

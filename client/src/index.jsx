@@ -38,7 +38,6 @@ class App extends React.Component {
   componentDidMount() {
     axios.get("http://localhost:3000/products", { params: { path: "/products" } })
       .then((data) => {
-        //console.log(data.data['0']['name'], 'index');
         this.setState({
           product_id: data.data['0']['id'],
           name: data.data['0']['name'],

@@ -90,7 +90,7 @@ function QuestionsList(props) {
   //console.log(props.answers, 'questionslist');
   console.log(props.questions, 'inquestions');
   for (var i = 0; i < props.questions.length; i++) {
-    questions.push(<Question data={props.questions[i]} search={state.searchString}/>);
+    questions.push(<Question data={props.questions[i]} name={props.name} search={state.searchString}/>);
     if (questions.length === 4) {
       break;
     }
@@ -112,17 +112,18 @@ function QuestionsList(props) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Question Modal"
         centered
       >
-        <h2>Ask your question about the {props.name}</h2>
+        <h1>Ask your question</h1>
+        <h2>about the {props.name}</h2>
         <div className="modal"></div>
         <form>
           <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} /></label>
           <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
           <span>For privacy reasons, do not use your full name or email address</span>
           <label>What is your email?
-          <input type="text" value={state.email} name="email" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
+          <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
           <span>For authentication reasons, you will not be emailed.</span>
           {/* <button>stays</button>
           <button>inside</button>

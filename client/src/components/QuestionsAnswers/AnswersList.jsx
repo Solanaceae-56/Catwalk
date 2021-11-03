@@ -14,22 +14,23 @@ function AnswersList(props) {
 
   useEffect(() => {
     //debugger;
-    setList(props.data);
+    //setList(props.data);
     //console.log(list, 'list')
     var list_keys = Object.keys(list);
     //console.log(list_keys, 'listkeys');
+    var arr = [];
     for (var i = 0; i < list_keys.length; i++) {
       //debugger;
       //console.log(list[list_keys[i]]);
-      renderlist.push(<Answer item={list[list_keys[i]]} />);
+      arr.push(<Answer item={list[list_keys[i]]} />);
       if (isHidden && i === 1) {
         break;
       }
     }
+    setRenderList(arr);
     //console.log(renderlist, 'render');
     //onclick toggel ishidden
   }, [isHidden]);
-
 
   if (list === []) {
     return (
