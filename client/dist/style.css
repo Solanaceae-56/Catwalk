@@ -144,6 +144,28 @@
   grid-row: 2;
 }
 
+/*==================================================
+Related Items
+==================================================*/
+
+.related-card {
+  display: inline-block;
+  border: solid 1px black;
+  position: relative;
+  padding: 25px 15px;
+  background-color: white;
+  margin: 50px 0;
+  height: 300px;
+  box-shadow: 0 2px 5px #ccc;
+  text-align: left;
+}
+
+.related-card-category {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+/*=======*/
 .question {
   padding-bottom: 10px;
 }
@@ -207,3 +229,4 @@ input[name="nickname"], input[name="email"], label {
   height: 400px;
   overflow-y: auto;
 }
+

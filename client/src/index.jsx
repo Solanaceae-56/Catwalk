@@ -4,7 +4,8 @@ import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
 import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
-import RelatedItemsComparison from './components/RelatedItemsComparison.jsx';
+import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
+
 
 
 class App extends React.Component {
