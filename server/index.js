@@ -53,13 +53,16 @@ app.get('/qa/questions', (req, res) => {
   var productId = req.query.productId;
   var questionId = req.query.questionId;
   var path = req.query.path;
+  //var page = req.body.page;
+  var count = req.query.count;
   if (path === '/answers') {
     axios.get(apiPath + '/qa/questions/' + questionId + '/answers', { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
       console.log(response.data);
       res.send(response.data);
     });
   } else {
-    axios.get(apiPath + '/qa/questions' + '?product_id=' + productId, { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
+    console.log('what')
+    axios.get(apiPath + '/qa/questions' + `?product_id=${productId}&count=${count}`, { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
       console.log(response.data);
       res.send(response.data);
     });
@@ -68,32 +71,34 @@ app.get('/qa/questions', (req, res) => {
 
 app.post('/qa/questions', (req, res) => {
   //console.log(req.body);
+  debugger;
   var path = req.body.path;
-  var questionId = {
-    question_id: req.body.questionId
-  }
+  var questionId = req.body.questionId;
   var questobj = {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
     product_id: req.body.productId,
   }
-  console.log(questobj);
+  //console.log(questobj);
+  //console.log(req.body);
   var ansobj = {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
     photos: req.body.photos
   }
+  //console.log(path);
+  //console.log(ansobj);
   if (path === '/answers') {
-    //console.log('questionid');
+    console.log(questionId, 'questionid');
     axios.post(apiPath + `/qa/questions/${questionId}/answers`, ansobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created answer');
       console.log(response);
       res.sendStatus(201);
     });
   } else {
-    console.log('here');
+    //console.log('here');
     axios.post(apiPath + '/qa/questions', questobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created question');
       console.log(response);
