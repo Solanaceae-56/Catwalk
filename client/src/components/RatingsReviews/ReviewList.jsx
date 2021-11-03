@@ -14,8 +14,8 @@ export default function ReviewList(props) {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
       .then(
         response => {
-          console.log('called reviews api');
-          console.log(response.data.results.length);
+          //console.log('called reviews api');
+          //console.log(response.data.results.length);
           setReviews(response.data.results);
         })
       .catch(err => {

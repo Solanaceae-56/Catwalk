@@ -25,7 +25,6 @@ export default function ReviewStars(value) {
 
 return (
   <div>
-    ReviewStars
     {stars.map(s => (<span key={s.index}>{s.star}</span>))}
   </div>
 

@@ -10,18 +10,13 @@ export default function ReviewItem(props) {
       <div className="reviewSummary">{props.reviewData.summary}</div>
       <div className="reviewBody">
         {
-          (props.reviewData.photos.length !== 0)?
-          props.reviewData.photos.map((photo)=> <img className="reviewItemPhoto" src={photo.url} key={photo.id}/>
-          ):null
+          (props.reviewData.photos.length !== 0) ?
+            props.reviewData.photos.map((photo) => <img className="reviewItemPhoto" src={photo.url} key={photo.id} />) : null
         }
-
         {props.reviewData.body}
       </div>
       <div className="reviewRecommend" style={(props.reviewData.recommend) ? { display: 'inline' } : { display: 'none' }}>✓ I recommend this product</div>
       {(props.reviewData.response) ? <div className="reviewReponse">Response: {props.reviewData.response}</div> : null}
-
-
-
       <Helpful helpCount={props.reviewData.helpfulness} review_id={props.reviewData.review_id} />
     </div>
 
