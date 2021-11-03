@@ -1,8 +1,9 @@
 .app-container {
     display: grid;
-
+    width: 100vw;
+    height: 100vh;
     grid-gap: 10px;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
     background-color: grey;
 }
 
@@ -14,9 +15,119 @@
 }
 
 #overview {
-    display: grid;
-    grid-row: 1;
+  display: grid;
 }
+
+#Overview {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#product-info {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#product-info {
+  text-align: left;
+}
+
+#product-overview {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#style-selector {
+  grid-row: 2/4;
+  grid-column: 2/3;
+}
+
+#style-selector-inner {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+#styleSelector_mod {
+  display: grid;
+  grid-template-rows: 25px;
+  grid-row: 1/2;
+}
+
+#styleSelect_title {
+  text-align: left;
+  grid-row: 1/2;
+}
+
+#selectorList {
+  text-align: center;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(2, 80px);
+}
+
+#add-to-cart {
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+#size-selector {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  font-size: 50px;
+  text-align: left;
+  text-decoration-color: rgb(181, 52, 216);
+  border: 1px solid black;
+  background-color: rgb(232, 218, 236);
+}
+
+#quantity-selector {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  font-size: 50px;
+  text-align: left;
+  text-decoration-color: rgb(181, 52, 216);
+  border: 1px solid black;
+  background-color: rgb(232, 218, 236);
+}
+
+#addToBag {
+  grid-row: 2/3;
+  grid-column: 1/2;
+}
+
+#validEntry {
+  color: rgb(54, 48, 41);
+  background-color: rgb(233, 140, 27);
+}
+
+#invalidEntry {
+  color: rgb(221, 213, 203);
+}
+
+.selector_thumbnails {
+  border-radius: 50% 50% 50% 50%;
+  width: 75px;
+  height: 75px;
+}
+
+.selector_thumbnails_highlighted {
+  border-radius: 50% 50% 50% 50%;
+  width: 75px;
+  height: 75px;
+  border: 3px solid purple;
+}
+
+
 
 #ratingsReviews {
   display: grid;
@@ -52,5 +163,70 @@ Related Items
 .related-card-category {
   text-transform: uppercase;
   font-size: 15px;
+}
+
+/*=======*/
+.question {
+  padding-bottom: 10px;
+}
+
+.answer {
+  padding-top: 8px;
+}
+
+.addanswer {
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+}
+
+.addanswer:hover {
+  color:darkblue
+}
+
+.help {
+  display: inline-block;
+  padding-inline-end: 10px;
+}
+
+.helpful {
+  display: inline-block;
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+  padding-inline-end: 5px;
+}
+
+.helpful:hover {
+  color:darkblue
+}
+
+.report {
+  display: inline-block;
+  color:rgb(233, 140, 27);
+  cursor: pointer;
+  padding-inline-start: 5px;
+}
+
+.report:hover {
+  color:darkblue;
+}
+
+textarea {
+  display:block;
+  font-family:"Arial";
+  font-size: 12px;
+}
+
+input[name="nickname"], input[name="email"], label {
+  display:block;
+}
+
+.questions {
+  height: 450px;
+  overflow-y: auto;
+}
+
+.answerslist {
+  height: 400px;
+  overflow-y: auto;
 }
 
