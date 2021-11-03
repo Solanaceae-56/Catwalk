@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 function Star_Rating(props) {
-<<<<<<< HEAD
   const [rating, setRating] = useState(0);
   const [reviewTotal, setReviewTotal] = useState(0);
-  axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.productId}})
+
+  useEffect(() => {
+    let mounted = true;
+    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.productId}})
     .then((data) => {
       var total = 0;
       var votes = 0;
@@ -19,8 +22,11 @@ function Star_Rating(props) {
     .catch((err) => {
       setRating(0);
     });
-=======
->>>>>>> 1a2b98830573f7a928bb50f4b7b03cbece4933f1
+
+    return function cleanup() {
+      mounted = false;
+    }
+  }, [props.product_id]);
 
   return (
     <div>
