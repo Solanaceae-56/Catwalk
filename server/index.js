@@ -152,7 +152,6 @@ app.get('/cart', (req, res) => {
 })
 
 app.post('/cart', (req, res) => {
-  console.log(typeof req.body);
   var paramsObj = {
     sku_id: req.body.sku_id
   };
@@ -161,7 +160,6 @@ app.post('/cart', (req, res) => {
   ).then((results) => {
     res.send(results);
   }).catch((err) => {
-    console.log(err);
     res.send(err);
   });
 });
