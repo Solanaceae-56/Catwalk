@@ -14,8 +14,8 @@ export default function ReviewList(props) {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
       .then(
         response => {
-          console.log('called reviews api');
-          console.log(response.data.results.length);
+          //console.log('called reviews api');
+          //console.log(response.data.results.length);
           setReviews(response.data.results);
         })
       .catch(err => {
@@ -55,7 +55,10 @@ export default function ReviewList(props) {
       }
       </div>
       <div className="reviewListFooter">
-        <button id="moreReviews"onClick={()=>{setCount(count+2)}} style={(totalReviews-count<2)?{display:'none'}:{display:'inline'}}>MORE REVIEWS</button>
+        <button
+        id="moreReviews"
+        onClick={()=>{setCount(count+2)}}
+        style={(totalReviews-count<2)?{display:'none'}:{display:'inline'}}>MORE REVIEWS</button>
         <button id ="addReview">ADD A REVIEW +</button>
       </div>
     </div>

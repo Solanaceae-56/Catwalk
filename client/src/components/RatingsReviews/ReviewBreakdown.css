@@ -1,0 +1,23 @@
+.reviewBarContainer{
+  display:flex;
+  justify-content: center;
+  gap:10px;
+}
+
+
+.reviewBar{
+  background-color: lightgray;
+  width:150px;
+  border-radius: 12px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+.reviewBar > div {
+  background-color: yellow;
+
+  /* Adjust with JavaScript */
+  height: 20px;
+
+  border-radius: 10px;
+}

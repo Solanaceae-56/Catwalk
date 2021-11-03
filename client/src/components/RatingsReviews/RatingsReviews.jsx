@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReviewList from "./ReviewList.jsx";
-import ReviewBreakdown from "./ReviewBreakdown.jsx";
-export default function RatingsReviews() {
+import RatingList from "./RatingList.jsx";
+export default function RatingsReviews(props) {
 
     return (
       <div className="review">
-        <ReviewList product_id="40344"/>
-        <ReviewBreakdown />
+        <h2>Ratings & Reviews</h2>
+        <ReviewList product_id={40344}/>
+        <RatingList product_id={40345} averageRating={props.rating} num_Of_Ratings={props.num_Of_Ratings}/>
       </div>
     )
   }
