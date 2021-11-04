@@ -16,15 +16,13 @@ export default function ReviewList(props) {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
       .then(
         response => {
-          //console.log('called reviews api');
-          //console.log(response.data.results.length);
           setReviews(response.data.results);
         })
       .catch(err => {
         console.log(err);
       })
   }
-    , [sort, count, page]);
+    , [sort, count, page,product_id]);
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: 10000 } })
       .then(
@@ -36,7 +34,9 @@ export default function ReviewList(props) {
       })
   }
     , [product_id]);
-
+  useEffect(()=>{
+    setProduct_id(props.product_id)
+  },[props])
   const addmoreReviews = () => {
 
   }
@@ -69,7 +69,7 @@ export default function ReviewList(props) {
         </div>
       </div>
       <div className="ratingListContainer">
-        <RatingList product_id={40345} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
+        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
       </div>
     </div >
     </ReviewsContext.Provider>

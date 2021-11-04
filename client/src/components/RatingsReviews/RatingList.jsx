@@ -20,7 +20,7 @@ export default function RatingList(props) {
       setCharacteristics(response.data.characteristics);
       }
     )
-  },[])
+  },[props])
 
   return (
     <div id="ratingListContainer">

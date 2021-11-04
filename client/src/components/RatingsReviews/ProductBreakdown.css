@@ -1,15 +1,15 @@
+.progressWrapper{
+  display:block;
+}
 .progress-bar{
-  position:absolute;
+  position: absolute;
   width:320px;
   height:2px;
   background-color:lightgray;
-
 }
 
 .label-bar {
   display: flex;
-
-  flex-wrap:wrap;
   justify-content: space-between;
   gap:20px;
   list-style: none;
@@ -28,6 +28,14 @@
   top:-10px;
   left:-160px;
 }
-.progressWrapper{
-  display:block;
+
+.label-title{
+  position: relative;
+  display: block;
+}
+.productBreakdown{
+  display: block;
+}
+.charWords{
+  width:20px
 }
