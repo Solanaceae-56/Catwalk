@@ -1,0 +1,44 @@
+.stars-container {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+.stars-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: lightgray;
+}
+
+.stars-container:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: gold;
+  overflow: hidden;
+}
+
+.stars-0:after { width: 0%; }
+.stars-1:after { width: 5%; }
+.stars-2:after { width: 10%; }
+.stars-3:after { width: 15%; }
+.stars-4:after { width: 20%; }
+.stars-5:after { width: 25%; }
+.stars-6:after { width: 30%; }
+.stars-7:after { width: 35%; }
+.stars-8:after { width: 40%; }
+.stars-9:after { width: 45%; }
+.stars-10:after { width: 50%; }
+.stars-11:after { width: 55%; }
+.stars-12:after { width: 60%; }
+.stars-13:after { width: 65%; }
+.stars-14:after { width: 70%; }
+.stars-15:after { width: 75%; }
+.stars-16:after { width: 80%; }
+.stars-17:after { width: 85%; }
+.stars-18:after { width: 90%; }
+.stars-19:after { width: 95%; }
+.stars-20:after { width: 100%;}
