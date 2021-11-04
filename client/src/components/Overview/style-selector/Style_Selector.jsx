@@ -10,6 +10,7 @@ function Style_Selector(props) {
 
   var handleStyleChange = function(data) {
     set_selected_Style(data);
+    props.handleChange(data);
   }
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function Style_Selector(props) {
         if (mounted) {
           set_all_Styles(data.data.results);
           set_selected_Style(data.data.results[0]);
+          props.handleChange(data.data.results[0]);
         }
       })
       .catch((err) => {

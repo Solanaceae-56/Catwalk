@@ -4,7 +4,8 @@ import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
 import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
-import RelatedItemsComparison from './components/RelatedItemsComparison.jsx';
+import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
+
 
 
 class App extends React.Component {
@@ -67,10 +68,10 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-        {/*<div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
-        <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-        <div id='relatedItems'><RelatedItemsComparison /></div>*/}
-        <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        {/* <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
+        <div id='relatedItems'><RelatedItemsComparison /></div>
+        <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
       </div>
    )
  }

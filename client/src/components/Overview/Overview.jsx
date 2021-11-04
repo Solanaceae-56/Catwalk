@@ -1,14 +1,23 @@
 import React from 'react';
-import Star_Rating from './Star_Rating.jsx';
-import Style_Selector from './Style_Selector.jsx';
+import Star_Rating from './product-info/Star_Rating.jsx';
+import Style_Selector from './style-selector/Style_Selector.jsx';
+import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import axios from 'axios';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
+    this.handleStyleChange = this.handleStyleChange.bind(this);
     this.state = {
       current_Product: {},
+      current_Style: {},
     }
+  }
+
+  handleStyleChange(data) {
+    this.setState({
+      current_Style: data,
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -36,10 +45,8 @@ class Overview extends React.Component {
           <div id='social-media'></div>
         </div>
         <div id='product-overview'>{this.state.current_Product.description}</div>
-        <div id='style-selector'><Style_Selector product_id={this.props.product_id}/></div>
-        <div id='image-gallery'>
-          <div id='expanded-view'></div>
-        </div>
+        <div id='style-selector'><Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange}/></div>
+        <div id='image-gallery'><Image_Gallery current_Style={this.state.current_Style}/></div>
       </div>
     );
   }
