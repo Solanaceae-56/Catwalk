@@ -15,16 +15,16 @@ function QuestionsAnswers(props) {
   const [questions, setQuestions] = useState([]);
   const [questionId, setQuestionId] = useState('');
   const [answers, setAnswers] = useState([]);
-  const [productId, setProductId] = useState(props.productid);
+  const [productId, setProductId] = useState(0);
   const [count, setCount] = useState(10);
   const [moreQuestions, setMoreQuestions] = useState(2);
   const prevquestions = usePrevious(questions);
   //const [productName, setProductName] = useState(props.productName);
   //console.log(props.productName);
   useEffect(() => {
-    setProductId(props.productid);
-    console.log('test');
-  }, [props.productid]);
+    setProductId(props.id);
+    //console.log('test');
+  }, [props]);
 
   useEffect(() => {
     // axios.get("http://localhost:3000/qa/questions", {params: {productId: props.productid}}).then((response) => {
@@ -32,13 +32,14 @@ function QuestionsAnswers(props) {
     //   setList(response);
     // });
     //setProductId(props.productid);
-    console.log(props.productid, 'id')
+    ///console.log(props.productid, 'id')
     /*setProductId(props.productId)*/
     /* use state product id instead below*/
     axios.get("http://localhost:3000/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
       //console.log(response);
-      console.log(response.data, 'what');
+      //console.log(response.data, 'what');
       setQuestions(response.data.results);
+      //console.log('yo')
       //console.log(questions, 'yo');
     });
     // axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 329015}}).then((response) => {
@@ -51,13 +52,13 @@ function QuestionsAnswers(props) {
   function increaseCount() {
     setCount(count + 4);
     setMoreQuestions(moreQuestions + 2);
-    console.log(count);
+    //console.log(count);
   }
 
   return (
     <div>
       <div>Questions and Answers</div>
-      <QuestionsList questions={questions} name={props.productName} id={props.id} morequestions={moreQuestions} />
+      <QuestionsList questions={questions} name={props.productName} id={productId} morequestions={moreQuestions} />
       <button onClick={increaseCount}>More questions</button>
     </div>
   );
