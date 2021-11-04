@@ -44,7 +44,7 @@ const RelatedList = (props) => {
 
         })
         .then((res) => {
-          console.log('final product', res);
+          console.log('related items', res);
           setRelatedItems(res)
 
         } );
@@ -53,14 +53,15 @@ const RelatedList = (props) => {
         }
 
 
-  }, [props])
+  }, [props.defaultProduct_id])
 
   return (
     <div className='related-items-list'>
       {relatedItems.map((relatedItem, i) => <RelatedCard key={i} relatedItem={relatedItem} pageProduct={pageProduct}/>)}
+      {/* <RelatedCard  relatedItem={relatedItems[0]} pageProduct={pageProduct}/> */}
     </div>
 
   )
-}
+  }
 
 export default RelatedList;

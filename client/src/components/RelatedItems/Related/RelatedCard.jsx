@@ -8,47 +8,40 @@ import Modal from './Modal.jsx';
 
 
 const RelatedCard = (props) => {
-  console.log(props);
-
-  // const [itemCategory, setItemCategory] = useState('');
-  // const [itemName, setItemName] = useState('');
-
-
-  // useEffect(() => {
-  //   setItemCategory(props.relatedItem_id.category);
-  //   setItemName(props.relatedItem_id.name);
-
-  // })
-
-
+  // console.log('related card getting props',props);
 
   const [itemImageUrl, setItemImageUrl] = useState('');
+  const [commonFeatures, setCommonFeatures] = useState({});
+  // const [isOpen, setModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     axios.get('http://localhost:3000/products',
     {params: {productId: props.relatedItem.data.id, path:'/products/:product_id/styles'}})
     .then(response => {
-      // console.log('getting image', response)
-      // console.log(response.data.results[0].photos[0].url);
       setItemImageUrl(response.data.results[0].photos[0].url);
     })
 
+  }, [])
 
-    // setItemRating('*placeholder for rating*');
-    // setItemPrice(product_style[0].results[0].original_price)
-  }, [props])
 
 
   return (
-        <div className='related-card'>
-            <Modal pageProduct={props.pageProduct} relatedItem={props.relatedItem}/>
-            <img src={itemImageUrl} alt="product default image" width="150" height="200"/>
-            <div className='related-card-category'>{props.relatedItem.data.category}</div>
-            <div className='related-card-name'>{props.relatedItem.data.name}</div>
-            {/* <div>{itemRating}</div>
-            <div>{itemPrice}</div> */}
-        </div>
-  )
+    (<div className='related-card'>
+        <div><i className='related-card-action'class="far fa-star" onClick={toggleModal} ></i></div>
+        {isOpen &&
+        <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} />}
+        {itemImageUrl? <img src={itemImageUrl} alt="product default image" width="150" height="200"/> :<img src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
+        <div className='related-card-category'>{props.relatedItem.data.category}</div>
+        <div className='related-card-name'>{props.relatedItem.data.name}</div>
+        {/* <div>{itemRating}</div> */}
+        {}<div>{itemPrice}</div>
+    </div>)
+)
 
 
 }
