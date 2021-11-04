@@ -1,20 +1,33 @@
 .progress-bar{
+  position:absolute;
   width:320px;
+  height:2px;
   background-color:lightgray;
 
 }
 
 .label-bar {
   display: flex;
+
+  flex-wrap:wrap;
+  justify-content: space-between;
   gap:20px;
   list-style: none;
   padding: 0;
   margin: 0 0 1rem 0;
-
+  width:320px
 }
 .label-bar >li{
-  flex-basis: 15px;
+  flex-basis: 0px;
   flex-grow: 0;
   flex-shrink: 0;
-  color:white
+  color:darkgray
+}
+.product-bar-pointer{
+  position: relative;
+  top:-10px;
+  left:-160px;
+}
+.progressWrapper{
+  display:block;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import  RatingSummary  from './RatingSummary.jsx';
 import  ReviewBreakdown  from './ReviewBreakdown.jsx';
-import ProductBreakdown from './ProductBreakdown.jsx';
+import ProductBreakdownList from './ProductBreakdownList.jsx';
 export default function RatingList(props) {
   const [ratingData, setRatingData] = useState({});
   const [recommendRate,setRecommendRate] =useState(0);
@@ -14,7 +14,6 @@ export default function RatingList(props) {
       // let value = 0;
       //  keys.forEach((i)=> value +=response.data.ratings[i])
       //  averageRating = value/5;
-      console.log(response.data.characteristics)
       let recommend =Math.floor((+response.data.recommended[true]/(+(response.data.recommended[true])+(+response.data.recommended[false])))*100);
       setRecommendRate(recommend);
       setRatingData(response.data.ratings);
@@ -27,7 +26,7 @@ export default function RatingList(props) {
     <div id="ratingListContainer">
       <RatingSummary product_id={props.product_id} ratingData = {ratingData} averageRating={props.averageRating}recommendRate={recommendRate}/>
       <ReviewBreakdown product_id={props.product_id} ratingData = {ratingData}/>
-      <ProductBreakdown product_id={props.product_id} characteristics = {ratingData}/>
+      <ProductBreakdownList product_id={props.product_id} characteristics = {characteristics}/>
     </div>
 
   )
