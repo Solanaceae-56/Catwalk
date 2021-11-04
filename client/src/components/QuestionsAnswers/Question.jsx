@@ -25,7 +25,7 @@ function Question(props) {
     nickname: "",
     email: "",
     answer: "",
-    photos: [],
+    photos: "",
   })
 
   Modal.setAppElement('#app');
@@ -59,7 +59,7 @@ function Question(props) {
       [e.target.name]: value
     });
     //console.log(state.searchString);
-    //console.log(state.question);
+    console.log(state.photos);
   }
 
   function openModal() {
@@ -77,8 +77,17 @@ function Question(props) {
 
 
   function submit(e) {
-    //debugger;
+    debugger;
     //console.log(props.id);
+    const obj = {
+      path: '/answers',
+      questionId: questionId,
+      email: state.email,
+      name: state.nickname,
+      body: state.answer,
+      photos: state.photos.split('\n').slice(0, 5)
+    }
+    console.log(obj);
     if (!state.email || !state.nickname || !state.answer) {
       //debugger;
       alert('One or more fields left empty');
@@ -89,18 +98,18 @@ function Question(props) {
       alert('Please enter a valid email');
       return;
     }
-    debugger;
+    //debugger;
     //var qId = Number(e.target.parentNode.id);
     //console.log(qId);
-    const obj = {
-      path: '/answers',
-      questionId: questionId,
-      email: state.email,
-      name: state.nickname,
-      body: state.answer,
-      photos: state.photos
-    }
-    console.log(obj);
+    // const obj = {
+    //   path: '/answers',
+    //   questionId: questionId,
+    //   email: state.email,
+    //   name: state.nickname,
+    //   body: state.answer,
+    //   photos: state.photos
+    // }
+    // console.log(obj);
     axios.post("http://localhost:3000/qa/questions/", obj).then((response) => {
       console.log(response);
     });
@@ -110,7 +119,7 @@ function Question(props) {
       ['email']: '',
       ['nickname']: '',
       ['answer']: '',
-      ['photos']: [],
+      ['photos']: '',
     });
   }
 
@@ -144,6 +153,8 @@ function Question(props) {
             <label>What is your email?
               <input type="text" value={state.email} name="email" placeholder="Example: jack@email.com!" onChange={handleChange} maxLength="60"></input></label>
             <span>For authentication reasons, you will not be emailed.</span>
+            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5}/></label>
+            <span>Please enter your photo links for every new line (max 5)</span>
             {/* <button></button> */}
             {/* <button>stays</button>
           <button>inside</button>
@@ -192,6 +203,8 @@ function Question(props) {
             <label>What is your email?
               <input type="text" value={state.email} name="jack@email.com" placeholder="Example: jackson11!" onChange={handleChange} maxLength="60"></input></label>
             <span>For authentication reasons, you will not be emailed.</span>
+            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5}/></label>
+            <span>Please enter your photo links for every new line (max 5)</span>
             {/* <button></button> */}
             {/* <button>stays</button>
           <button>inside</button>

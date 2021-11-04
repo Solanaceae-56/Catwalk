@@ -19,11 +19,35 @@ function Answer(props) {
       }
     });
   };
-  
+
+  const photomap = props.item.photos.map((photo) =>
+    <img src={photo} width="300" height="300"/>
+  );
+
+  // console.log(photomap, 'photomap');
+  // if (props.item.photos.length !== 0) {
+  //   debugger;
+  //   return (
+  //     <div className='answer' id={props.item.id}>
+  //       <div className='body'>A: {props.item.body}</div>
+  //       <div className='misc'>by {props.item['answerer_name']}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
+  //       <div className='photos'>
+  //         {photomap}
+  //       </div>
+  //       <div className='help'>Helpful?</div>
+  //       <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpful})</div>
+  //       <div className='report' id='reportanswer' onClick={click}> Report? </div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className='answer' id={props.item.id}>
       <div className='body'>A: {props.item.body}</div>
       <div className='misc'>by {props.item['answerer_name']}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
+      <div className='photos'>
+        {photomap}
+      </div>
       <div className='help'>Helpful?</div>
       <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpful})</div>
       <div className='report' id='reportanswer' onClick={click}> Report? </div>
