@@ -1,0 +1,9 @@
+.imageRow {
+  display:flex;
+  justify-content: center;
+  gap:10px;
+
+}
+.reviewItemPhoto {
+  height:100px;
+}
