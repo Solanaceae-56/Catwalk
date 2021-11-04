@@ -1,25 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 import QuestionsList from './QuestionsList.jsx';
 const axios = require('axios');
 const config = require('../../../../config.js');
 
-function QuestionsAnswers (props) {
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
+function QuestionsAnswers(props) {
   const [questions, setQuestions] = useState([]);
-  const [question_Id, setQuestionId] = useState('');
+  const [questionId, setQuestionId] = useState('');
   const [answers, setAnswers] = useState([]);
-  const [product_Id, setProductId] = useState('');
-  const [count, setCount] = useState(5);
+  const [productId, setProductId] = useState(props.productid);
+  const [count, setCount] = useState(10);
+  const [moreQuestions, setMoreQuestions] = useState(2);
+  const prevquestions = usePrevious(questions);
   //const [productName, setProductName] = useState(props.productName);
   //console.log(props.productName);
-  useEffect( () => {
+  useEffect(() => {
+    setProductId(props.productid);
+    console.log('test');
+  }, [props.productid]);
+
+  useEffect(() => {
     // axios.get("http://localhost:3000/qa/questions", {params: {productId: props.productid}}).then((response) => {
     //   console.log(response);
     //   setList(response);
     // });
-
+    //setProductId(props.productid);
+    console.log(props.productid, 'id')
     /*setProductId(props.productId)*/
     /* use state product id instead below*/
-    axios.get("http://localhost:3000/qa/questions", {params: {productId: 40346, count: count}}).then((response) => {
+    axios.get("http://localhost:3000/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
       //console.log(response);
       console.log(response.data, 'what');
       setQuestions(response.data.results);
@@ -30,16 +46,18 @@ function QuestionsAnswers (props) {
     //   setAnswers(response.data.results);
     //   //console.log(answers, 'yo');
     // });
-  }, [count]);
+  }, [count, productId]);
 
-  function increaseCount () {
-    setCount(count + 2);
+  function increaseCount() {
+    setCount(count + 4);
+    setMoreQuestions(moreQuestions + 2);
     console.log(count);
   }
+
   return (
     <div>
       <div>Questions and Answers</div>
-      <QuestionsList questions={questions} name={props.productName} id={props.id}/>
+      <QuestionsList questions={questions} name={props.productName} id={props.id} morequestions={moreQuestions} />
       <button onClick={increaseCount}>More questions</button>
     </div>
   );

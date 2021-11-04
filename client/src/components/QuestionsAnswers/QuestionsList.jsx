@@ -15,7 +15,7 @@ const customStyles = {
 };
 
 function QuestionsList(props) {
-  let subtitle;
+  //let subtitle;
   //const [list, setList] = useState([]);
   //const [searchString, setSearchString] = useState('')
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -90,16 +90,19 @@ function QuestionsList(props) {
   //console.log(props.answers, 'questionslist');
   console.log(props.questions, 'inquestions');
   for (var i = 0; i < props.questions.length; i++) {
-    questions.push(<Question data={props.questions[i]} name={props.name} search={state.searchString}/>);
-    if (questions.length === 4) {
+    if (i === props.morequestions) {
       break;
     }
+    questions.push(<Question data={props.questions[i]} name={props.name} search={state.searchString}/>);
   }
 
   if (questions.length === 0) {
     return (
       <div>
-        <button onClick={openModal}>test</button>
+        <div>
+          There are no questions for this product.
+        </div>
+        <button onClick={openModal}>Ask a question!</button>
       </div>
     )
   }
