@@ -42,7 +42,7 @@ function AnswersList(props) {
 
   if (Object.keys(list).length <= 2 || !isHidden) {
     //debugger;
-    console.log(renderlist);
+    //console.log(renderlist);
     return (
       <div className="answerslist">
         <div>
