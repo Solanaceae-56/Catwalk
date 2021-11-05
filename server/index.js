@@ -250,3 +250,56 @@ app.put('/reviews/:review_id/report',(req,res)=>{
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${3000}!`);
 });
+
+/*==============================
+OutFit
+==============================*/
+ var storedOutfit = {
+   'dummy': ['40347', '40348']
+
+ };
+
+ app.post('/outfit/:username.:outfitId', (req, res)=> {
+   const username = req.params.username;
+   const outfitId = req.params.outfitId;
+   if (storedOutfit[username] === undefined) {
+     storedOutfit[username] = [];
+   }
+   if (!storedOutfit[username].includes(outfitId)) {
+     storedOutfit[username].push(outfitId);
+   }
+
+   res.sendStatus(201);
+
+ })
+
+ app.get('/outfit/:username', (req, res) => {
+   const username = req.params.username;
+   console.log(username);
+   if (storedOutfit[username] === undefined) {
+     storedOutfit[username] = [];
+   }
+   res.send(storedOutfit[username])
+ })
+
+ app.delete('/outfit/:username.:outfitId', (req, res)=> {
+  const username = req.params.username;
+  const outfitId = req.params.outfitId;
+  console.log(username, outfitId);
+  if (storedOutfit[username] === undefined) {
+    res.sendStatus(202);
+    return;
+  }
+
+  const index = storedOutfit[username].indexOf(outfitId);
+  if (index === -1) {
+    res.sendStatus(404);
+    return;
+  }
+  storedOutfit[username].splice(index, 1);
+  res.send(storedOutfit[username]);
+
+})
+
+
+

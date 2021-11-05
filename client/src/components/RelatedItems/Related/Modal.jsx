@@ -27,13 +27,7 @@ const Modal = (props) => {
           value2: item.value
         }
       }
-
-
-
-
     })
-
-
   }
 
   mergeFeatures();
@@ -41,8 +35,12 @@ const Modal = (props) => {
   return (
     <div className='modal-comparison-body'>
          <div className='box'>
-           <div>
-
+           <div className='comparison-modal-header'>
+              <p key='modal-header'>
+                {/* <span className="current-product">{pageProduct}</span> */}
+                <span className="comparison-modal-title">Comparing</span>
+                {/* <span className="related-product">{relatedItem}</span> */}
+              </p>
            </div>
            <div>
              {Object.keys(commonFeatures).map((content, index) => (
@@ -61,7 +59,7 @@ const Modal = (props) => {
 
 
 
-
+//style
 
 //   let overviewFeatures = pageProduct.features.reduce((obj, user) => {
 //     obj[user.feature] = user.value;
@@ -141,7 +139,7 @@ const Modal = (props) => {
   // )
 
 
-
+  // https://www.cluemediator.com/create-simple-popup-in-reactjs
 
 
 }
