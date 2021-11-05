@@ -68,17 +68,10 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-<<<<<<< HEAD
-       {/*<div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
-        <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-    <div id='relatedItems'><RelatedItemsComparison /></div>*/}
-        <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
-=======
         <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
         {/* <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div> */}
         {/* <div id='relatedItems'><RelatedItemsComparison /></div> */}
         {/* <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
->>>>>>> 2e6c152ec5fc3c50a8c2ef76d7d22c8c04d8a1af
       </div>
    )
  }
