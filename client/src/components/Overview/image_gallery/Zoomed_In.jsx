@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import SideBarList from './SideBarList.jsx';
+import React, {useState, useEffect} from 'react'
 
-function Image_Gallery(props) {
+function Zoomed_In(props) {
   var [current_Image, set_current_Image] = useState('');
   var [imageArr, set_imageArr] = useState([]);
+  var [bgPosition, set_bgPosition] = useState('0% 0%');
   var [buttonL, set_buttonL] = useState(<div></div>);
   var [buttonR, set_buttonR] = useState(<div></div>);
 
@@ -31,6 +31,13 @@ function Image_Gallery(props) {
     }
   }
 
+  var handleMouseMovement = function(e) {
+    const {left, top, width, height} = e.target.getBoundingClientRect();
+    var x = (e.pageX - left)/width * 100;
+    var y = (e.pageY - top)/height * 100;
+    set_bgPosition(x + '%' + ' ' + y + '%');
+  }
+
   useEffect(() => {
     let mounted = true;
     if (mounted && imageArr.length > 0) {
@@ -54,24 +61,29 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && props.current_Style.photos) {
       set_imageArr(props.current_Style.photos);
-      set_current_Image(props.current_Style.photos[0]);
+      set_current_Image(props.current_Image);
       props.changeCurrImg(props.current_Style.photos[0]);
     }
 
     return function cleanup() {
       mounted = false;
     }
-  }, [props.current_Style.style_id]);
-
+  }, [props.current_Image.url]);
 
   return (
-    <div id='image-Gallery-inner'>
-      <img id='main-img' src={current_Image.url} onClick={(e) => props.changeView(true, e)}/>
-      <SideBarList list={imageArr} current={current_Image} handleImgChange={handleImgChange}/>
+    <div id='Zoomed'>
       {buttonL}
+      <figure id='zoom-effect' onMouseMove={handleMouseMovement}
+      style={{
+        backgroundImage: 'url(' + current_Image.url + ')',
+        backgroundPosition: bgPosition
+      }}>
+        <img id='zoomed-img' src={current_Image.url}/>
+      </figure>
       {buttonR}
+      <button onClick={(e) => props.changeView(false, e)}>Exit</button>
     </div>
   );
 }
 
-export default Image_Gallery;
+export default Zoomed_In;
