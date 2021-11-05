@@ -96,7 +96,7 @@ class Overview extends React.Component {
             </div>
           </div>
           <div id='product-overview'>{this.state.current_Product.description}</div>
-          <div id='style-selector'><Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style}/></div>
+          <div id='style-selector'><Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg}/></div>
           <div id='image-gallery'><Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange}/></div>
         </div>;
     } else if (this.state.mode) {

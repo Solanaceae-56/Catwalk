@@ -11,6 +11,7 @@ function Style_Selector(props) {
   var handleStyleChange = function(data) {
     set_selected_Style(data);
     props.handleChange(data);
+    props.changeImg(data.photos[0].url);
   }
 
   useEffect(() => {

@@ -37,12 +37,12 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && imageArr.length > 0) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
-        set_buttonR(<button id='toTheRightFaded'> {'R'} </button>);
+        set_buttonR(<div></div>);
       } else {
         set_buttonR(<button id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
       }
       if (current_Image.url === imageArr[0].url) {
-        set_buttonL(<button id='toTheLeftFaded'> {'L'} </button>);
+        set_buttonL(<div></div>);
       } else {
         set_buttonL(<button id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
