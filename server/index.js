@@ -183,6 +183,7 @@ app.get('/reviews', (req, res) => {
 })
 
   app.get('/reviews/meta', (req, res) => {
+    console.log("get meta data")
     axios.get(`${apiPath}/reviews/meta?product_id=${req.query.product_id}`, {
       headers: {
         'Authorization': API_KEYS.token
@@ -197,20 +198,8 @@ app.get('/reviews', (req, res) => {
 
 
 app.post('/reviews', (req, res) => {
-  var fakeData = {
-    "product_id": 40344,
-    "rating": 3,
-    "summary": "123",
-    "body": "abcd",
-    "recommend": true,
-    "name": "km",
-    "email": "km@gmail.com",
-    "photos": [],
-    "characteristics": {
-    }
-
-}
-  let paramsObj = req.body.data || fakeData;
+ console.log(req.body)
+  let paramsObj = req.body;
   axios.post(apiPath + '/reviews',paramsObj, {
     headers: { 'Authorization': API_KEYS.token }
   }).then((results) => {

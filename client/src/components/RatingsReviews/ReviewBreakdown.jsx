@@ -8,11 +8,13 @@ export default function ReviewBreakdown(props) {
   let filteredKey = Object.keys(filterState).filter((key) => { return filterState[key] === true });
   let reviewsContext = useContext(ReviewsContext);
   let fullArr = reviewsContext.reviews;
+
   useEffect(() => {
     setRatingData(props.ratingData);
-    setTotalStar((+ratingData['5']) + (+ratingData['4']) + (+ratingData['3']) + (+ratingData['2']) + (+ratingData['1']));
+    //console.log(ratingData)
+    setTotalStar((+props.ratingData['5']) + (+props.ratingData['4']) + (+props.ratingData['3']) + (+props.ratingData['2']) + (+props.ratingData['1']));
 
-  }, [props])
+  }, [props.ratingData])
   useEffect(() => {
     let filteredKey = Object.keys(filterState).filter((key) => { return filterState[key] === true });
     let newArr = reviewsContext.reviews
@@ -32,7 +34,7 @@ export default function ReviewBreakdown(props) {
     })
   }
 
-
+console.log(props)
   return (
     <div className="reviewBreakdown">
       <div className="reviewBarContainer"><span onClick={filterStars}>5 stars</span><div className="reviewBar"><div style={{ width: `${((+ratingData['5']) / (+totalStar)) * 100}%` }}></div></div></div>
