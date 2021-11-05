@@ -96,11 +96,12 @@ function QuestionsList(props) {
 
   //console.log(props.answers, 'questionslist');
   console.log(props.questions, 'inquestions');
-  for (var i = 0; i < props.questions.length; i++) {
+  var sortedQuestions = props.questions.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
+  for (var i = 0; i < sortedQuestions.length; i++) {
     if (i === props.morequestions) {
       break;
     }
-    questions.push(<Question data={props.questions[i]} name={props.name} search={state.searchString} />);
+    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} />);
   }
 
   if (questions.length === 0) {
