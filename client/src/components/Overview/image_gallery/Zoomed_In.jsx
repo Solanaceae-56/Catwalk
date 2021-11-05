@@ -7,11 +7,6 @@ function Zoomed_In(props) {
   var [buttonL, set_buttonL] = useState(<div></div>);
   var [buttonR, set_buttonR] = useState(<div></div>);
 
-  var handleImgChange = function(data) {
-    set_current_Image(data);
-    props.changeCurrImg(data);
-  }
-
   var findIndexOf = function() {
     var result = -1;
     for (var i = 0; i < imageArr.length; ++i) {
@@ -26,8 +21,10 @@ function Zoomed_In(props) {
     var index = findIndexOf();
     if(way === 'left') {
       set_current_Image(imageArr[index - 1]);
+      props.changeCurrImg(imageArr[index - 1]);
     } else {
       set_current_Image(imageArr[index+1]);
+      props.changeCurrImg(imageArr[index+1]);
     }
   }
 
@@ -62,7 +59,6 @@ function Zoomed_In(props) {
     if (mounted && props.current_Style.photos) {
       set_imageArr(props.current_Style.photos);
       set_current_Image(props.current_Image);
-      props.changeCurrImg(props.current_Style.photos[0]);
     }
 
     return function cleanup() {

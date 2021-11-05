@@ -26,8 +26,10 @@ function Image_Gallery(props) {
     var index = findIndexOf();
     if(way === 'left') {
       set_current_Image(imageArr[index - 1]);
+      props.changeCurrImg(imageArr[index - 1]);
     } else {
       set_current_Image(imageArr[index+1]);
+      props.changeCurrImg(imageArr[index + 1]);
     }
   }
 
@@ -54,8 +56,12 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && props.current_Style.photos) {
       set_imageArr(props.current_Style.photos);
-      set_current_Image(props.current_Style.photos[0]);
-      props.changeCurrImg(props.current_Style.photos[0]);
+      if (props.currImg.url !== undefined) {
+        set_current_Image(props.currImg);
+      } else {
+        set_current_Image(props.current_Style.photos[0]);
+        props.changeCurrImg(props.current_Style.photos[0]);
+      }
     }
 
     return function cleanup() {
