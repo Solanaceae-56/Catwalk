@@ -23,6 +23,10 @@ function Answer(props) {
   const photomap = props.item.photos.map((photo) =>
     <img src={photo} width="300" height="300"/>
   );
+  var answerer = props.item['answerer_name'];
+  if (props.item['answerer_name'] === "Seller") {
+    answerer = <b>{props.item['answerer_name']}</b>
+  }
 
   // console.log(photomap, 'photomap');
   // if (props.item.photos.length !== 0) {
@@ -44,7 +48,7 @@ function Answer(props) {
   return (
     <div className='answer' id={props.item.id}>
       <div className='body'>A: {props.item.body}</div>
-      <div className='misc'>by {props.item['answerer_name']}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
+      <div className='misc'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
       <div className='photos'>
         {photomap}
       </div>

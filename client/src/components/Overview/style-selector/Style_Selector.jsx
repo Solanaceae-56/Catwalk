@@ -15,21 +15,26 @@ function Style_Selector(props) {
 
   useEffect(() => {
     let mounted = true;
-    axios.get("http://localhost:3000/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
-      .then((data) => {
-        if (mounted) {
-          set_all_Styles(data.data.results);
-          set_selected_Style(data.data.results[0]);
-          props.handleChange(data.data.results[0]);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-      return function cleanup() {
-        mounted = false;
+    if (mounted) {
+      if (props.currImg.url !== undefined) {
+        set_selected_Style(props.currStyle);
+        set_all_Styles(props.allStyles);
+      } else {
+        axios.get("http://localhost:3000/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
+          .then((data) => {
+            set_all_Styles(data.data.results);
+            set_selected_Style(data.data.results[0]);
+            props.handleChange(data.data.results[0]);
+            props.updateAllStyles(data.data.results);
+          })
+          .catch((err) => {
+            console.log(err);
+        });
       }
+    }
+    return function cleanup() {
+      mounted = false;
+    }
   }, [props.product_id]);
 
   return (

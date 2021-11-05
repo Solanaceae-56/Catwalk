@@ -16,17 +16,27 @@ function AnswersList(props) {
     //debugger;
     //setList(props.data);
     //console.log(list, 'list')
-    var list_keys = Object.keys(list);
-    //console.log(list_keys, 'listkeys');
     var arr = [];
-    for (var i = 0; i < list_keys.length; i++) {
-      //debugger;
-      //console.log(list[list_keys[i]]);
-      arr.push(<Answer item={list[list_keys[i]]} />);
+    var sortedList = Object.keys(list).map((key) => [key, list[key]]);
+    //console.log(result, 'result');
+    sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
+    console.log(sortedList, 'sort');
+    for (var i = 0; i < sortedList.length; i++) {
+      arr.push(<Answer item={sortedList[i][1]} />);
       if (isHidden && i === 1) {
         break;
       }
     }
+    // var list_keys = Object.keys(list);
+    // var arr = [];
+    // for (var i = 0; i < list_keys.length; i++) {
+    //   //debugger;
+    //   //console.log(list[list_keys[i]]);
+    //   arr.push(<Answer item={list[list_keys[i]]} />);
+    //   if (isHidden && i === 1) {
+    //     break;
+    //   }
+    // }
     setRenderList(arr);
     //console.log(renderlist, 'render');
     //onclick toggel ishidden
