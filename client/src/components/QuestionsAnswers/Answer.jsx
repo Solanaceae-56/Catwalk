@@ -3,7 +3,7 @@ import moment from 'moment';
 const axios = require('axios');
 
 function Answer(props) {
-  console.log(props.item);
+  //console.log(props.item);
   const [helpful, setHelpful] = useState(props.item.helpfulness);
 
   function click(e) {
@@ -13,7 +13,7 @@ function Answer(props) {
     //console.log(e.target.parentNode.id);
     var aId = Number(e.target.parentNode.id);
     axios.put("http://localhost:3000/qa/questions/put", { path: putPath, answerId: aId }).then((response) => {
-      console.log(response);
+      //console.log(response);
       if (putPath === 'helpfulanswer') {
         setHelpful(helpful + 1);
       }
