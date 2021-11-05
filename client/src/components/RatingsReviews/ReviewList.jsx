@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ReviewsContext } from "./RatingsReviews.jsx"
-import RatingList from './RatingList.jsx'
+import { ReviewsContext } from "./RatingsReviews.jsx";
+import RatingList from './RatingList.jsx';
 import ReviewItem from "./ReviewItem.jsx";
+import AddReview from "./AddReview.jsx";
 import axios from 'axios'
 
 export default function ReviewList(props) {
@@ -11,6 +12,7 @@ export default function ReviewList(props) {
   const [page, setPage] = useState(1);
   const [product_id, setProduct_id] = useState(props.product_id);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [characteristics,setCharacteristics]=useState({});
 
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
@@ -37,9 +39,7 @@ export default function ReviewList(props) {
   useEffect(()=>{
     setProduct_id(props.product_id)
   },[props])
-  const addmoreReviews = () => {
 
-  }
   return (
     <ReviewsContext.Provider value ={{reviews,setReviews}}>
     <div className="reviewratingListContainer">
@@ -60,16 +60,18 @@ export default function ReviewList(props) {
           }
           </div>
 
+
         <div className="reviewListFooter">
           <button
             id="moreReviews"
             onClick={() => { setCount(count + 2) }}
             style={(totalReviews - count < 2) ? { display: 'none' } : { display: 'inline' }}>MORE REVIEWS</button>
-          <button id="addReview">ADD A REVIEW +</button>
+
+          <AddReview characteristics={characteristics}/>
         </div>
       </div>
       <div className="ratingListContainer">
-        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
+        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} setCharacter ={setCharacteristics} />
       </div>
     </div >
     </ReviewsContext.Provider>

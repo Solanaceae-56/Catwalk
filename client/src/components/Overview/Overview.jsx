@@ -24,6 +24,7 @@ class Overview extends React.Component {
     if (this.props.product_id !== prevProps.product_id) {
     axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
       .then((data) => {
+        console.log(data);
         this.setState({
           current_Product: data.data,
         });
