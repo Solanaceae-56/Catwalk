@@ -1,6 +1,7 @@
 .reviewBarContainer{
   display:flex;
   justify-content: center;
+  align-items: baseline;
   gap:10px;
 }
 
@@ -8,16 +9,17 @@
 .reviewBar{
   background-color: lightgray;
   width:150px;
-  border-radius: 12px;
+  height:75%;
+  border-radius: 0px;
   /* (height of inner div) / 2 + padding */
-  padding: 3px;
+  padding: 0px;
+  margin-bottom: 3px;
 }
 
 .reviewBar > div {
-  background-color: yellow;
+  background-color: gold;
 
   /* Adjust with JavaScript */
-  height: 20px;
-
-  border-radius: 10px;
+  height: 10px;
+  border-radius: 0px;
 }

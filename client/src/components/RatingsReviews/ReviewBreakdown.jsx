@@ -42,10 +42,8 @@ export default function ReviewBreakdown(props) {
       <div className="reviewBarContainer"><span onClick={filterStars}>1 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['1']) / (+totalStar)) * 100}%` }}></div></div></div>
       <div className="filterBtnContainer">
         {
-
           (filteredKey === undefined) ? null : filteredKey.map((key) => (<button onClick={filterStars} key={key}>{key}</button>))
         }
-
       </div>
     </div>
   )
