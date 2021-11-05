@@ -19,8 +19,8 @@ export default function ReviewBreakdown(props) {
     let filteredKey = Object.keys(filterState).filter((key) => { return filterState[key] === true });
     let newArr = reviewsContext.reviews
     let filteredArr = newArr.filter((item)=>{item.rating==4});
-    console.log(filteredArr);
-    console.log(filteredKey);
+    // console.log(filteredArr);
+    // console.log(filteredKey);
 
     reviewsContext.setReviews(filteredArr)
   }, [filterState])
@@ -34,7 +34,6 @@ export default function ReviewBreakdown(props) {
     })
   }
 
-console.log(props)
   return (
     <div className="reviewBreakdown">
       <div className="reviewBarContainer"><span onClick={filterStars}>5 stars</span><div className="reviewBar"><div style={{ width: `${((+ratingData['5']) / (+totalStar)) * 100}%` }}></div></div></div>
