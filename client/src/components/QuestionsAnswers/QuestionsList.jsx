@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
-//import Modal from 'react-modal';
-const axios = require('axios');
 import Modal from '../Modal.jsx';
+const axios = require('axios');
+
 
 const customStyles = {
   content: {
@@ -16,15 +16,9 @@ const customStyles = {
 };
 
 function QuestionsList(props) {
-  //let subtitle;
   //const [list, setList] = useState([]);
   //const [searchString, setSearchString] = useState('')
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  }
-
   //const [modalIsOpen, setIsOpen] = useState(false);
   const [state, setState] = React.useState({
     searchString: "",
@@ -51,15 +45,13 @@ function QuestionsList(props) {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    console.log('in modal');
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  }
 
   function submit() {
     //debugger;
@@ -67,23 +59,22 @@ function QuestionsList(props) {
     if (!state.email || !state.nickname || !state.question) {
       //debugger;
       alert('One or more fields left empty');
-
       return;
     }
-    const test = /^\S+@\S+\.\S{3}$/;
-    if (!state.email.match(test)) {
+    const emailRegex = /^\S+@\S+\.\S{3}$/;
+    if (!state.email.match(emailRegex)) {
       alert('Please enter a valid email');
       return;
     }
-    const obj = {
+    const postObj = {
       productId: props.id,
       email: state.email,
       name: state.nickname,
       body: state.question,
     }
     //console.log(obj);
-    axios.post("http://localhost:3000/qa/questions/", obj).then((response) => {
-      console.log(response);
+    axios.post("http://localhost:3000/qa/questions/", postObj).then((response) => {
+      //console.log(response);
     });
     closeModal();
     setState({
@@ -95,7 +86,7 @@ function QuestionsList(props) {
   }
 
   //console.log(props.answers, 'questionslist');
-  console.log(props.questions, 'inquestions');
+  //console.log(props.questions, 'inquestions');
   var sortedQuestions = props.questions.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
   for (var i = 0; i < sortedQuestions.length; i++) {
     if (i === props.morequestions) {
@@ -110,7 +101,20 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        <button onClick={openModal}>Ask a question!</button>
+        <button onClick={toggleModal}>Ask a Question</button>
+        {isOpen && <Modal content={
+          <>
+            <h2>Hello Modal</h2>
+            <form>
+              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
+              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
+              <span>For privacy reasons, do not use your full name or email address</span>
+              <label>What is your email?
+                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
+              <span>For authentication reasons, you will not be emailed.</span>
+            </form>
+            <button onClick={submit}>Submit</button>
+          </>} handleClose={toggleModal} />}
       </div>
     )
   }
@@ -120,45 +124,17 @@ function QuestionsList(props) {
       <button onClick={toggleModal}>Ask a Question</button>
       {isOpen && <Modal content={
         <>
-        <h2>Hello Modal</h2>
-        <form>
-          <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4}cols={40}/></label>
-          <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-          <span>For privacy reasons, do not use your full name or email address</span>
-          <label>What is your email?
-          <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-          <span>For authentication reasons, you will not be emailed.</span>
-        </form>
-        <button onClick={submit}>Submit</button>
-      </>} handleClose={toggleModal} />}
-
-
-      {/* <h2>Hello Modal</h2>
-        <form>
-          <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} /></label>
-          <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-          <span>For privacy reasons, do not use your full name or email address</span>
-          <label>What is your email?
-          <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-          <span>For authentication reasons, you will not be emailed.</span>
-        </form>
-        <button onClick={submit}>Submit</button> */}
-
-      {/* <button onClick={openModal}>Ask a question!</button>
-      <Modal>
-        <h1>Ask your question</h1>
-        <h2>about the {props.name}</h2>
-        <div className="modal"></div>
-        <form>
-          <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} /></label>
-          <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-          <span>For privacy reasons, do not use your full name or email address</span>
-          <label>What is your email?
-          <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-          <span>For authentication reasons, you will not be emailed.</span>
-        </form>
-        <button onClick={submit}>Submit</button>
-      </Modal> */}
+          <h2>Hello Modal</h2>
+          <form>
+            <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
+            <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
+            <span>For privacy reasons, do not use your full name or email address</span>
+            <label>What is your email?
+              <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
+            <span>For authentication reasons, you will not be emailed.</span>
+          </form>
+          <button onClick={submit}>Submit</button>
+        </>} handleClose={toggleModal} />}
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div className="questions">
         {questions}

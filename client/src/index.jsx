@@ -82,8 +82,8 @@ class App extends React.Component {
         <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>
         {/* <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
       </div>
-   )
- }
+    )
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
