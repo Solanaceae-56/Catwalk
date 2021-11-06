@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const RelatedItemsComparison = (props) => {
 
-    var defaultProduct_id = 40344;
+    var defaultProduct_id = 40348;
 
     return (
         <div className='related-products'>

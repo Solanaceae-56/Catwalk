@@ -228,6 +228,18 @@ Related Items
   border: 1px solid #999;
   font-size: 20px;
 }
+
+.left-arrow {
+  display: inline-block;
+}
+
+.related-slide {
+
+  width: 800px;
+  overflow: auto;
+  white-space: nowrap;
+
+}
 /*============================
 Outfit
 ============================*/

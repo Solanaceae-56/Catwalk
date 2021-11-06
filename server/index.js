@@ -255,7 +255,7 @@ app.listen(PORT, () => {
 OutFit
 ==============================*/
  var storedOutfit = {
-   'dummy': ['40347', '40348']
+   'dummy': []
 
  };
 

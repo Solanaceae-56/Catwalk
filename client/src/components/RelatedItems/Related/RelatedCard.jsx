@@ -28,7 +28,7 @@ const RelatedCard = (props) => {
 
 
   return (
-    (<div className='related-card'>
+      <div className='related-card'>
         <div><i className='related-card-action'className="far fa-star" onClick={toggleModal} ></i></div>
         {isOpen &&
         <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} />}
@@ -37,10 +37,8 @@ const RelatedCard = (props) => {
         <div className='related-card-name'>{props.relatedItem.data.name}</div>
         {/* <div>{itemRating}</div> */}
         {salePrice? <div className='related-card-sale-price'>{salePrice}</div> : <div className='related-card-original-price'>{originalPrice}</div> }
-    </div>)
+    </div>
 )
-
-
 }
 
 
