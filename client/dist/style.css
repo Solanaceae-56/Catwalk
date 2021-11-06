@@ -352,7 +352,7 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
 }
 
 .answerslist {
-  height: 400px;
+  height: 250px;
   overflow-y: auto;
 }
 
