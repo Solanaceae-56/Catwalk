@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import "./ProductBreakdown.css";
-export const characteristicsWords = {
+const characteristicsWords = {
   Size: ["A size too small", "Perfect", "A size too big"],
   Width: ["Too narrow", "Perfect", "Too wide"],
   Comfort: ["Uncomfortable", "Ok", "Perfect"],
