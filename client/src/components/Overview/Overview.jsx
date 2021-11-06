@@ -12,12 +12,14 @@ class Overview extends React.Component {
     this.changeCurrImg = this.changeCurrImg.bind(this);
     this.handleDefaultChange = this.handleDefaultChange.bind(this);
     this.updateAllStyles = this.updateAllStyles.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
     this.state = {
       current_Product: {},
       current_Style: {},
       current_Img: {},
       allStyles: [],
       mode: true,
+      switch: false,
     }
   }
 
@@ -35,8 +37,15 @@ class Overview extends React.Component {
     } else {
       this.setState({
         mode: true,
+        switch: true
       })
     }
+  }
+
+  handleSwitch(data) {
+    this.setState({
+      switch: false
+    });
   }
 
   updateAllStyles(data) {
@@ -53,16 +62,15 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
-    axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          current_Product: data.data,
+      axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
+        .then((data) => {
+          this.setState({
+            current_Product: data.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     }
   }
 
@@ -96,8 +104,8 @@ class Overview extends React.Component {
             </div>
           </div>
           <div id='product-overview'>{this.state.current_Product.description}</div>
-          <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg}/>
-          <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange}/>
+          <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+          <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
         </div>;
     } else if (this.state.mode) {
       condition = <div>Rendering</div>

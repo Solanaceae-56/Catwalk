@@ -25,8 +25,8 @@ export default function ReviewList(props) {
       .catch(err => {
         console.log(err);
       })
-  }
-    , [sort, count, page, product_id]);
+  }, [sort, count, page, product_id]);
+
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: 10000 } })
       .then(
@@ -51,7 +51,7 @@ export default function ReviewList(props) {
   //console.log(props.characteristics)
   return (
     <ReviewsContext.Provider value ={{reviews,setReviews,initialReviews}}>
-    <div className="reviewratingListContainer">
+    {(reviews!==undefined) && <div className="reviewratingListContainer">
       <div className="reviewListContainer">
         <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e) => { setSort(e.target.value) }}>
           <option value="relevant">Relevant</option>
@@ -81,7 +81,7 @@ export default function ReviewList(props) {
       <div className="ratingListContainer">
         <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
       </div>
-    </div >
+    </div >}
     </ReviewsContext.Provider>
   )
 }

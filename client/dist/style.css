@@ -486,6 +486,7 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .box {

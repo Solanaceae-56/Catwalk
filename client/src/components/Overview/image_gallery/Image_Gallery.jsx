@@ -56,7 +56,7 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && props.current_Style.photos) {
       set_imageArr(props.current_Style.photos);
-      if (props.currImg.url !== undefined) {
+      if (props.currImg.url !== undefined && props.switch) {
         set_current_Image(props.currImg);
       } else {
         set_current_Image(props.current_Style.photos[0]);

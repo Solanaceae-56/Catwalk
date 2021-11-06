@@ -17,9 +17,10 @@ function Style_Selector(props) {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      if (props.currImg.url !== undefined) {
+      if (props.currImg.url !== undefined && props.switch) {
         set_selected_Style(props.currStyle);
         set_all_Styles(props.allStyles);
+        props.handleSwitch();
       } else {
         axios.get("http://localhost:3000/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
           .then((data) => {
