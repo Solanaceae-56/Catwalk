@@ -41,12 +41,12 @@ function Zoomed_In(props) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
         set_buttonR(<div></div>);
       } else {
-        set_buttonR(<button id='toTheRightZ' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className='leftRightB' id='toTheRightZ' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
       }
       if (current_Image.url === imageArr[0].url) {
         set_buttonL(<div></div>);
       } else {
-        set_buttonL(<button id='toTheLeftZ' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className='leftRightB' id='toTheLeftZ' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
     }
     return function cleanup() {

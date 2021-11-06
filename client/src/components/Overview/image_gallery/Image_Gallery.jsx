@@ -39,12 +39,12 @@ function Image_Gallery(props) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
         set_buttonR(<div></div>);
       } else {
-        set_buttonR(<button id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className='leftRightB' id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
       }
       if (current_Image.url === imageArr[0].url) {
         set_buttonL(<div></div>);
       } else {
-        set_buttonL(<button id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className='leftRightB' id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
     }
     return function cleanup() {
@@ -71,10 +71,10 @@ function Image_Gallery(props) {
 
 
   return (
-    <div id='image-Gallery-inner'>
+    <div id='image-Gallery'>
+      {buttonL}
       <img id='main-img' src={current_Image.url} onClick={(e) => props.changeView(true, e)}/>
       <SideBarList list={imageArr} current={current_Image} handleImgChange={handleImgChange}/>
-      {buttonL}
       {buttonR}
     </div>
   );

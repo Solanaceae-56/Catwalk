@@ -73,7 +73,7 @@ class Overview extends React.Component {
     } else if (this.state.current_Style && this.state.current_Style.sale_price !== null) {
       priceTag =
         <div id='price'>
-          <div id='OGprice'>{this.state.current_Style.original_price}</div>
+          <div id='originalPrice'>{this.state.current_Style.original_price}</div>
           <div id='salePrice'>{this.state.current_Style.sale_price}</div>
         </div>;
     } else {
@@ -83,21 +83,21 @@ class Overview extends React.Component {
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
-        <div id='Overview'>
+        <div id='overview'>
           <div id='product-info'>
-            <div id='star-rating'><Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/></div>
+            <Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
             <div id='product-category'>{this.state.current_Product.category}</div>
             <div id='product-title'>{this.state.current_Product.name}</div>
             {priceTag}
             <div id='social-media'>
-              <button id='FB'>Facebook</button>
-              <button id='Twitter'>Twitter</button>
-              <button id='Pinterest'>Pinterest</button>
+              <button id='facebook'>Facebook</button>
+              <button id='twitter'>Twitter</button>
+              <button id='pinterest'>Pinterest</button>
             </div>
           </div>
           <div id='product-overview'>{this.state.current_Product.description}</div>
-          <div id='style-selector'><Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg}/></div>
-          <div id='image-gallery'><Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange}/></div>
+          <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg}/>
+          <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange}/>
         </div>;
     } else if (this.state.mode) {
       condition = <div>Rendering</div>

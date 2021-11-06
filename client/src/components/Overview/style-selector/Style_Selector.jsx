@@ -39,7 +39,7 @@ function Style_Selector(props) {
   }, [props.product_id]);
 
   return (
-      <div id='style-selector-inner'>
+      <div id='style-selector'>
         <div id='styleSelector_mod'>
           <div id='styleSelect_title'><b>STYLE ></b> {selected_Style['name']}</div>
           <BubblesList list={all_Styles} selected={selected_Style.style_id} handleChange={handleStyleChange}/>
