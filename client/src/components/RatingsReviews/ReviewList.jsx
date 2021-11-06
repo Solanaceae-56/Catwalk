@@ -60,6 +60,7 @@ export default function ReviewList(props) {
         </select></div>
 
           <div className="reviewListContent">{
+            
             reviews.map(review => {
               return <ReviewItem
                 key={review.review_id}
