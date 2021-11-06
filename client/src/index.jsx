@@ -17,6 +17,8 @@ class App extends React.Component {
       num_Of_Ratings: 0,
       product_id: 0,
     }
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   findRating(p_id) {
@@ -65,12 +67,19 @@ class App extends React.Component {
       });
   }
 
+  handleCardClick (e) {
+    this.setState({
+      product_id:e.target.id
+    });
+
+  }
+
   render() {
     return (
       <div className='app-container'>
-        <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        {/* <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
         {/* <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div> */}
-        {/* <div id='relatedItems'><RelatedItemsComparison /></div> */}
+        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>
         {/* <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
       </div>
    )

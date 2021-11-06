@@ -414,6 +414,14 @@ Outfit
   color: white;
 }
 
+.outfit-slide {
+
+  width: 400px;
+  overflow: auto;
+  white-space: nowrap;
+
+}
+
 
 /*=======*/
 .question {

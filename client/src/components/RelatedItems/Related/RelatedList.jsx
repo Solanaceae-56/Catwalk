@@ -71,9 +71,12 @@ const RelatedList = (props) => {
 
       <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-50)}/>
 
-      <div className='related-slide' ref={ref} >
-        {relatedItems.map((relatedItem, i) => <RelatedCard key={i}    relatedItem={relatedItem} pageProduct={pageProduct}/>)}
-      </div>
+      {relatedItems.length >0 ?
+       <div className='related-slide' ref={ref} >
+       {relatedItems.map((relatedItem, i) => <RelatedCard key={i}    relatedItem={relatedItem} pageProduct={pageProduct} handleCardClick={props.handleCardClick}/>)}</div> : <div></div>
+     }
+
+
       <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(50)}/>
     </div>
 
