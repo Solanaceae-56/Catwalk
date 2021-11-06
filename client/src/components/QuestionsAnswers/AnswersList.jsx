@@ -3,26 +3,21 @@ import moment from 'moment';
 import Answer from './Answer.jsx';
 
 function AnswersList(props) {
-  const [list, setList] = useState(props.data);
-  const [renderlist, setRenderList] = useState([]);
+  const [answers, setList] = useState(props.data);
+  const [renderAnswers, setrenderAnswers] = useState([]);
   const [isHidden, setIsHidden] = useState(true);
-
-  function moreanswers() {
-    //debugger;
-    setIsHidden(false);
-  }
 
   useEffect(() => {
     //debugger;
     //setList(props.data);
     //console.log(list, 'list')
-    var arr = [];
-    var sortedList = Object.keys(list).map((key) => [key, list[key]]);
+    var answersArr = [];
+    var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
     //console.log(result, 'result');
     sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
-    console.log(sortedList, 'sort');
+    //console.log(sortedList, 'sort');
     for (var i = 0; i < sortedList.length; i++) {
-      arr.push(<Answer item={sortedList[i][1]} />);
+      answersArr.push(<Answer item={sortedList[i][1]} />);
       if (isHidden && i === 1) {
         break;
       }
@@ -37,12 +32,12 @@ function AnswersList(props) {
     //     break;
     //   }
     // }
-    setRenderList(arr);
-    //console.log(renderlist, 'render');
+    setrenderAnswers(answersArr);
+    //console.log(renderAnswers, 'render');
     //onclick toggel ishidden
   }, [isHidden]);
 
-  if (list === []) {
+  if (answers === []) {
     return (
       <div>
         Loading...
@@ -50,13 +45,13 @@ function AnswersList(props) {
     )
   }
 
-  if (Object.keys(list).length <= 2 || !isHidden) {
+  if (Object.keys(answers).length <= 2 || !isHidden) {
     //debugger;
-    //console.log(renderlist);
+    //console.log(renderAnswers);
     return (
       <div className="answerslist">
         <div>
-          {renderlist}
+          {renderAnswers}
         </div>
       </div>
     );
@@ -65,7 +60,7 @@ function AnswersList(props) {
     return (
       <div className="answerslist">
         <div>
-          {renderlist}
+          {renderAnswers}
         </div>
         <div>
           <button onClick={() => setIsHidden(false)}>More answers</button>
