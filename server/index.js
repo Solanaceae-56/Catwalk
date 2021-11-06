@@ -197,20 +197,8 @@ app.get('/reviews', (req, res) => {
 
 
 app.post('/reviews', (req, res) => {
-  var fakeData = {
-    "product_id": 40344,
-    "rating": 3,
-    "summary": "123",
-    "body": "abcd",
-    "recommend": true,
-    "name": "km",
-    "email": "km@gmail.com",
-    "photos": [],
-    "characteristics": {
-    }
-
-}
-  let paramsObj = req.body.data || fakeData;
+  let paramsObj = req.body;
+  console.log(paramsObj);
   axios.post(apiPath + '/reviews',paramsObj, {
     headers: { 'Authorization': API_KEYS.token }
   }).then((results) => {

@@ -8,7 +8,7 @@ export default function ReviewStars(props) {
     } else{
     setStarNum(Math.floor(props.value/0.25))
     }
-  },[props])
+  },[props.value])
 return (
   <div>
   <div><span className={`stars-container stars-${starNum}`}>★★★★★</span></div>

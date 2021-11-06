@@ -12,6 +12,7 @@ export default function ReviewList(props) {
   const [page, setPage] = useState(1);
   const [product_id, setProduct_id] = useState(props.product_id);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [initialReviews,setInitialReviews]=useState([]);
   const [characteristics,setCharacteristics]=useState({});
 
   useEffect(() => {
@@ -19,12 +20,13 @@ export default function ReviewList(props) {
       .then(
         response => {
           setReviews(response.data.results);
+          setInitialReviews(response.data.results);
         })
       .catch(err => {
         console.log(err);
       })
   }
-    , [sort, count, page,product_id]);
+    , [sort, count, page, product_id]);
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: 10000 } })
       .then(
@@ -36,12 +38,19 @@ export default function ReviewList(props) {
       })
   }
     , [product_id]);
+    useEffect(()=>{
+      axios.get(`/reviews/meta/?product_id=${props.product_id}`)
+      .then((response)=>{
+        setCharacteristics(()=>response.data.characteristics)
+      })
+    },[product_id])
   useEffect(()=>{
     setProduct_id(props.product_id)
-  },[props])
-
+  },[props.product_id])
+  //console.log('reviewList',characteristics,props.product_id)
+  //console.log(props.characteristics)
   return (
-    <ReviewsContext.Provider value ={{reviews,setReviews}}>
+    <ReviewsContext.Provider value ={{reviews,setReviews,initialReviews}}>
     <div className="reviewratingListContainer">
       <div className="reviewListContainer">
         <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e) => { setSort(e.target.value) }}>
@@ -66,12 +75,11 @@ export default function ReviewList(props) {
             id="moreReviews"
             onClick={() => { setCount(count + 2) }}
             style={(totalReviews - count < 2) ? { display: 'none' } : { display: 'inline' }}>MORE REVIEWS</button>
-
-          <AddReview characteristics={characteristics}/>
+          <AddReview characteristics={characteristics} product_id={product_id}/>
         </div>
       </div>
       <div className="ratingListContainer">
-        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} setCharacter ={setCharacteristics} />
+        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
       </div>
     </div >
     </ReviewsContext.Provider>
