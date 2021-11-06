@@ -7,7 +7,7 @@ export default function ReviewBreakdown(props) {
   const [filterState, setFilterState] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false })
   let filteredKey = Object.keys(filterState).filter((key) => { return filterState[key] === true });
   let reviewsContext = useContext(ReviewsContext);
-  let fullArr = reviewsContext.reviews;
+  const fullArr = reviewsContext.reviews;
 
   useEffect(() => {
     setRatingData(props.ratingData);
@@ -17,12 +17,15 @@ export default function ReviewBreakdown(props) {
   }, [props.ratingData])
   useEffect(() => {
     let filteredKey = Object.keys(filterState).filter((key) => { return filterState[key] === true });
-    let newArr = reviewsContext.reviews
-    let filteredArr = newArr.filter((item)=>{item.rating==4});
-    // console.log(filteredArr);
-    // console.log(filteredKey);
+    let newArr = fullArr;
+    let filteredArr = newArr.filter((item)=>{return filteredKey.indexOf(item.rating.toString())!==-1});
+    if(filteredArr.length!==0){
+      reviewsContext.setReviews(filteredArr)
+    }
 
-    reviewsContext.setReviews(filteredArr)
+    console.log(fullArr,"full");
+    console.log(filteredKey,"key");
+    console.log(filteredArr,"filterarr");
   }, [filterState])
 
   const filterStars = (e) => {
@@ -32,6 +35,7 @@ export default function ReviewBreakdown(props) {
     let filterKey = keys.filter((key) => {
       filterState[key] === true;
     })
+
   }
 
   return (

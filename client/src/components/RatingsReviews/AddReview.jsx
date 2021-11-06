@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../Modal.jsx';
 import StarRating from "./StarRating.jsx";
-import AddReviewphoto from "./AddReviewphoto.jsx";
 import './AddReview.css';
 import axios from 'axios';
 export default function AddReview(props) {
@@ -36,17 +35,27 @@ export default function AddReview(props) {
 
   const handleChange = (e) => {
     //const value = e.target.value;
+    if (e.target.name === "recommend") {
+      let radioboolean = (e.target.value === "true");
+      console.log({[e.target.name]: radioboolean});
+      setState({
+        ...state,
+        [e.target.name]: radioboolean
+      });
+
+    } else{
     setState({
       ...state,
       [e.target.name]: e.target.value
     });
   }
+}
   const handleCharChange = (e) => {
     setState({
       ...state,
-      characteristics:{
+      characteristics: {
         ...state.characteristics,
-        [e.target.name]: e.target.value
+        [props.characteristics[e.target.name].id]:+e.target.value
       }
     })
   }
@@ -84,7 +93,7 @@ export default function AddReview(props) {
       photos: state.photos.split('\n').slice(0, 5)
 
     }
-    //console.log(obj);
+    console.log(obj);
 
     axios.post("http://localhost:3000/reviews", obj).then((response) => {
       //console.log(response);
@@ -114,18 +123,18 @@ export default function AddReview(props) {
           <form>
             <div>Rating</div><StarRating handleStar={handleStar} />
             <div className="recommendRow">
-              <label id="recomend">Do you recommend this product?<label>Yes</label><input type="radio" id="recommendRadioTrue" value={true} name="recommend"onChange={handleChange} /><label>No</label><input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange}/> </label>
+              <label id="recomend">Do you recommend this product?<label>Yes</label><input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange} /><label>No</label><input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /> </label>
             </div>
             <div className="characteristics">
               {
                 charKeys.map((charkey) => {
-                  return <div className="charRow">
+                  return <div className="charRow" key={charkey}>
                     <label className="charElement">{charkey}</label>
-                    <label className="charElement"><input type="radio" value={1} name={charkey} onChange={handleCharChange}/>{characteristicsWords[charkey][0]}</label>
-                    <label className="charElement"><input type="radio" value={2} name={charkey} onChange={handleCharChange}/>{characteristicsWords[charkey][1]}</label>
-                    <label className="charElement"><input type="radio" value={3} name={charkey} onChange={handleCharChange}/>{characteristicsWords[charkey][2]}</label>
-                    <label className="charElement"><input type="radio" value={4} name={charkey} onChange={handleCharChange}/>{characteristicsWords[charkey][3]}</label>
-                    <label className="charElement"><input type="radio" value={5} name={charkey} onChange={handleCharChange}/>{characteristicsWords[charkey][4]}</label>
+                    <label className="charElement"><input type="radio" value={1} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][0]}</label>
+                    <label className="charElement"><input type="radio" value={2} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][1]}</label>
+                    <label className="charElement"><input type="radio" value={3} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][2]}</label>
+                    <label className="charElement"><input type="radio" value={4} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][3]}</label>
+                    <label className="charElement"><input type="radio" value={5} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][4]}</label>
                   </div>
                 })
               }
@@ -146,7 +155,7 @@ export default function AddReview(props) {
               <input type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com" onChange={handleChange}></input></label>
             {/* <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
               <span>Please enter your photo links for every new line (max 5)</span> */}
-            <AddReviewphoto />
+
           </form>
           <button type="submit" onClick={handleSubmit}>Submit</button>
         </>
