@@ -1,0 +1,41 @@
+.progressWrapper{
+  display:block;
+}
+.progress-bar{
+  position: absolute;
+  width:320px;
+  height:2px;
+  background-color:lightgray;
+}
+
+.label-bar {
+  display: flex;
+  justify-content: space-between;
+  gap:20px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  width:320px
+}
+.label-bar >li{
+  flex-basis: 0px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  color:darkgray
+}
+.product-bar-pointer{
+  position: relative;
+  top:-10px;
+  left:-160px;
+}
+
+.label-title{
+  position: relative;
+  display: block;
+}
+.productBreakdown{
+  display: block;
+}
+.charWords{
+  width:20px
+}

@@ -31,7 +31,11 @@ function Quantity_Selector(props) {
           results.push(props.current[key]);
         }
       }
-      setfiltered(results);
+      if (results.length === 0) {
+        setCurrentSize('Out of Stock');
+      } else {
+        setfiltered(results);
+      }
     }
     return function cleanup() {
       mounted = false;

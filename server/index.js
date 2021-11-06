@@ -94,7 +94,7 @@ app.post('/qa/questions', (req, res) => {
     console.log(questionId, 'questionid');
     axios.post(apiPath + `/qa/questions/${questionId}/answers`, ansobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
       console.log('created answer');
-      console.log(response);
+      //console.log(response);
       res.sendStatus(201);
     });
   } else {
