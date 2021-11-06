@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import RelatedCard from './RelatedCard.jsx';
 // import relatedItems_id from './sampleData/relatedItems_id.js';
 import axios from 'axios';
@@ -44,7 +44,7 @@ const RelatedList = (props) => {
 
         })
         .then((res) => {
-          console.log('final product', res);
+          console.log('related items', res);
           setRelatedItems(res)
 
         } );
@@ -53,14 +53,34 @@ const RelatedList = (props) => {
         }
 
 
-  }, [props])
+  }, [props.defaultProduct_id])
+
+
+  const ref = useRef();
+
+
+
+  const handleSlide = (width) => {
+    ref.current.scrollLeft += width;
+  }
+
+
 
   return (
     <div className='related-items-list'>
-      {relatedItems.map((relatedItem, i) => <RelatedCard key={i} relatedItem={relatedItem} pageProduct={pageProduct}/>)}
+
+      <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-50)}/>
+
+      {relatedItems.length >0 ?
+       <div className='related-slide' ref={ref} >
+       {relatedItems.map((relatedItem, i) => <RelatedCard key={i}    relatedItem={relatedItem} pageProduct={pageProduct} handleCardClick={props.handleCardClick}/>)}</div> : <div></div>
+     }
+
+
+      <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(50)}/>
     </div>
 
   )
-}
+  }
 
 export default RelatedList;
