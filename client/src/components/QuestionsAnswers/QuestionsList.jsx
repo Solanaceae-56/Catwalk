@@ -26,7 +26,12 @@ function QuestionsList(props) {
     email: "",
     question: "",
   })
+  const [data, setData] = useState([]);
   //Modal.setAppElement('#app');
+
+  useEffect (() => {
+    setData(props.questions);
+  }, [props.questions]);
 
   var questions = [];
 
@@ -87,7 +92,12 @@ function QuestionsList(props) {
 
   //console.log(props.answers, 'questionslist');
   //console.log(props.questions, 'inquestions');
-  var sortedQuestions = props.questions.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
+  var sortedQuestions;
+  if (data === []) {
+    sortedQuestions = data;
+  } else {
+    sortedQuestions = data.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
+  }
   for (var i = 0; i < sortedQuestions.length; i++) {
     if (i === props.morequestions) {
       break;

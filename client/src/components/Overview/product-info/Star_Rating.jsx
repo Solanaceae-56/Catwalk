@@ -29,7 +29,7 @@ function Star_Rating(props) {
   }, [props.product_id]);
 
   return (
-    <div>
+    <div id='star-rating'>
       {props.rating}
       <a> Read all {props.reviewTotal} reviews</a>
     </div>

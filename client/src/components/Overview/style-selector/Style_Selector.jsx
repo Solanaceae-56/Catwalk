@@ -11,14 +11,16 @@ function Style_Selector(props) {
   var handleStyleChange = function(data) {
     set_selected_Style(data);
     props.handleChange(data);
+    props.changeImg(data.photos[0].url);
   }
 
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      if (props.currImg.url !== undefined) {
+      if (props.currImg.url !== undefined && props.switch) {
         set_selected_Style(props.currStyle);
         set_all_Styles(props.allStyles);
+        props.handleSwitch();
       } else {
         axios.get("http://localhost:3000/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
           .then((data) => {
@@ -38,7 +40,7 @@ function Style_Selector(props) {
   }, [props.product_id]);
 
   return (
-      <div id='style-selector-inner'>
+      <div id='style-selector'>
         <div id='styleSelector_mod'>
           <div id='styleSelect_title'><b>STYLE ></b> {selected_Style['name']}</div>
           <BubblesList list={all_Styles} selected={selected_Style.style_id} handleChange={handleStyleChange}/>

@@ -11,31 +11,12 @@ import RelatedItemsComparison from './components/RelatedItems/RelatedItemsCompar
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.findRating = this.findRating.bind(this);
     this.state = {
       rating: 0,
       num_Of_Ratings: 0,
       product_id: 0,
     }
-
     this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  findRating(p_id) {
-    axios.get("http://localhost:3000/reviews/meta", { params: { product_id: p_id } })
-      .then((data) => {
-        var total = 0;
-        var votes = 0;
-        for (var key = 1; key <= 5; key++) {
-          total += key * parseInt(data.data.ratings[key], 10);
-          votes += parseInt(data.data.ratings[key], 10);
-        }
-        var average = Math.round(1000 * total / votes) / 1000;
-        return average;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   componentDidMount() {
@@ -46,25 +27,29 @@ class App extends React.Component {
           name: data.data['0']['name'],
         });
       })
-      .then(() => {
-        axios.get("http://localhost:3000/reviews/meta", { params: { product_id: this.state.product_id } })
-          .then((data) => {
-            var total = 0;
-            var votes = 0;
-            for (var key = 1; key <= 5; key++) {
-              total += key * parseInt(data.data.ratings[key], 10);
-              votes += parseInt(data.data.ratings[key], 10);
-            }
-            var average = Math.round(1000 * total / votes) / 1000;
-            this.setState({
-              rating: average,
-              num_Of_Ratings: votes,
-            });
-          })
-      })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.product_id !== this.state.product_id) {
+      axios.get("http://localhost:3000/reviews/meta", { params: { product_id: this.state.product_id } })
+        .then((data) => {
+          console.log(data.data);
+          var total = 0;
+          var votes = 0;
+          for (var key in data.data.ratings) {
+            total += key * parseInt(data.data.ratings[key], 10);
+            votes += parseInt(data.data.ratings[key], 10);
+          }
+          var average = Math.round(1000 * total / votes) / 1000;
+          this.setState({
+            rating: average,
+            num_Of_Ratings: votes,
+          });
+        })
+    }
   }
 
   handleCardClick (e) {
@@ -77,7 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-        <div id='overview'><Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/>
         <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
         <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>
         <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
