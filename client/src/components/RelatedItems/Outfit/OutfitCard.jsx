@@ -1,33 +1,35 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Modal from './Modal.jsx';
 import ReviewStars from '../../RatingsReviews/ReviewStars.jsx';
 
-
-const RelatedCard = (props) => {
+const OutfitCard = (props) => {
 
   const [itemImageUrl, setItemImageUrl] = useState('');
-  const [commonFeatures, setCommonFeatures] = useState({});
   const [salePrice, setSalePrice] = useState(null);
   const [originalPrice, setOriginalPrice] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
   const [rating, setRating] = useState(0);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  }
 
   useEffect(() => {
-    let mounted = true;
     axios.get('http://localhost:3000/products',
-    {params: {productId: props.relatedItem.data.id, path:'/products/:product_id/styles'}})
+    {params: {productId: props.productId, path:'/products/:product_id/styles'}})
     .then(response => {
       setItemImageUrl(response.data.results[0].photos[0].url);
       setSalePrice(response.data.results[0].sale_price);
       setOriginalPrice(response.data.results[0].original_price);
     })
 
-    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.relatedItem.data.id}})
+    axios.get('http://localhost:3000/products',
+    {params: {productId: props.productId, path:'/products/:product_id'}})
+    .then(response => {
+      setName(response.data.name);
+      setCategory(response.data.category);
+
+    })
+
+    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.productId}})
     .then((data) => {
       var total = 0;
       var votes = 0;
@@ -42,35 +44,24 @@ const RelatedCard = (props) => {
       setRating(0);
     });
 
-    return function cleanup() {
-      mounted = false;
-    }
-
-
   }, [])
 
 
   return (
-      <div className='related-card' id={props.relatedItem.data.id} onClick={props.handleCardClick}>
-        <div><i className='related-card-action'className="far fa-star" onClick={toggleModal} ></i></div>
-        {isOpen &&
-        <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} />}
+    (<div className='outfit-card'>
+        <div><i className="far fa-times-circle" id={props.productId} onClick={props.removeFromList}></i></div>
         {itemImageUrl? <img src={itemImageUrl} alt="product default image" width="150" height="200"/> :<img src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
-        <div className='related-card-category'>{props.relatedItem.data.category}</div>
-        <div className='related-card-name'>{props.relatedItem.data.name}</div>
-        <div className='related-review'>
+        <div className='outfit-card-category'>{category}</div>
+        <div className='outfit-card-name'>{name}</div>
+        <div className='outfit-review'>
           <ReviewStars value={rating}/>
         </div>
-
-        {salePrice? <div className='related-card-sale-price'>{salePrice}</div> : <div className='related-card-original-price'>{originalPrice}</div> }
-    </div>
+        {salePrice? <div className='outfit-card-sale-price'>{salePrice}</div> : <div className='outfit-card-original-price'>{originalPrice}</div> }
+    </div>)
 )
+
+
 }
 
 
-export default RelatedCard;
-
-
-
-
-
+export default OutfitCard;

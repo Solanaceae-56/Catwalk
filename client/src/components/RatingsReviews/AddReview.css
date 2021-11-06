@@ -1,5 +1,17 @@
 .characteristics{
   display:flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:20px;
+}
+.charRow{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: flex-start;
+}
+.recommendRow{
+  display: flex;
   flex-direction: row;
   justify-content: center;
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Overview from './components/Overview/Overview.jsx';
+// import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
-import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
-import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
+// import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
+// import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
 
 
@@ -17,6 +17,8 @@ class App extends React.Component {
       num_Of_Ratings: 0,
       product_id: 0,
     }
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   findRating(p_id) {
@@ -65,16 +67,23 @@ class App extends React.Component {
       });
   }
 
+  handleCardClick (e) {
+    this.setState({
+      product_id:e.target.id
+    });
+
+  }
+
   render() {
     return (
       <div className='app-container'>
         <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
         {/* <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div> */}
-        {/* <div id='relatedItems'><RelatedItemsComparison /></div> */}
+        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>
         {/* <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div> */}
       </div>
-   )
- }
+    )
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

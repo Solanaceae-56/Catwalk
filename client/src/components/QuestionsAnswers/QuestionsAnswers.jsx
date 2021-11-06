@@ -13,10 +13,8 @@ function usePrevious(value) {
 
 function QuestionsAnswers(props) {
   const [questions, setQuestions] = useState([]);
-  const [questionId, setQuestionId] = useState('');
-  const [answers, setAnswers] = useState([]);
   const [productId, setProductId] = useState(0);
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(15);
   const [moreQuestions, setMoreQuestions] = useState(2);
   const prevquestions = usePrevious(questions);
   //const [productName, setProductName] = useState(props.productName);
@@ -27,19 +25,10 @@ function QuestionsAnswers(props) {
   }, [props]);
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/qa/questions", {params: {productId: props.productid}}).then((response) => {
-    //   console.log(response);
-    //   setList(response);
-    // });
-    //setProductId(props.productid);
-    ///console.log(props.productid, 'id')
-    /*setProductId(props.productId)*/
-    /* use state product id instead below*/
     axios.get("http://localhost:3000/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
       //console.log(response);
       //console.log(response.data, 'what');
       setQuestions(response.data.results);
-      //console.log('yo')
       //console.log(questions, 'yo');
     });
     // axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 329015}}).then((response) => {
@@ -65,20 +54,5 @@ function QuestionsAnswers(props) {
 
 
 }
-
-// class QuestionsAnswers extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       list: []
-//     }
-//   }
-
-//   render() {
-//     return(
-//       <div>PR Pull</div>
-//     );
-//   }
-// }
 
 export default QuestionsAnswers;
