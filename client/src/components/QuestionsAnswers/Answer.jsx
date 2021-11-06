@@ -6,6 +6,10 @@ function Answer(props) {
   //console.log(props.item);
   const [helpfulness, setHelpfulness] = useState(props.item.helpfulness);
 
+  useEffect( () => {
+
+  }, [])
+
   function click(e) {
     //debugger;
     //console.log(e.target.id);

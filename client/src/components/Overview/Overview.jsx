@@ -12,12 +12,14 @@ class Overview extends React.Component {
     this.changeCurrImg = this.changeCurrImg.bind(this);
     this.handleDefaultChange = this.handleDefaultChange.bind(this);
     this.updateAllStyles = this.updateAllStyles.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
     this.state = {
       current_Product: {},
       current_Style: {},
       current_Img: {},
       allStyles: [],
       mode: true,
+      switch: false,
     }
   }
 
@@ -35,8 +37,15 @@ class Overview extends React.Component {
     } else {
       this.setState({
         mode: true,
+        switch: true
       })
     }
+  }
+
+  handleSwitch(data) {
+    this.setState({
+      switch: false
+    });
   }
 
   updateAllStyles(data) {
@@ -53,16 +62,15 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
-    axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          current_Product: data.data,
+      axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
+        .then((data) => {
+          this.setState({
+            current_Product: data.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     }
   }
 
@@ -73,7 +81,7 @@ class Overview extends React.Component {
     } else if (this.state.current_Style && this.state.current_Style.sale_price !== null) {
       priceTag =
         <div id='price'>
-          <div id='OGprice'>{this.state.current_Style.original_price}</div>
+          <div id='originalPrice'>{this.state.current_Style.original_price}</div>
           <div id='salePrice'>{this.state.current_Style.sale_price}</div>
         </div>;
     } else {
@@ -83,21 +91,21 @@ class Overview extends React.Component {
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
-        <div id='Overview'>
+        <div id='overview'>
           <div id='product-info'>
-            <div id='star-rating'><Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/></div>
+            <Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
             <div id='product-category'>{this.state.current_Product.category}</div>
             <div id='product-title'>{this.state.current_Product.name}</div>
             {priceTag}
             <div id='social-media'>
-              <button id='FB'>Facebook</button>
-              <button id='Twitter'>Twitter</button>
-              <button id='Pinterest'>Pinterest</button>
+              <button id='facebook'>Facebook</button>
+              <button id='twitter'>Twitter</button>
+              <button id='pinterest'>Pinterest</button>
             </div>
           </div>
           <div id='product-overview'>{this.state.current_Product.description}</div>
-          <div id='style-selector'><Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style}/></div>
-          <div id='image-gallery'><Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange}/></div>
+          <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+          <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
         </div>;
     } else if (this.state.mode) {
       condition = <div>Rendering</div>

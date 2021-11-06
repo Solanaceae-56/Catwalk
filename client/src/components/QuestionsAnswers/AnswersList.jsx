@@ -3,14 +3,13 @@ import moment from 'moment';
 import Answer from './Answer.jsx';
 
 function AnswersList(props) {
-  const [answers, setList] = useState(props.data);
+  const [answers, setAnswers] = useState({});
   const [renderAnswers, setrenderAnswers] = useState([]);
   const [isHidden, setIsHidden] = useState(true);
 
+
   useEffect(() => {
-    //debugger;
-    //setList(props.data);
-    //console.log(list, 'list')
+    //console.log(answers);
     var answersArr = [];
     var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
     //console.log(result, 'result');
@@ -22,20 +21,39 @@ function AnswersList(props) {
         break;
       }
     }
-    // var list_keys = Object.keys(list);
-    // var arr = [];
-    // for (var i = 0; i < list_keys.length; i++) {
-    //   //debugger;
-    //   //console.log(list[list_keys[i]]);
-    //   arr.push(<Answer item={list[list_keys[i]]} />);
+    setrenderAnswers(answersArr);
+  }, [answers])
+
+  useEffect(() => {
+    //debugger;
+    //setList(props.data);
+    //console.log(list, 'list')
+    setAnswers(props.data);
+    // var answersArr = [];
+    // var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
+    // //console.log(result, 'result');
+    // sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
+    // //console.log(sortedList, 'sort');
+    // for (var i = 0; i < sortedList.length; i++) {
+    //   answersArr.push(<Answer item={sortedList[i][1]} />);
     //   if (isHidden && i === 1) {
     //     break;
     //   }
     // }
-    setrenderAnswers(answersArr);
+    // // var list_keys = Object.keys(list);
+    // // var arr = [];
+    // // for (var i = 0; i < list_keys.length; i++) {
+    // //   //debugger;
+    // //   //console.log(list[list_keys[i]]);
+    // //   arr.push(<Answer item={list[list_keys[i]]} />);
+    // //   if (isHidden && i === 1) {
+    // //     break;
+    // //   }
+    // // }
+    // setrenderAnswers(answersArr);
     //console.log(renderAnswers, 'render');
     //onclick toggel ishidden
-  }, [isHidden]);
+  }, [isHidden, props.data]);
 
   if (answers === []) {
     return (
