@@ -12,6 +12,7 @@ export default function ReviewList(props) {
   const [page, setPage] = useState(1);
   const [product_id, setProduct_id] = useState(props.product_id);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [initialReviews,setInitialReviews]=useState([]);
   const [characteristics,setCharacteristics]=useState({});
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function ReviewList(props) {
       .then(
         response => {
           setReviews(response.data.results);
+          setInitialReviews(response.data.results);
         })
       .catch(err => {
         console.log(err);
@@ -48,7 +50,7 @@ export default function ReviewList(props) {
   //console.log('reviewList',characteristics,props.product_id)
   //console.log(props.characteristics)
   return (
-    <ReviewsContext.Provider value ={{reviews,setReviews}}>
+    <ReviewsContext.Provider value ={{reviews,setReviews,initialReviews}}>
     <div className="reviewratingListContainer">
       <div className="reviewListContainer">
         <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e) => { setSort(e.target.value) }}>
