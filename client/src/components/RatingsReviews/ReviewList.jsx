@@ -3,7 +3,8 @@ import { ReviewsContext } from "./RatingsReviews.jsx";
 import RatingList from './RatingList.jsx';
 import ReviewItem from "./ReviewItem.jsx";
 import AddReview from "./AddReview.jsx";
-import axios from 'axios'
+import "./ReviewList.css";
+import axios from 'axios';
 
 export default function ReviewList(props) {
   const [reviews, setReviews] = useState([]);
@@ -60,7 +61,7 @@ export default function ReviewList(props) {
         </select></div>
 
           <div className="reviewListContent">{
-            
+
             reviews.map(review => {
               return <ReviewItem
                 key={review.review_id}

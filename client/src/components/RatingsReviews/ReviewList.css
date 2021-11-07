@@ -1,0 +1,13 @@
+
+.reviewratingListContainer{
+  display:flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.reviewListContent{
+  width:90%;
+  height:400px;
+  overflow:scroll;
+}
