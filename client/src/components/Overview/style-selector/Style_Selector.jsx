@@ -42,10 +42,10 @@ function Style_Selector(props) {
   return (
       <div id='style-selector'>
         <div id='styleSelector_mod'>
-          <div id='styleSelect_title'><b>STYLE ></b> {selected_Style['name']}</div>
+          <div id='styleSelect_title'>STYLE > {selected_Style['name']}</div>
           <BubblesList list={all_Styles} selected={selected_Style.style_id} handleChange={handleStyleChange}/>
         </div>
-        <Quantity_Selector current={selected_Style['skus']} style={selected_Style.style_id}/>
+        <div id='add-tocartOuter'><Quantity_Selector current={selected_Style['skus']} style={selected_Style.style_id}/></div>
       </div>
   );
 }

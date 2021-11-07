@@ -56,27 +56,27 @@ function Quantity_Selector(props) {
 
   var validAddToBag = function() {
     if (chosenQ > 0 && currentSize !== 'Select Size') {
-      return <button onClick={addToCart} id='validEntry'>Add To Bag</button>;
+      return <button onClick={addToCart} className='addToBag' id='validEntry'>Add To Bag</button>;
     } else {
-      return <button id='invalidEntry'>Add To Bag</button>;
+      return <button id='invalidEntry' className='addToBag'>Add To Bag</button>;
     }
   };
 
   return (
     <div id='add-to-cart'>
-      <div><select id='size-selector' onChange={handleChangeSize}>
+      <select id='size-selector' onChange={handleChangeSize}>
         <option selected disabled hidden>Select Size</option>
         {filtered.map(entry =>
           <option value={[entry.quantity, entry.size]}>{entry.size}</option>
         )}
-      </select></div>
-      <div><select id='quantity-selector' onChange={handleChangeQ}>
+      </select>
+      <select id='quantity-selector' onChange={handleChangeQ}>
         <option selected disabled hidden>-</option>
         {qArr.map(entry =>
           <option value={entry}>{entry}</option>
         )}
-      </select></div>
-      <div id ='addToBag'>{validAddToBag()}</div>
+      </select>
+      {validAddToBag()}
     </div>
   );
 }
