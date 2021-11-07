@@ -327,7 +327,7 @@ Related Items
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 2;
 }
 
 .box {
