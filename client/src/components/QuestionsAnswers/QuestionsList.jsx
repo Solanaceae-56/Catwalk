@@ -20,6 +20,7 @@ function QuestionsList(props) {
   //const [searchString, setSearchString] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   //const [modalIsOpen, setIsOpen] = useState(false);
+  const [productName, setProductName] = useState('');
   const [state, setState] = React.useState({
     searchString: "",
     nickname: "",
@@ -29,7 +30,11 @@ function QuestionsList(props) {
   const [data, setData] = useState([]);
   //Modal.setAppElement('#app');
 
-  useEffect (() => {
+  useEffect(() => {
+    setProductName(props.name);
+  }, [props]);
+
+  useEffect(() => {
     setData(props.questions);
   }, [props.questions]);
 
@@ -78,7 +83,7 @@ function QuestionsList(props) {
       body: state.question,
     }
     //console.log(obj);
-    axios.post("http://localhost:3000/qa/questions/", postObj).then((response) => {
+    axios.post("/qa/questions/", postObj).then((response) => {
       //console.log(response);
     });
     closeModal();
@@ -114,7 +119,8 @@ function QuestionsList(props) {
         <button onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
-            <h2>Hello Modal</h2>
+            <h1>Ask your question</h1>
+            <h2>about the {productName}</h2>
             <form>
               <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
               <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
@@ -132,22 +138,25 @@ function QuestionsList(props) {
   return (
     <div>
       <button onClick={toggleModal}>Ask a Question</button>
-      {isOpen && <Modal content={
-        <>
-          <h2>Hello Modal</h2>
-          <form>
-            <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
-            <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-            <span>For privacy reasons, do not use your full name or email address</span>
-            <label>What is your email?
-              <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-            <span>For authentication reasons, you will not be emailed.</span>
-          </form>
-          <button onClick={submit}>Submit</button>
-        </>} handleClose={toggleModal} />}
-      <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
-      <div className="questions">
-        {questions}
+      <div>
+        {isOpen && <Modal content={
+          <>
+            <h1>Ask your question</h1>
+            <h2>about the {productName}</h2>
+            <form>
+              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
+              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
+              <span>For privacy reasons, do not use your full name or email address</span>
+              <label>What is your email?
+                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
+              <span>For authentication reasons, you will not be emailed.</span>
+            </form>
+            <button onClick={submit}>Submit</button>
+          </>} handleClose={toggleModal} />}
+        <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
+        <div className="questions">
+          {questions}
+        </div>
       </div>
     </div>
   )

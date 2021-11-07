@@ -1,0 +1,18 @@
+
+.reviewratingListContainer{
+  display:flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.reviewListContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  width:90%;
+  height:400px;
+  overflow-y:scroll;
+  padding: 10%;
+}

@@ -10,6 +10,7 @@ function AnswersList(props) {
 
   useEffect(() => {
     //console.log(answers);
+    //debugger;
     var answersArr = [];
     var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
     //console.log(result, 'result');
@@ -22,7 +23,7 @@ function AnswersList(props) {
       }
     }
     setrenderAnswers(answersArr);
-  }, [answers])
+  }, [answers, isHidden])
 
   useEffect(() => {
     //debugger;

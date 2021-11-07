@@ -8,8 +8,10 @@ export default function ReviewItem(props) {
 
   return (
     <div className="reviewItemContainer">
+      <div className="reviewStarNameContainer">
       <ReviewStars value={props.reviewData.rating} />
       <div className="reviewUserDateContainer"><span className="reviewUserName">{props.reviewData.reviewer_name}, </span><span className="reviewDate">{moment(props.reviewData.date).format("LL")}</span></div>
+      </div>
       <div className="reviewSummary">{props.reviewData.summary}</div>
       <div className="reviewBody">
         <div className="imageRow">

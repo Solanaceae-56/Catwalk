@@ -1,6 +1,23 @@
+.reviewItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+  width: 100%;
+  height:100%;
+}
+.reviewStarNameContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width:inherit;
+}
+
+
 .imageRow {
   display:flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: baseline;
   gap:10px;
 
 }

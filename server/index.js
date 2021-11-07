@@ -61,9 +61,9 @@ app.get('/qa/questions', (req, res) => {
       res.send(response.data);
     });
   } else {
-    console.log('what')
+    //console.log('what')
     axios.get(apiPath + '/qa/questions' + `?product_id=${productId}&count=${count}`, { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       res.send(response.data);
     });
   }
