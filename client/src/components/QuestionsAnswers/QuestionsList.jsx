@@ -83,7 +83,7 @@ function QuestionsList(props) {
       body: state.question,
     }
     //console.log(obj);
-    axios.post("http://localhost:3000/qa/questions/", postObj).then((response) => {
+    axios.post("/qa/questions/", postObj).then((response) => {
       //console.log(response);
     });
     closeModal();

@@ -27,7 +27,7 @@ function QuestionsAnswers(props) {
   }, [props]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
+    axios.get("/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
       //console.log(response);
       //console.log(response.data, 'what');
       setQuestions(response.data.results);
