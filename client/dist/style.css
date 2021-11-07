@@ -403,7 +403,14 @@ Outfit
 
 /*=======*/
 .question {
+  display: flex;
+  flex-direction: row;
   padding-bottom: 10px;
+}
+
+.misc {
+  display:flex;
+  justify-content: flex-end;
 }
 
 .answer {
@@ -420,12 +427,12 @@ Outfit
 }
 
 .help {
-  display: inline-block;
+  justify-content: flex-end;
   padding-inline-end: 10px;
 }
 
 .helpful {
-  display: inline-block;
+  /*display: inline-flex;*/
   color:rgb(233, 140, 27);
   cursor: pointer;
   padding-inline-end: 5px;
@@ -436,7 +443,7 @@ Outfit
 }
 
 .report {
-  display: inline-block;
+  display: inline-flex;
   color:rgb(233, 140, 27);
   cursor: pointer;
   padding-inline-start: 5px;
@@ -469,6 +476,8 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
 }
 
 .questions {
+  display:flex;
+  flex-direction: column;
   height: 450px;
   overflow-y: auto;
 }
@@ -517,4 +526,9 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+
+.qbody {
+  display: flex;
+  justify-content: start;
 }

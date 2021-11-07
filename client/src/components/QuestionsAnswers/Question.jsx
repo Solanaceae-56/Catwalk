@@ -29,6 +29,12 @@ function Question(props) {
     photos: "",
   })
 
+
+
+  useEffect(() => {
+    setHelpful(props.data['question_helpfulness']);
+  }, [props.data]);
+
   //Modal.setAppElement('#app');
   if (props.data.answers.length > 2) {
     //
@@ -112,9 +118,10 @@ function Question(props) {
       <div>
         <div className='question' id={props.data['question_id']}>
           <div className='qbody'>Q: {props.data['question_body']}</div>
-          <div className='help'>Helpful?</div>
-          <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
-          <div className='report' id='reportquestion' onClick={click}>Report?
+          <div className='misc'>
+            <div className='help'>Helpful?</div>
+            <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
+            <div className='report' id='reportquestion' onClick={click}>Report?</div>
           </div>
         </div>
         {/* <div className='addanswer' onClick={add}>Add Answer</div> */}
@@ -149,9 +156,10 @@ function Question(props) {
       <div>
         <div className='question' id={props.data['question_id']}>
           <div className='qbody'>Q: {props.data['question_body']}</div>
-          <div className='help'>Helpful?</div>
-          <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
-          <div className='report' id='reportquestion' onClick={click}>Report?
+          <div className='misc'>
+            <div className='help'>Helpful?</div>
+            <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
+            <div className='report' id='reportquestion' onClick={click}>Report?</div>
           </div>
           {/* <div className='addanswer'>Add Answer</div> */}
         </div>

@@ -7,8 +7,8 @@ function Answer(props) {
   const [helpfulness, setHelpfulness] = useState(props.item.helpfulness);
 
   useEffect( () => {
-
-  }, [])
+    setHelpfulness(props.item.helpfulness);
+  }, [props.item])
 
   function click(e) {
     //debugger;
@@ -35,7 +35,7 @@ function Answer(props) {
   return (
     <div className='answer' id={props.item.id}>
       <div className='body'>A: {props.item.body}</div>
-      <div className='misc'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
+      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
       <div className='photos'>
         {photomap}
       </div>

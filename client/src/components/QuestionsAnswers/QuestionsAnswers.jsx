@@ -17,10 +17,12 @@ function QuestionsAnswers(props) {
   const [count, setCount] = useState(15);
   const [moreQuestions, setMoreQuestions] = useState(2);
   const prevquestions = usePrevious(questions);
-  //const [productName, setProductName] = useState(props.productName);
-  //console.log(props.productName);
+  const [productName, setProductName] = useState(props.productName);
+  console.log(props.productName, 'qa');
+
   useEffect(() => {
     setProductId(props.id);
+    setProductName(props.productName);
     //console.log('test');
   }, [props]);
 
@@ -47,7 +49,7 @@ function QuestionsAnswers(props) {
   return (
     <div>
       <div>Questions and Answers</div>
-      <QuestionsList questions={questions} name={props.productName} id={productId} morequestions={moreQuestions} />
+      <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
       <button onClick={increaseCount}>More questions</button>
     </div>
   );
