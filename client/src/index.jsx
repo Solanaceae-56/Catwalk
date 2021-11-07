@@ -15,6 +15,7 @@ class App extends React.Component {
       rating: 0,
       num_Of_Ratings: 0,
       product_id: 0,
+      name: ''
     }
     this.handleCardClick = this.handleCardClick.bind(this);
   }
@@ -54,7 +55,8 @@ class App extends React.Component {
 
   handleCardClick (e) {
     this.setState({
-      product_id:e.target.id
+      product_id:e.target.id,
+      name: e.target.alt
     });
 
   }
