@@ -45,9 +45,9 @@ const Modal = (props) => {
            <div>
              {Object.keys(commonFeatures).map((content, index) => (
                  <p key={index} className="features-container">
-                   <span className="current-product">{commonFeatures[content].value1 || 'N/A'}</span>
+                   <span className="current-product">{commonFeatures[content].value1 || '   '}</span>
                    <span className="characteristic">{content}</span>
-                   <span className="related-product">{commonFeatures[content].value2 || 'N/A'}</span>
+                   <span className="related-product">{commonFeatures[content].value2 || '   '}</span>
                  </p>
             ))}
            </div>

@@ -50,12 +50,12 @@ const OutfitList = (props) => {
 
   return (
     <div className='outfit-list'>
-      <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-50)}/>
+      <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-100)}/>
       <div className='outfit-slide' ref={ref}>
       <div className='outfit-list-add-outfit'>
+        {/* <div className='white-text'>Click</div> */}
         <div className='white-text'>Click</div>
-        <div className='white-text'>here</div>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzhJV3XJfPqf_txRnqYivCCWtJtfQ5o28Bt1NDrKrQhLt5eW8jpnCStBerRmX1JDjPSQ&usqp=CAU' alt="click to add to outfit list" width="150" height="200" onClick={addToList}/>
+        <img className='outfit-add' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzhJV3XJfPqf_txRnqYivCCWtJtfQ5o28Bt1NDrKrQhLt5eW8jpnCStBerRmX1JDjPSQ&usqp=CAU' alt="click to add to outfit list"  onClick={addToList}/>
         <div>Add</div>
         <div>to</div>
         <div>Outfit</div>
@@ -66,7 +66,7 @@ const OutfitList = (props) => {
 
       </div>
 
-         <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(50)}/>
+         <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(100)}/>
 
 
 
