@@ -442,11 +442,14 @@ Outfit
 
 /*=======*/
 .question {
+  display: flex;
+  flex-direction: row;
   padding-bottom: 10px;
 }
 
-.answer {
-  padding-top: 8px;
+.misc {
+  display:flex;
+  justify-content: flex-end;
 }
 
 .addanswer {
@@ -459,12 +462,13 @@ Outfit
 }
 
 .help {
-  display: inline-block;
+  text-align: left;
   padding-inline-end: 10px;
+  padding-left: 28px;
 }
 
 .helpful {
-  display: inline-block;
+  display: inline-flex;
   color:rgb(233, 140, 27);
   cursor: pointer;
   padding-inline-end: 5px;
@@ -475,7 +479,7 @@ Outfit
 }
 
 .report {
-  display: inline-block;
+  display: inline-flex;
   color:rgb(233, 140, 27);
   cursor: pointer;
   padding-inline-start: 5px;
@@ -508,13 +512,32 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
 }
 
 .questions {
+  display:flex;
+  flex-direction: column;
   height: 450px;
   overflow-y: auto;
+}
+
+.answer {
+  padding-top: 8px;
+  /* border: 3px solid burlywood; */
 }
 
 .answerslist {
   height: 250px;
   overflow-y: auto;
+  border: 2px solid blueviolet;
+}
+
+.answerer {
+  text-align: left;
+  padding-left: 28px;
+}
+
+.photos {
+  /* display: inline-block; */
+  text-align: left;
+  padding-left: 28px;
 }
 
 /* Popup style */
@@ -556,4 +579,17 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+
+.qbody {
+  display: flex;
+  justify-content: start;
+}
+
+.body {
+  text-align: left;
+  padding-left: 2px;
+  max-width: 50ch;
+  margin:0 25px;
+  text-indent: -25px;
 }

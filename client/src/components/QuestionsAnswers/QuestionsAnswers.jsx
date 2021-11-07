@@ -17,15 +17,17 @@ function QuestionsAnswers(props) {
   const [count, setCount] = useState(15);
   const [moreQuestions, setMoreQuestions] = useState(2);
   const prevquestions = usePrevious(questions);
-  //const [productName, setProductName] = useState(props.productName);
+  const [productName, setProductName] = useState(props.productName);
   //console.log(props.productName);
+
   useEffect(() => {
     setProductId(props.id);
+    setProductName(props.productName);
     //console.log('test');
   }, [props]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
+    axios.get("/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
       //console.log(response);
       //console.log(response.data, 'what');
       setQuestions(response.data.results);
@@ -47,7 +49,7 @@ function QuestionsAnswers(props) {
   return (
     <div>
       <div>Questions and Answers</div>
-      <QuestionsList questions={questions} name={props.productName} id={productId} morequestions={moreQuestions} />
+      <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
       <button onClick={increaseCount}>More questions</button>
     </div>
   );
