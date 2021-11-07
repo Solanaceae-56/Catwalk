@@ -6,15 +6,14 @@
     display: grid;
     width: 100vw;
     height: 100vh;
+    max-width: 1005px;
+    font-family: 'Zen Antique';
     grid-template-rows: repeat(4, 1fr);
-    background-color: grey;
+    margin: auto;
 }
 
 .app-container > div {
-  background-color: white;
   text-align: center;
-  padding: 10px;
-  font-size: 20px;
 }
 
 #overview {
@@ -22,6 +21,12 @@
   grid-row: 1/2;
   grid-template-columns: 600px auto;
   grid-template-rows: 100px 800px auto;
+}
+
+#logo {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  text-align: left;
 }
 
 #infoBox_AddtoCart {
@@ -205,7 +210,6 @@
 .upDownButton {
   background-color: transparent;
   border: none;
-  color: black;
   font-size: 20px;
   font-weight: 900;
 }
@@ -213,7 +217,6 @@
 .leftRightB {
   background-color: transparent;
   border: none;
-  color: black;
   font-size: 25px;
   font-weight: 700;
   z-index: 1;
@@ -278,6 +281,12 @@
 /*==================================================
 Related Items
 ==================================================*/
+.related-item {
+  display: inline-block;
+  align-items: center;
+  color: black;
+}
+
 .related-items-list {
   white-space: nowrap;
   overflow-x: auto;
@@ -294,7 +303,7 @@ Related Items
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .related-card-category {
@@ -376,14 +385,14 @@ Related Items
 .related-img {
   height: 60%;
   width: 100%;
-  display: block;
+  /* display: block; */
 
 }
 
 .fa-star {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
   z-index: 2;
 
 }
@@ -407,7 +416,8 @@ Outfit
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
-  z-index: 1;
+  /* z-index: 1; */
+  color: black;
 }
 
 .outfit-list-add-outfit {
@@ -421,7 +431,8 @@ Outfit
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
-  z-index: 1;
+  /* z-index: 1; */
+  color: black;
 
 }
 
