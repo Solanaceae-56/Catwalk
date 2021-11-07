@@ -37,14 +37,14 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && imageArr.length > 0) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
-        set_buttonR(<button id='toTheRightFaded'> {'R'} </button>);
+        set_buttonR(<div></div>);
       } else {
-        set_buttonR(<button id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className='leftRightB' id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
       }
       if (current_Image.url === imageArr[0].url) {
-        set_buttonL(<button id='toTheLeftFaded'> {'L'} </button>);
+        set_buttonL(<div></div>);
       } else {
-        set_buttonL(<button id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className='leftRightB' id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
     }
     return function cleanup() {
@@ -56,7 +56,7 @@ function Image_Gallery(props) {
     let mounted = true;
     if (mounted && props.current_Style.photos) {
       set_imageArr(props.current_Style.photos);
-      if (props.currImg.url !== undefined) {
+      if (props.currImg.url !== undefined && props.switch) {
         set_current_Image(props.currImg);
       } else {
         set_current_Image(props.current_Style.photos[0]);
@@ -71,10 +71,10 @@ function Image_Gallery(props) {
 
 
   return (
-    <div id='image-Gallery-inner'>
+    <div id='image-Gallery'>
+      {buttonL}
       <img id='main-img' src={current_Image.url} onClick={(e) => props.changeView(true, e)}/>
       <SideBarList list={imageArr} current={current_Image} handleImgChange={handleImgChange}/>
-      {buttonL}
       {buttonR}
     </div>
   );

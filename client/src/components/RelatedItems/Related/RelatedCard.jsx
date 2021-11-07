@@ -31,12 +31,12 @@ const RelatedCard = (props) => {
     .then((data) => {
       var total = 0;
       var votes = 0;
-      for (var key = 1; key <= 5; key++) {
+      for (var key in data.data.ratings) {
         total += key * parseInt(data.data.ratings[key], 10);
         votes += parseInt(data.data.ratings[key], 10);
       }
       var average = Math.round(1000*total/votes)/1000;
-      setRating((average/5 * 100) + "%");
+      setRating((average));
     })
     .catch((err) => {
       setRating(0);
@@ -47,22 +47,22 @@ const RelatedCard = (props) => {
     }
 
 
-  }, [])
+  }, [props.relatedItem.data.id])
 
 
   return (
-      <div className='related-card' id={props.relatedItem.data.id} onClick={props.handleCardClick}>
+      <div className='related-card' id={props.relatedItem.data.id} >
         <div><i className='related-card-action'className="far fa-star" onClick={toggleModal} ></i></div>
         {isOpen &&
-        <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} />}
-        {itemImageUrl? <img src={itemImageUrl} alt="product default image" width="150" height="200"/> :<img src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
-        <div className='related-card-category'>{props.relatedItem.data.category}</div>
-        <div className='related-card-name'>{props.relatedItem.data.name}</div>
-        <div className='related-review'>
-          <ReviewStars value={rating}/>
+        <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} style={"z-index:3"}/>}
+        {itemImageUrl? <img src={itemImageUrl} alt="product default image" width="150" height="200" id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200" id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
+        <div className='related-card-category' id={props.relatedItem.data.id}>{props.relatedItem.data.category}</div>
+        <div className='related-card-name' id={props.relatedItem.data.id}>{props.relatedItem.data.name}</div>
+        <div className='related-review' id={props.relatedItem.data.id}>
+          <ReviewStars id={props.relatedItem.data.id} value={rating}/>
         </div>
 
-        {salePrice? <div className='related-card-sale-price'>{salePrice}</div> : <div className='related-card-original-price'>{originalPrice}</div> }
+        {salePrice? <div className='related-card-sale-price' id={props.relatedItem.data.id}>{salePrice}</div> : <div className='related-card-original-price' id={props.relatedItem.data.id}>{originalPrice}</div> }
     </div>
 )
 }

@@ -5,8 +5,6 @@ import axios from 'axios';
 // import relatedItemsId from './relatedItemsId.js';
 
 const RelatedItemsComparison = (props) => {
-    // var defaultProduct_id = props.product_id;
-
     const [defaultProduct_id, setDefaultId] = useState();
     useEffect(() => {
         setDefaultId(props.product_id);
