@@ -49,14 +49,14 @@ const OutfitCard = (props) => {
 
   return (
     (<div className='outfit-card'>
-        <div><i className="far fa-times-circle" id={props.productId} onClick={props.removeFromList}></i></div>
-        {itemImageUrl? <img src={itemImageUrl} alt="product default image" width="150" height="200"/> :<img src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
+        <i className="far fa-times-circle" id={props.productId} onClick={props.removeFromList}></i>
+        {itemImageUrl? <img className='outfit-img' src={itemImageUrl} alt="product default image" width="180" height="200"/> :<img className='outfit-img' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
         <div className='outfit-card-category'>{category}</div>
         <div className='outfit-card-name'>{name}</div>
+        {salePrice? <div className='outfit-card-sale-price'>{salePrice}</div> : <div className='outfit-card-original-price'>{originalPrice}</div> }
         <div className='outfit-review'>
           <ReviewStars value={rating}/>
         </div>
-        {salePrice? <div className='outfit-card-sale-price'>{salePrice}</div> : <div className='outfit-card-original-price'>{originalPrice}</div> }
     </div>)
 )
 

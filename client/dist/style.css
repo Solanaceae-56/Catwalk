@@ -248,11 +248,11 @@ Related Items
   display: inline-block;
   border: solid 1px black;
   position: relative;
-  padding: 25px 15px;
+  /* padding: 25px 15px; */
   background-color: white;
   margin: 50px 15px;
-  height: 300px;
-  width: 180px;
+  height: 450px;
+  width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
   z-index: 1;
@@ -327,11 +327,28 @@ Related Items
 
 .related-slide {
 
-  width: 800px;
+  scroll-behavior: smooth;
+  width: 1000px;
   overflow: auto;
   white-space: nowrap;
 
 }
+
+.related-img {
+  height: 60%;
+  width: 100%;
+  display: block;
+
+}
+
+.fa-star {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+
+}
+
 /*============================
 Outfit
 ============================*/
@@ -344,11 +361,11 @@ Outfit
   display: inline-block;
   border: solid 1px black;
   position: relative;
-  padding: 25px 15px;
+  /* padding: 25px 15px; */
   background-color: white;
   margin: 50px 15px;
-  height: 300px;
-  width: 180px;
+  height: 450px;
+  width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
   z-index: 1;
@@ -358,11 +375,11 @@ Outfit
   display: inline-block;
   border: solid 1px black;
   position: relative;
-  padding: 25px 15px;
+  /* padding: 25px 15px; */
   background-color: white;
   margin: 50px 0;
-  height: 300px;
-  width: 180px;
+  height: 450px;
+  width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
   z-index: 1;
@@ -394,12 +411,32 @@ Outfit
 
 .outfit-slide {
 
-  width: 400px;
+  scroll-behavior: smooth;
+  width: 600px;
   overflow: auto;
   white-space: nowrap;
 
 }
 
+.outfit-img {
+  height: 60%;
+  width: 100%;
+  display: block;
+
+}
+
+.outfit-add {
+  height: 60%;
+  width: 100%;
+}
+
+.fa-times-circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+
+}
 
 /*=======*/
 .question {
