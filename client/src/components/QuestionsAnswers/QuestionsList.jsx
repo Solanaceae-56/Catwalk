@@ -110,7 +110,6 @@ function QuestionsList(props) {
     questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} />);
   }
 
-  console.log(productName, 'name');
   if (questions.length === 0) {
     return (
       <div>

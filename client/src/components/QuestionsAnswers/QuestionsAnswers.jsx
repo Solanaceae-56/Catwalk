@@ -18,7 +18,7 @@ function QuestionsAnswers(props) {
   const [moreQuestions, setMoreQuestions] = useState(2);
   const prevquestions = usePrevious(questions);
   const [productName, setProductName] = useState(props.productName);
-  console.log(props.productName, 'qa');
+  //console.log(props.productName);
 
   useEffect(() => {
     setProductId(props.id);

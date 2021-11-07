@@ -113,43 +113,62 @@ function Question(props) {
     });
   }
 
+  const tablestyle = {
+    width: "100%"
+  }
+  const textright = {
+    "text-align": 'right'
+  }
+  const textleft = {
+    "text-align": 'left',
+    "padding-left": 0
+  }
   if (props.search.length < 3) {
     return (
       <div>
-        <div className='question' id={props.data['question_id']}>
-          <div className='qbody'>Q: {props.data['question_body']}</div>
+        <div className='question' id={props.data['question_id']}></div>
+          <table style={tablestyle}>
+            <tr>
+              <td style={textleft}>Q: {props.data['question_body']}</td>
+            <td style={textright}>Helpful? <button>yes</button> <button>report</button> <button>add an answer</button></td>
+        </tr>
+      </table>
+
+          {/* <div className='qbody'>Q: {props.data['question_body']}</div>
           <div className='misc'>
             <div className='help'>Helpful?</div>
             <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
             <div className='report' id='reportquestion' onClick={click}>Report?</div>
           </div>
-        </div>
-        {/* <div className='addanswer' onClick={add}>Add Answer</div> */}
-        <button onClick={openModal}>Add an Answer</button>
-        {isOpen && <Modal content={
-          <>
-            <h1>Submit your Answer</h1>
-            <h2>{props.name}: {props.data['question_body']}</h2>
-            <div className="modal"></div>
-            <form>
-              <label>Your answer:<textarea value={state.answer} name="answer" onChange={handleChange} maxLength="1000" rows={4} cols={40} /></label>
-              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson543!" onChange={handleChange} maxLength="60"></input></label>
-              <span>For privacy reasons, do not use your full name or email address</span>
-              <label>What is your email?
-                <input type="text" value={state.email} name="email" placeholder="Example: jack@email.com" onChange={handleChange} maxLength="60"></input></label>
-              <span>For authentication reasons, you will not be emailed.</span>
-              <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
-              <span>Please enter your photo links for every new line (max 5)</span>
-            </form>
-            <button onClick={submit}>Submit</button>
-          </>} handleClose={toggleModal} />}
-        <div className='answers'>
-          <AnswersList data={props.data.answers} />
-          {/* <div className='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
+        </div> */}
+    {/* <div className='addanswer' onClick={add}>Add Answer</div> */ }
+    {/* <button onClick={openModal}>Add an Answer</button> */ }
+    {
+      isOpen && <Modal content={
+        <>
+          <h1>Submit your Answer</h1>
+          <h2>{props.name}: {props.data['question_body']}</h2>
+          <div className="modal"></div>
+          <form>
+            <label>Your answer:<textarea value={state.answer} name="answer" onChange={handleChange} maxLength="1000" rows={4} cols={40} /></label>
+            <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson543!" onChange={handleChange} maxLength="60"></input></label>
+            <span>For privacy reasons, do not use your full name or email address</span>
+            <label>What is your email?
+              <input type="text" value={state.email} name="email" placeholder="Example: jack@email.com" onChange={handleChange} maxLength="60"></input></label>
+            <span>For authentication reasons, you will not be emailed.</span>
+            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
+            <span>Please enter your photo links for every new line (max 5)</span>
+          </form>
+          <button onClick={submit}>Submit</button>
+        </>} handleClose={toggleModal} />
+    }
+    <div className='answers'>
+      <AnswersList data={props.data.answers} />
+      {/* <div className='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
       <div className='misc'>Helpful? 'yes'</div>
       <div className='misc'>Add Answer</div> */}
-        </div>
-      </div>
+    </div>
+      </div >
     );
   } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search) !== -1) {
     return (

@@ -24,6 +24,9 @@ function Answer(props) {
     });
   };
 
+  const inline = {
+    display: "inline-block"
+  }
   const photomap = props.item.photos.map((photo) =>
     <img src={photo} width="300" height="300"/>
   );
@@ -36,12 +39,12 @@ function Answer(props) {
     <div className='answer' id={props.item.id}>
       <div className='body'>A: {props.item.body}</div>
       <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
+      <div className='help'>Helpful? <button>yes</button> <button>report</button></div>
+      <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
+      <div className='report' id='reportanswer' onClick={click}> Report? </div>
       <div className='photos'>
         {photomap}
       </div>
-      <div className='help'>Helpful?</div>
-      <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
-      <div className='report' id='reportanswer' onClick={click}> Report? </div>
     </div>
   )
 }
