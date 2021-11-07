@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import SideBarEntry from './SideBarEntry.jsx';
 
 function SideBarList(props) {
-  var [currSixPhotos, set_currSixPhotos] = useState([]);
+  var [currFivePhotos, set_currFivePhotos] = useState([]);
+  var [upbutton, set_upbutton] = useState(<div></div>);
+  var [downbutton, set_downbutton] = useState(<div></div>);
 
   var findIndexOf = function() {
     var result = -1;
@@ -14,17 +16,38 @@ function SideBarList(props) {
     return result;
   }
 
+  var toggleSideBar = function(upOrDown, location) {
+    if (upOrDown === 'up') {
+      set_currFivePhotos(props.list.slice(location-1, location+4));
+      props.handleImgChange(props.list[location-1]);
+    } else {
+      if (location + 5 >= props.list.length) {
+        set_currFivePhotos(props.list.slice(location+1, props.list.length - 1));
+      } else {
+        set_currFivePhotos(props.list.slice(location+1, location+5));
+      }
+      props.handleImgChange(props.list[location+1]);
+    }
+  }
+
   useEffect(() => {
     let mounted = true;
     if (mounted && props.list.length > 0) {
       var location = findIndexOf();
-      if (location + 6 >= props.list.length) {
-        var leftover = 6 - (props.list.length - location);
-        var firstpart = props.list.slice(location, props.list.length);
-        var lastpart = props.list.slice(0, leftover);
-        set_currSixPhotos(firstpart.concat(lastpart));
+      if (location + 5 >= props.list.length) {
+        set_currFivePhotos(props.list.slice(location, props.list.length));
       } else {
-        set_currSixPhotos(props.list.slice(location, location + 6))
+        set_currFivePhotos(props.list.slice(location, location + 5))
+      }
+      if (location === 0) {
+        set_downbutton(<button className='upDownButton' id='downButton' onClick={(e) => toggleSideBar('down', location, e)}>↓</button>);
+        set_upbutton(<div></div>);
+      } else if (location === props.list.length - 1) {
+        set_upbutton(<button className='upDownButton' id='upButton' onClick={(e) => toggleSideBar('up', location, e)}>↑</button>);
+        set_downbutton(<div></div>);
+      } else if (location < props.list.length - 1 && location > 0) {
+        set_upbutton(<button className='upDownButton' id='upButton' onClick={(e) => toggleSideBar('up', location, e)}>↑</button>);
+        set_downbutton(<button className='upDownButton' id='downButton' onClick={(e) => toggleSideBar('down', location, e)}>↓</button>)
       }
     }
     return function cleanup() {
@@ -34,12 +57,13 @@ function SideBarList(props) {
 
   return (
     <div id='sideimgBar'>
-      {currSixPhotos.map(entry =>
+      {upbutton}
+      {currFivePhotos.map(entry =>
         <SideBarEntry entry={entry} current={props.current} handleImgChange={props.handleImgChange}/>
       )}
+      {downbutton}
     </div>
   )
-
 }
 
 export default SideBarList;
