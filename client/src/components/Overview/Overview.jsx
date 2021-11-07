@@ -5,6 +5,13 @@ import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
 
+const darkTheme = {
+  "background-color": "darkgray"
+}
+const lightTheme = {
+  "background-color": "white"
+}
+
 class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +20,7 @@ class Overview extends React.Component {
     this.handleDefaultChange = this.handleDefaultChange.bind(this);
     this.updateAllStyles = this.updateAllStyles.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleDarkMode = this.handleDarkMode.bind(this);
     this.state = {
       current_Product: {},
       current_Style: {},
@@ -20,6 +28,19 @@ class Overview extends React.Component {
       allStyles: [],
       mode: true,
       switch: false,
+      darkMode: true,
+    }
+  }
+
+  handleDarkMode() {
+    if (this.state.darkMode) {
+      this.setState({
+        darkMode: false
+      });
+    } else {
+      this.setState({
+        darkMode: true
+      });
     }
   }
 
@@ -59,7 +80,6 @@ class Overview extends React.Component {
       current_Img: data,
     });
   }
-
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
       axios.get("http://localhost:3000/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
@@ -71,6 +91,13 @@ class Overview extends React.Component {
         .catch((err) => {
           console.log(err);
         });
+    }
+    if (this.state.darkMode){
+      document.body.style.backgroundColor="rgb(60, 60, 60)";
+      document.body.style.color="white";
+    } else {
+      document.body.style.backgroundColor="white";
+      document.body.style.color="black";
     }
   }
 
@@ -88,10 +115,19 @@ class Overview extends React.Component {
       priceTag = <div id='price'>Not Available</div>
     }
 
+    let lightDark;
+    if (this.state.darkMode) {
+      lightDark =<button onClick={(e) => this.handleDarkMode(e)}> Light</button>;
+    } else {
+      lightDark =<button onClick={(e) => this.handleDarkMode(e)}> Dark </button>;
+    }
+
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
         <div id='overview'>
+        <div id='logo'>Solanacea</div>
+        {lightDark}
           <div id='infoBox_AddtoCart'>
             <div id='product-info'>
               <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>

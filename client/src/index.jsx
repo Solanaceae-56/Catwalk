@@ -53,9 +53,9 @@ class App extends React.Component {
     }
   }
 
-  handleCardClick (e) {
+  handleCardClick(e) {
     this.setState({
-      product_id:e.target.id,
+      product_id: e.target.id,
       name: e.target.alt
     });
 
@@ -64,9 +64,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-        {/* {<Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/>
+        <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/>
         <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>} */}
+        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
         <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
       </div>
     )

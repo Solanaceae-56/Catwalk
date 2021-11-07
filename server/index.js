@@ -69,6 +69,21 @@ app.get('/qa/questions', (req, res) => {
   }
 })
 
+app.post('/interactions', (req, res) => {
+  var interactionObj = {
+    time: req.body.time,
+    element: req.body.element,
+    widget: req.body.widget,
+  }
+  axios.post(apiPath + '/interactions', interactionObj, { headers: { 'Authorization': API_KEYS.token }})
+    .then((res) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+})
+
 app.post('/qa/questions', (req, res) => {
   //console.log(req.body);
   debugger;
