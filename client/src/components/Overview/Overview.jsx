@@ -92,19 +92,21 @@ class Overview extends React.Component {
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
         <div id='overview'>
-          <div id='product-info'>
-            <Star_Rating rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
-            <div id='product-category'>{this.state.current_Product.category}</div>
-            <div id='product-title'>{this.state.current_Product.name}</div>
-            {priceTag}
-            <div id='social-media'>
-              <button id='facebook'>Facebook</button>
-              <button id='twitter'>Twitter</button>
-              <button id='pinterest'>Pinterest</button>
+          <div id='infoBox_AddtoCart'>
+            <div id='product-info'>
+              <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
+              <div id='product-category'>{this.state.current_Product.category}</div>
+              <div id='product-title'>{this.state.current_Product.name}</div>
+              {priceTag}
+              {/* <div id='social-media'>
+                <button id='facebook'>Facebook</button>
+                <button id='twitter'>Twitter</button>
+                <button id='pinterest'>Pinterest</button>
+              </div> */}
             </div>
+            <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
           </div>
           <div id='product-overview'>{this.state.current_Product.description}</div>
-          <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
           <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
         </div>;
     } else if (this.state.mode) {
