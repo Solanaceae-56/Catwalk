@@ -3,14 +3,15 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: baseline;
-  width: 100%;
+  width: 75vh;
   height:100%;
+  margin:auto;
 }
 .reviewStarNameContainer {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width:inherit;
+  width:100%;
 }
 
 
@@ -23,4 +24,7 @@
 }
 .reviewItemPhoto {
   height:100px;
+}
+.reviewItemContainer{
+  max-width: 80%;
 }

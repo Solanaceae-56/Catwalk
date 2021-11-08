@@ -12,15 +12,16 @@ export default function ProductBreakdown(props) {
   return (
     <div className="productBreakdown">
       <div className="progressWrapper">
+      <div className="label-title">{title}</div>
         <div className="progress-bar">
           <div className="product-bar-pointer" style={{ left: `${(value / 5) * 320 - 160}px` }}>▼</div>
-          <div className="label-title">{title}</div></div>
+          </div>
         </div>
 
         <ul className="label-bar">
           <li><span className="charWords">{words[0]}</span></li>
-          <li><span className="charWords">{words[1]}</span></li>
-          <li><span className="charWords">{words[2]}</span></li>
+          {/* {<li><span className="charWords">{words[1]}</span></li>} */}
+          <li className="label-bar-end"><span className="charWords">{words[2]}</span></li>
         </ul>
     </div>
 
