@@ -52,6 +52,7 @@ b, strong {
   grid-row: 2/3;
   grid-column: 2/3;
   grid-template-rows: 1fr 2fr;
+  padding-left: 10px;
 }
 
 #product-info {
@@ -150,9 +151,8 @@ b, strong {
 
 #size-selector {
   grid-row: 2/4;
-  grid-column: 1/7;
+  grid-column: 1/6;
   font-size: 30px;
-  font-weight: 600;
   text-align: center;
   border: 1px solid black;
   background-color: rgb(100, 232, 241);
@@ -160,9 +160,8 @@ b, strong {
 
 #quantity-selector {
   grid-row: 2/4;
-  grid-column: 8/11;
+  grid-column: 7/9;
   font-size: 30px;
-  font-weight: 600;
   text-align: center;
   border: 1px solid black;
   background-color: rgb(100, 232, 241);
@@ -547,6 +546,7 @@ Comparison Modal
 
 .close-icon {
   content: 'x';
+  color: black;
   cursor: pointer;
   position: fixed;
   right: calc(15% - 30px);
@@ -558,7 +558,7 @@ Comparison Modal
   line-height: 20px;
   text-align: center;
   border: 1px solid #999;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 /*=======*/
@@ -612,6 +612,7 @@ Comparison Modal
 
 .close-icon {
   content: 'x';
+  color: black;
   cursor: pointer;
   position: fixed;
   right: calc(15% - 30px);
@@ -623,7 +624,7 @@ Comparison Modal
   line-height: 20px;
   text-align: center;
   border: 1px solid #999;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .header {

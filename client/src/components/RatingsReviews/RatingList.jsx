@@ -15,11 +15,21 @@ export default function RatingList(props) {
   useEffect(()=>{
     axios.get(`/reviews/meta/?product_id=${props.product_id}`)
     .then((response)=>{
-      let recommend =Math.floor((+response.data.recommended[true]/(+(response.data.recommended[true])+(+response.data.recommended[false])))*100);
+      let recommend;
+      //{true:"2"}
+      if(response.data.recommended[true]===undefined){
+        recommend = 0;
+      }else if(response.data.recommended[false]===undefined){
+        recommend=100;
+      } else{
+       recommend =Math.floor((+response.data.recommended[true]/(+(response.data.recommended[true])+(+response.data.recommended[false])))*100);
+      }
       // setRecommendRate(recommend);
       // setRatingData(response.data.ratings);
       // setCharacteristics(response.data.characteristics);
+
       setRatingState({
+
         ratingData:response.data.ratings,
         recommendRate:recommend,
         characteristics:response.data.characteristics
