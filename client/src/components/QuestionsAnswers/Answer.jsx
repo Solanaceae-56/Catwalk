@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {GoThumbsup, GoReport} from 'react-icons/go';
 import moment from 'moment';
 const axios = require('axios');
 
@@ -11,12 +12,12 @@ function Answer(props) {
     setHelpfulness(props.item.helpfulness);
   }, [props.item])
 
-  function click(e) {
+  function handleHelpful(e) {
     //debugger;
     //console.log(e.target.id);
-    var putPath = e.target.id;
+    var putPath = 'helpfulanswer';
     //console.log(e.target.parentNode.id);
-    var aId = Number(e.target.parentNode.parentNode.id);
+    var aId = props.item.id;
     axios.put("/qa/questions/put", { path: putPath, answerId: aId }).then((response) => {
       //console.log(response);
       if (putPath === 'helpfulanswer') {
@@ -25,6 +26,24 @@ function Answer(props) {
     });
     setDisable(true);
   };
+
+  function handleReport(e) {
+    debugger;
+    //console.log(e.target.parentNode.id)
+    var putPath = 'reportanswer';
+    console.log(putPath);
+    var qId = props.data['question_id'];
+    //console.log(typeof (qId), qId);
+    console.log(props.data['question_id']);
+    axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
+      //console.log(response);
+      if (putPath === 'helpfulquestion') {
+        setHelpful(helpful + 1);
+      }
+    });
+    setDisable(true);
+  }
+
 
   const inline = {
     display: "inline-block"
@@ -38,10 +57,10 @@ function Answer(props) {
   }
 
   return (
-    <div className='answer' id={props.item.id}>
+    <div className='answer' id={props.item.id} key={props.keyvalue} >
       <div className='body'>A: {props.item.body}</div>
       <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
-      <div className='help'>Helpful? <button id='helpfulanswer' disabled={disable} onClick={click}>Yes ({helpfulness}) </button> <button id='reportanswer' disabled={disable} onClick={click}>Report</button></div>
+      <div className='help'>Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
       {/* <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
       <div className='report' id='reportanswer' onClick={click}> Report? </div> */}
       <div className='photos'>

@@ -107,7 +107,7 @@ function QuestionsList(props) {
     if (i === props.morequestions) {
       break;
     }
-    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} />);
+    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} />);
   }
 
   if (questions.length === 0) {
@@ -116,12 +116,12 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        <button onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
-            <h1>Ask your question</h1>
-            <h2>about the {productName}</h2>
-            <form>
+            <h1 className="header">Ask your question</h1>
+            <h2 className="header">about the {productName}</h2>
+            <form id="askQuestionModal">
               <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
               <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
               <span>For privacy reasons, do not use your full name or email address</span>
@@ -137,13 +137,14 @@ function QuestionsList(props) {
 
   return (
     <div>
-      <button onClick={toggleModal}>Ask a Question</button>
+      <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
+        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
-            <h1>Ask your question</h1>
-            <h2>about the {productName}</h2>
-            <form>
+            <h1 className="header">Ask your question</h1>
+            <h2 className="header">about the {productName}</h2>
+            <form id="askQuestionModal">
               <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
               <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
               <span>For privacy reasons, do not use your full name or email address</span>
@@ -153,7 +154,6 @@ function QuestionsList(props) {
             </form>
             <button onClick={submit}>Submit</button>
           </>} handleClose={toggleModal} />}
-        <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
         <div className="questions">
           {questions}
         </div>

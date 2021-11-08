@@ -17,7 +17,7 @@ function AnswersList(props) {
     sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
     //console.log(sortedList, 'sort');
     for (var i = 0; i < sortedList.length; i++) {
-      answersArr.push(<Answer item={sortedList[i][1]} />);
+      answersArr.push(<Answer item={sortedList[i][1]} keyvalue={i} />);
       if (isHidden && i === 1) {
         break;
       }
@@ -82,7 +82,7 @@ function AnswersList(props) {
           {renderAnswers}
         </div>
         <div>
-          <button onClick={() => setIsHidden(false)}>More answers</button>
+          <button className="moreanswers" onClick={() => setIsHidden(false)}>More answers</button>
         </div>
       </div>
     )
