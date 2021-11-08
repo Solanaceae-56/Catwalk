@@ -13,8 +13,8 @@ export default function ReviewList(props) {
   const [page, setPage] = useState(1);
   const [product_id, setProduct_id] = useState(props.product_id);
   const [totalReviews, setTotalReviews] = useState(0);
-  const [initialReviews,setInitialReviews]=useState([]);
-  const [characteristics,setCharacteristics]=useState({});
+  const [initialReviews, setInitialReviews] = useState([]);
+  const [characteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
@@ -39,26 +39,26 @@ export default function ReviewList(props) {
       })
   }
     , [product_id]);
-    useEffect(()=>{
-      axios.get(`/reviews/meta/?product_id=${props.product_id}`)
-      .then((response)=>{
-        setCharacteristics(()=>response.data.characteristics)
+  useEffect(() => {
+    axios.get(`/reviews/meta/?product_id=${props.product_id}`)
+      .then((response) => {
+        setCharacteristics(() => response.data.characteristics)
       })
-    },[product_id])
-  useEffect(()=>{
+  }, [product_id])
+  useEffect(() => {
     setProduct_id(props.product_id)
-  },[props.product_id])
+  }, [props.product_id])
   //console.log('reviewList',characteristics,props.product_id)
   //console.log(props.characteristics)
   return (
-    <ReviewsContext.Provider value ={{reviews,setReviews,initialReviews}}>
-    {(reviews!==undefined) && <div className="reviewratingListContainer">
-      <div className="reviewListContainer">
-        <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e) => { setSort(e.target.value) }}>
-          <option value="relevant">Relevant</option>
-          <option value="helpful">Helpful</option>
-          <option value="newest">Newest</option>
-        </select></div>
+    <ReviewsContext.Provider value={{ reviews, setReviews, initialReviews }}>
+      {(reviews !== undefined) && <div className="reviewratingListContainer">
+        <div className="reviewListContainer">
+          <div>{totalReviews} reviews, sorted by<select name="sort" id="sort-select" onChange={(e) => { setSort(e.target.value) }}>
+            <option value="relevant">Relevant</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+          </select></div>
 
           <div className="reviewListContent">{
 
@@ -72,18 +72,18 @@ export default function ReviewList(props) {
           </div>
 
 
-        <div className="reviewListFooter">
-          <button
-            id="moreReviews"
-            onClick={() => { setCount(count + 2) }}
-            style={(totalReviews - count < 2) ? { display: 'none' } : { display: 'inline' }}>MORE REVIEWS</button>
-          <AddReview characteristics={characteristics} product_id={product_id}/>
+          <div className="reviewListFooter">
+            <button
+              id="moreReviews"
+              onClick={() => { setCount(count + 2) }}
+              style={(totalReviews - count < 2) ? { display: 'none' } : { display: 'inline' }}>MORE REVIEWS</button>
+            <AddReview characteristics={characteristics} product_id={product_id} />
+          </div>
         </div>
-      </div>
-      <div className="ratingListContainer">
-        <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
-      </div>
-    </div >}
+        <div className="ratingListContainer">
+          <RatingList product_id={product_id} averageRating={props.averageRating} num_Of_Ratings={props.num_Of_Ratings} />
+        </div>
+      </div >}
     </ReviewsContext.Provider>
   )
 }

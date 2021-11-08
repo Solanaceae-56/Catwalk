@@ -1,0 +1,18 @@
+.helpfulContainer {
+  display:flex;
+  flex-direction: row;
+  justify-content: start;
+
+}
+.helpfulBtn {
+    color: black;
+    cursor: pointer;
+    border:none;
+    background-color: none;
+
+}
+.helpfulBtn:disabled{
+  color: black;
+  border:none;
+  background-color: none;
+}

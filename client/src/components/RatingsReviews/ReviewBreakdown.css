@@ -23,3 +23,16 @@
   height: 10px;
   border-radius: 0px;
 }
+.filterLabel:hover{
+  text-decoration: underline;
+}
+.filterBtnContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items:center ;
+}
+.filterBtn{
+}
+#clearFilter {
+ align-self: flex-end;
+}

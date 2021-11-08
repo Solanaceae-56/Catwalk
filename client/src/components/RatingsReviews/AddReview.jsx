@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../Modal.jsx';
 import StarRating from "./StarRating.jsx";
 import './AddReview.css';
+import "./ReviewList.css";
 import axios from 'axios';
 export default function AddReview(props) {
   const [showModal, setShowModal] = useState(false);
@@ -118,12 +119,12 @@ export default function AddReview(props) {
       <button id="addReview" onClick={toggleModal}>ADD REVIEW+</button>
       {showModal ? <Modal handleClose={closeModal} content={
         <>
-          <h2>WRITE YOUR REVIEW</h2>
+          <h2 id="modalTitle">WRITE YOUR REVIEW</h2>
 
-          <form>
+          <form id="addReviewModal">
             <div>Rating</div><StarRating handleStar={handleStar} />
             <div className="recommendRow">
-              <label id="recomend">Do you recommend this product?<label>Yes</label><input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange} /><label>No</label><input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /> </label>
+              <label id="recomend">Do you recommend this product?<label>Yes</label><input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange}/><label>No</label><input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /> </label>
             </div>
             <div className="characteristics">
               {
