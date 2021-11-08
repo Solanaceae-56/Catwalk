@@ -42,17 +42,17 @@ export default function ReviewBreakdown(props) {
   }
   return (
     <div className="reviewBreakdown">
-      <div className="reviewBarContainer"><span onClick={filterStars}>5 stars</span><div className="reviewBar"><div style={{ width: `${((+ratingData['5']) / (+totalStar)) * 100}%` }}></div></div></div>
-      <div className="reviewBarContainer"><span onClick={filterStars}>4 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['4']) / (+totalStar)) * 100}%` }}></div></div></div>
-      <div className="reviewBarContainer"><span onClick={filterStars}>3 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['3']) / (+totalStar)) * 100}%` }}></div></div></div>
-      <div className="reviewBarContainer"><span onClick={filterStars}>2 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['2']) / (+totalStar)) * 100}%` }}></div></div></div>
-      <div className="reviewBarContainer"><span onClick={filterStars}>1 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['1']) / (+totalStar)) * 100}%` }}></div></div></div>
+      <div className="reviewBarContainer"><span className="filterLabel" onClick={filterStars}>5 stars</span><div className="reviewBar"><div style={{ width: `${((+ratingData['5']) / (+totalStar)) * 100}%` }}></div></div></div>
+      <div className="reviewBarContainer"><span className="filterLabel" onClick={filterStars}>4 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['4']) / (+totalStar)) * 100}%` }}></div></div></div>
+      <div className="reviewBarContainer"><span className="filterLabel" onClick={filterStars}>3 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['3']) / (+totalStar)) * 100}%` }}></div></div></div>
+      <div className="reviewBarContainer"><span className="filterLabel" onClick={filterStars}>2 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['2']) / (+totalStar)) * 100}%` }}></div></div></div>
+      <div className="reviewBarContainer"><span className="filterLabel" onClick={filterStars}>1 stars </span><div className="reviewBar"><div style={{ width: `${((+ratingData['1']) / (+totalStar)) * 100}%` }}></div></div></div>
       <div className="filterBtnContainer">
         {
-          (filteredKey === undefined) ? null : filteredKey.map((key) => (<button onClick={filterStars} key={key}>{key}</button>))
+          (filteredKey === undefined) ? null : filteredKey.map((key) => (<button clasName="filterBtn" onClick={filterStars} key={key}>{key}</button>))
         }
         {
-          (filteredKey.length===0) ? null: <button onClick={clearFilter} >ClearFilter</button>
+          (filteredKey.length===0) ? null: <button clasName="filterBtn" id="clearFilter" onClick={clearFilter} >ClearFilter</button>
         }
       </div>
     </div>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {GoThumbsup, GoReport} from "react-icons/Go";
 import axios from 'axios';
+import "./Helpful.css";
 export default function Helpful(props) {
   const [helpCount, setHelpCount]=useState(props.helpCount)
   function handleHelpful(){
@@ -18,9 +20,9 @@ export default function Helpful(props) {
     })
   }
   return (
-    <div>
-      <div>Helpful?<button id={`helpful${props.review_id}`} onClick={handleHelpful}>Yes</button><span>({helpCount})|</span>
-      <button id={`report${props.review_id}`} onClick={handleReport}>Report</button></div>
+    <div className="helpfulContainer">
+      <div>Helpful?</div><button className="helpfulBtn" id={`helpful${props.review_id}`} onClick={handleHelpful}><GoThumbsup /></button><span>({helpCount}) | </span>
+      <button className="helpfulBtn" id={`report${props.review_id}`} onClick={handleReport}> <GoReport /></button>
     </div>
 
   )
