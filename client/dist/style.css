@@ -27,6 +27,20 @@
   grid-row: 1/2;
   grid-column: 1/2;
   text-align: left;
+  font-size: 40px;
+}
+
+#lightDarkMode {
+  background-color: rgb(163, 163, 163);
+  transition-duration: 0.4s;
+  font-size: 20px;
+  border-radius: 10% 10% 10% 10%;
+  width: 100px;
+  height: 30px;
+}
+
+#lightDarkMode:hover {
+  background-color: rgb(226, 226, 226);
 }
 
 #infoBox_AddtoCart {
@@ -44,7 +58,6 @@
 
 #product-info > div {
   text-align: left;
-
 }
 
 #product-title {
@@ -57,6 +70,10 @@
   grid-template-columns: 1fr 2fr;
 }
 
+#price {
+  height: 48px;
+}
+
 #originalPrice {
   color: red;
   text-decoration: line-through;
@@ -66,6 +83,8 @@
   display: block;
   grid-column: 1/2;
   grid-row: 3/4;
+  font-size: 20px;
+  padding-top: 10px;
 }
 
 #style-selector {
@@ -108,7 +127,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
-  border: 3px solid purple;
+  border: 3px solid rgb(100, 232, 241);
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -129,18 +148,20 @@
   grid-row: 2/4;
   grid-column: 1/7;
   font-size: 30px;
+  font-weight: 600;
   text-align: center;
   border: 1px solid black;
-  background-color: rgb(232, 218, 236);
+  background-color: rgb(100, 232, 241);
 }
 
 #quantity-selector {
   grid-row: 2/4;
   grid-column: 8/11;
   font-size: 30px;
+  font-weight: 600;
   text-align: center;
   border: 1px solid black;
-  background-color: rgb(232, 218, 236);
+  background-color: rgb(100, 232, 241);
 }
 
 .addToBag {
@@ -152,7 +173,11 @@
 
 #validEntry {
   color: rgb(54, 48, 41);
-  background-color: rgb(233, 140, 27);
+  background-color: rgb(100, 232, 241);
+}
+
+#invalidEntry {
+  color: rgb(221, 213, 203);
 }
 
 #image-Gallery {
@@ -193,18 +218,23 @@
   grid-column: 1/2;
   grid-row: 1/11;
   z-index: 1;
+  padding-top: 10px;
 }
 
 .thumbnailImg {
   width: 80px;
   height: 80px;
   border-radius: 5% 5% 5% 5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .thumbnailImg_highlighted {
   width: 80px;
   height: 80px;
-  border: 3px solid purple;
+  border: 3px solid rgb(100, 232, 241);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .upDownButton {
@@ -212,14 +242,24 @@
   border: none;
   font-size: 20px;
   font-weight: 900;
+  transition-duration: 0.4s;
+}
+
+.upDownButton:hover {
+  color: rgb(100, 232, 241);
 }
 
 .leftRightB {
   background-color: transparent;
   border: none;
+  transition-duration: 0.4s;
   font-size: 25px;
   font-weight: 700;
   z-index: 1;
+}
+
+.leftRightB:hover {
+  color: rgb(100, 232, 241);
 }
 
 #toTheRight {
@@ -230,10 +270,6 @@
 #toTheLeft {
   grid-column: 2/3;
   grid-row: 5/6;
-}
-
-#invalidEntry {
-  color: rgb(221, 213, 203);
 }
 
 #Zoomed {

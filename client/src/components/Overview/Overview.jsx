@@ -104,12 +104,12 @@ class Overview extends React.Component {
   render() {
     let priceTag;
     if (this.state.current_Style && this.state.current_Style.sale_price === null) {
-      priceTag = <div id='price'>{this.state.current_Style.original_price}</div>;
+      priceTag = <div id='price'>${this.state.current_Style.original_price}</div>;
     } else if (this.state.current_Style && this.state.current_Style.sale_price !== null) {
       priceTag =
         <div id='price'>
-          <div id='originalPrice'>{this.state.current_Style.original_price}</div>
-          <div id='salePrice'>{this.state.current_Style.sale_price}</div>
+          <div id='originalPrice'>${this.state.current_Style.original_price}</div>
+          <div id='salePrice'>${this.state.current_Style.sale_price}</div>
         </div>;
     } else {
       priceTag = <div id='price'>Not Available</div>
@@ -117,16 +117,16 @@ class Overview extends React.Component {
 
     let lightDark;
     if (this.state.darkMode) {
-      lightDark =<button onClick={(e) => this.handleDarkMode(e)}> Light</button>;
+      lightDark =<button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Light</button>;
     } else {
-      lightDark =<button onClick={(e) => this.handleDarkMode(e)}> Dark </button>;
+      lightDark =<button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Dark </button>;
     }
 
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
         <div id='overview'>
-        <div id='logo'>Solanacea</div>
+        <div id='logo'>Solanacea/Spicy</div>
         {lightDark}
           <div id='infoBox_AddtoCart'>
             <div id='product-info'>
