@@ -282,19 +282,35 @@
 Related Items
 ==================================================*/
 .related-item {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* display: inline-block;
   align-items: center;
-  color: black;
+  color: black; */
 }
 
-.related-items-list {
+/* .related-list{
+  background-color: rgb(0, 0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: baseline;
+} */
+
+/* .left-arrow{
+  align-self: center;
+} */
+
+/* .related-items-list {
   white-space: nowrap;
   overflow-x: auto;
-}
+} */
 
 .related-card {
   display: inline-block;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   position: relative;
   /* padding: 25px 15px; */
   background-color: white;
@@ -303,6 +319,7 @@ Related Items
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
+  color: black;
   /* z-index: 1; */
 }
 
@@ -329,55 +346,19 @@ Related Items
 
 }
 
-.modal-comparison-body {
-  position: fixed;
-  background: #00000050;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-
-.box {
-  position: relative;
-  width: 70%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 70vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-
-.close-icon {
-  content: 'x';
-  cursor: pointer;
-  position: fixed;
-  right: calc(15% - 30px);
-  top: calc(100vh - 85vh - 33px);
-  background: #ededed;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  line-height: 20px;
-  text-align: center;
-  border: 1px solid #999;
-  font-size: 20px;
-}
-
 .left-arrow {
-  display: inline-block;
+  align-self: center;
+}
+
+.right-arrow {
+  align-self: center;
 }
 
 .related-slide {
 
   scroll-behavior: smooth;
   width: 1000px;
-  overflow: auto;
+  overflow-x: hidden;
   white-space: nowrap;
 
 }
@@ -391,9 +372,9 @@ Related Items
 
 .fa-star {
   position: absolute;
-  top: 0;
+  top: -20px;
   right: 0;
-  z-index: 2;
+  z-index: 1;
 
 }
 
@@ -401,13 +382,17 @@ Related Items
 Outfit
 ============================*/
 .outfit-list {
-  white-space: nowrap;
-  overflow-x: auto;
+  /* white-space: nowrap;
+  overflow-x: auto; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
 }
 
 .outfit-card {
   display: inline-block;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   position: relative;
   /* padding: 25px 15px; */
   background-color: white;
@@ -422,7 +407,7 @@ Outfit
 
 .outfit-list-add-outfit {
   display: inline-block;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   position: relative;
   /* padding: 25px 15px; */
   background-color: white;
@@ -430,7 +415,7 @@ Outfit
   height: 450px;
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
-  text-align: left;
+  text-align: center;
   /* z-index: 1; */
   color: black;
 
@@ -462,8 +447,9 @@ Outfit
 .outfit-slide {
 
   scroll-behavior: smooth;
-  width: 600px;
-  overflow: auto;
+  width: 1000px;
+  /* overflow: auto; */
+  overflow-x: hidden;
   white-space: nowrap;
 
 }
@@ -482,10 +468,57 @@ Outfit
 
 .fa-times-circle {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
+  top: -20px;
+  right: 0;
+  z-index: 1;
 
+}
+/*===========================
+Comparison Modal
+============================*/
+.modal-table {
+  text-align: center;
+  align-self: center;
+}
+
+.modal-comparison-body {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 50vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
 }
 
 /*=======*/

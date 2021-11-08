@@ -66,11 +66,7 @@ class App extends React.Component {
       <div className='app-container'>
         <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/>
         <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-<<<<<<< HEAD
-        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id}/></div>}
-=======
         <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
->>>>>>> 18dfb9aa79595bfe7c5aeeed3a393916d94336f3
         <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
       </div>
     )

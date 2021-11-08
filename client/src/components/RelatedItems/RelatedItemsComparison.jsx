@@ -14,9 +14,9 @@ const RelatedItemsComparison = (props) => {
     if (defaultProduct_id) {
         return (
             <div className='related-products'>
-                    <h5>RELATED PRODUCTS</h5>
+                    <h3>RELATED PRODUCTS</h3>
                     <RelatedList   defaultProduct_id={defaultProduct_id} handleCardClick={props.handleCardClick}/>
-                    <h5>YOUR OUTFIT</h5>
+                    <h3>YOUR OUTFIT</h3>
                     <OutfitList defaultProduct_id={defaultProduct_id}/>
             </div>
 
