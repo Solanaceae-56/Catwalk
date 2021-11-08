@@ -38,7 +38,7 @@ function Answer(props) {
   }
 
   return (
-    <div className='answer' id={props.item.id}>
+    <div className='answer' id={props.item.id} key={props.keyvalue} >
       <div className='body'>A: {props.item.body}</div>
       <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
       <div className='help'>Helpful? <button id='helpfulanswer' disabled={disable} onClick={click}>Yes ({helpfulness}) </button> <button id='reportanswer' disabled={disable} onClick={click}>Report</button></div>

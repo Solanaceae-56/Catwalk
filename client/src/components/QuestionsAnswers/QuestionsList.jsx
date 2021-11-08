@@ -107,7 +107,7 @@ function QuestionsList(props) {
     if (i === props.morequestions) {
       break;
     }
-    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} />);
+    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} />);
   }
 
   if (questions.length === 0) {
@@ -137,8 +137,9 @@ function QuestionsList(props) {
 
   return (
     <div>
-      <button onClick={toggleModal}>Ask a Question</button>
+      <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
+        <button onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1>Ask your question</h1>
@@ -153,7 +154,6 @@ function QuestionsList(props) {
             </form>
             <button onClick={submit}>Submit</button>
           </>} handleClose={toggleModal} />}
-        <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
         <div className="questions">
           {questions}
         </div>

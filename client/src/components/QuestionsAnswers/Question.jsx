@@ -119,22 +119,23 @@ function Question(props) {
     width: "100%"
   }
   const textright = {
-    "text-align": 'right'
+    "textAlign": 'right'
   }
   const textleft = {
-    "text-align": 'left',
-    "padding-left": 0
+    "textAlign": 'left',
   }
 
   if (props.search.length < 3) {
     return (
       <div>
-        <div className='question'>
+        <div className='question' key={props.keyvalue}>
           <table style={tablestyle}>
+            <thead>
             <tr>
               <td style={textleft}>Q: {props.data['question_body']}</td>
               <td style={textright} id={props.data['question_id']}>Helpful? <button id='helpfulquestion' disabled={disable} onClick={click}>Yes ({helpful})</button> <button id='reportquestion' disabled={disable} onClick={click}>Report</button> <button onClick={openModal}>Add an Answer!</button></td>
             </tr>
+            </thead>
           </table>
         </div>
         {/* <div className='qbody'>Q: {props.data['question_body']}</div>
@@ -176,7 +177,7 @@ function Question(props) {
   } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search) !== -1) {
     return (
       <div>
-        <div className='question'>
+        <div className='question' key={props.keyvalue}>
           <table style={tablestyle}>
             <tr>
               <td style={textleft}>Q: {props.data['question_body']}</td>

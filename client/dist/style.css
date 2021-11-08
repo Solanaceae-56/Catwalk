@@ -2,6 +2,10 @@
   display: grid;
 }
 
+b, strong {
+  color: rgb(224, 5, 5);
+}
+
 .app-container {
     display: grid;
     width: 100vw;
@@ -574,12 +578,20 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
 .answerslist {
   height: 250px;
   overflow-y: auto;
-  border: 2px solid blueviolet;
+  border: 2px solid black;
 }
 
 .answerer {
   text-align: left;
   padding-left: 28px;
+}
+
+.moreanswers {
+  margin-left: 20px;
+}
+
+#search {
+  width: 235px;
 }
 
 .photos {

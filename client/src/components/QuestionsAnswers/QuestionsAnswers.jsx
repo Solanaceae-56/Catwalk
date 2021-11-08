@@ -48,7 +48,7 @@ function QuestionsAnswers(props) {
 
   return (
     <div>
-      <div>Questions and Answers</div>
+      <h1>Questions and Answers</h1>
       <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
       <button onClick={increaseCount}>More questions</button>
     </div>
