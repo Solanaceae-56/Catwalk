@@ -116,7 +116,7 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        <button onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1>Ask your question</h1>
@@ -139,7 +139,7 @@ function QuestionsList(props) {
     <div>
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        <button onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1>Ask your question</h1>
