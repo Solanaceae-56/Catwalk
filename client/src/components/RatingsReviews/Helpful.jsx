@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {GoThumbsup, GoReport} from "react-icons/Go";
+import {GoThumbsup, GoReport} from "react-icons/go";
 import axios from 'axios';
 import "./Helpful.css";
 export default function Helpful(props) {

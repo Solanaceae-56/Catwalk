@@ -494,14 +494,14 @@ Outfit
 
 /*=======*/
 .addanswer {
-  color:rgb(233, 140, 27);
+  border: 2px solid black;
+  border-color: #e7e7e7;
+  color: black;
+  /* padding: 14px 28px; */
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
 }
-
-.addanswer:hover {
-  color:darkblue
-}
-
 .answer {
   padding-top: 8px;
   /* border: 3px solid burlywood; */
@@ -557,6 +557,10 @@ Outfit
   font-size: 20px;
 }
 
+.header {
+  color: black;
+}
+
 .help {
   text-align: left;
   padding-inline-end: 10px;
@@ -572,6 +576,19 @@ Outfit
 
 .helpful:hover {
   color:darkblue
+}
+
+.helpfulBtn {
+  color: black;
+  cursor: pointer;
+  border:none;
+  background-color: none;
+
+}
+.helpfulBtn:disabled{
+color: black;
+border:none;
+background-color: none;
 }
 
 .misc {
@@ -594,7 +611,7 @@ Outfit
   background: #e7e7e7;
 }
 
-.morequestions, .askquestion {
+.morequestions, .askquestion{
   border: 2px solid black;
   border-color: #e7e7e7;
   color: black;
@@ -604,7 +621,7 @@ Outfit
   border-radius: 5px;
 }
 
-.morequestions:hover, .askquestion:hover {
+.morequestions:hover, .askquestion:hover, .addanswer:hover {
   background: #e7e7e7;
 }
 
@@ -674,6 +691,10 @@ textarea {
 textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
   display:block;
   margin: 0 auto;
+}
+
+#askQuestionModal, #addAnswerModal{
+  color:black
 }
 
 #search {

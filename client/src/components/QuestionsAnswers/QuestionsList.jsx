@@ -119,9 +119,9 @@ function QuestionsList(props) {
         <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
-            <h1>Ask your question</h1>
-            <h2>about the {productName}</h2>
-            <form>
+            <h1 className="header">Ask your question</h1>
+            <h2 className="header">about the {productName}</h2>
+            <form id="askQuestionModal">
               <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
               <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
               <span>For privacy reasons, do not use your full name or email address</span>
@@ -142,9 +142,9 @@ function QuestionsList(props) {
         <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
-            <h1>Ask your question</h1>
-            <h2>about the {productName}</h2>
-            <form>
+            <h1 className="header">Ask your question</h1>
+            <h2 className="header">about the {productName}</h2>
+            <form id="askQuestionModal">
               <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
               <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
               <span>For privacy reasons, do not use your full name or email address</span>
