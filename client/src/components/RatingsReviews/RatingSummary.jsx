@@ -11,7 +11,7 @@ export default function RatingSummary(props) {
       <div className="ratingSummary"><h1>{(+props.averageRating).toFixed(1)}</h1>
         <h1><ReviewStars value={+props.averageRating} /></h1>
       </div>
-      <div>{props.recommendRate}% of reviews recommend this product</div>
+      <div>{+props.recommendRate}% of reviews recommend this product</div>
     </div>
   )
 }
