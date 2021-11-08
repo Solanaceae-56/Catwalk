@@ -11,12 +11,12 @@ const OutfitList = (props) => {
   const addToList = () => {
     axios.post(`/outfit/${username}.${props.defaultProduct_id}`)
     .then((response) => {
-      console.log('post to outfit list', response);
+      // console.log('post to outfit list', response);
     })
 
     axios.get(`/outfit/${username}`,)
     .then((response) => {
-      console.log('getting outfit list',response.data);
+      // console.log('getting outfit list',response.data);
       setOutfitList(response.data);
     })
   }
@@ -24,7 +24,7 @@ const OutfitList = (props) => {
   const removeFromList = (e) => {
     axios.delete(`/outfit/${username}.${e.target.id}`)
     .then((response) => {
-      console.log('outfit delete', response);
+      // console.log('outfit delete', response);
       setOutfitList(response.data);
     })
   }
@@ -32,7 +32,7 @@ const OutfitList = (props) => {
   useEffect(() => {
     axios.get(`/outfit/${username}`,)
     .then((response) => {
-      console.log('getting outfit list in use effect',response.data);
+      // console.log('getting outfit list in use effect',response.data);
       setOutfitList(response.data);
     })
   }, [])
@@ -50,15 +50,15 @@ const OutfitList = (props) => {
 
   return (
     <div className='outfit-list'>
-      <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-100)}/>
+      <img className='left-arrow' src='https://static.thenounproject.com/png/627785-200.png' width='70' height='70' onClick={() => handleSlide(-100)}/>
       <div className='outfit-slide' ref={ref}>
       <div className='outfit-list-add-outfit'>
         {/* <div className='white-text'>Click</div> */}
         <div className='white-text'>Click</div>
         <img className='outfit-add' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzhJV3XJfPqf_txRnqYivCCWtJtfQ5o28Bt1NDrKrQhLt5eW8jpnCStBerRmX1JDjPSQ&usqp=CAU' alt="click to add to outfit list"  onClick={addToList}/>
-        <div>Add</div>
-        <div>to</div>
-        <div>Outfit</div>
+        <div className='white-text'>click</div>
+        <div className='white-text'>here</div>
+        <div>Add to Outfit</div>
       </div>
          {outfitList.map((productId, index) =>
            <OutfitCard key={index} productId={productId} removeFromList={removeFromList}/>
@@ -66,7 +66,7 @@ const OutfitList = (props) => {
 
       </div>
 
-         <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(100)}/>
+         <img className='right-arrow' src='https://cdn1.iconfinder.com/data/icons/mixed-17/16/icon_right_rounded-512.png' width='70' height='70' onClick={() => handleSlide(100)}/>
 
 
 

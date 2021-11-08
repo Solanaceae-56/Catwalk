@@ -17,7 +17,7 @@ const RelatedList = (props) => {
     axios.get('http://localhost:3000/products',
         {params: {productId: props.defaultProduct_id, path:'/products/:product_id'}})
         .then((response) => {
-          console.log('pageProduct is', response);
+          // console.log('pageProduct is', response);
           setPageProduct(response);
         })
 
@@ -25,7 +25,7 @@ const RelatedList = (props) => {
         {params: {productId: props.defaultProduct_id, path:'/products/:product_id/related'}})
         .then((results) => {
           if (mount) {
-            console.log('RC get related items ID', results);
+            // console.log('RC get related items ID', results);
             //res is an array of promises
             const res =[];
             for (var i = 0; i < results.data.length; i ++ ) {
@@ -44,7 +44,7 @@ const RelatedList = (props) => {
 
         })
         .then((res) => {
-          console.log('related items', res);
+          // console.log('related items', res);
           setRelatedItems(res)
 
         } );
@@ -69,7 +69,7 @@ const RelatedList = (props) => {
   return (
     (relatedItems!==undefined) &&<div className='related-item'>
 
-      <img className='left-arrow' src='https://d29fhpw069ctt2.cloudfront.net/icon/image/39092/preview.png' width='15' height='15' onClick={() => handleSlide(-100)}/>
+      <img className='left-arrow' src='https://static.thenounproject.com/png/627785-200.png' width='70' height='70' onClick={() => handleSlide(-100)}/>
 
 
        <div className='related-slide' ref={ref} >
@@ -77,7 +77,7 @@ const RelatedList = (props) => {
 
 
 
-      <img className='right-arrow' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58yt5nFfZ0LvP475ccgYb2Rw90dWgHtiYrpyiDRhIxrNot_SjrvnMJwJG9OPs_k-daT4&usqp=CAU' width='15' height='15' onClick={() => handleSlide(100)}/>
+      <img className='right-arrow' src='https://cdn1.iconfinder.com/data/icons/mixed-17/16/icon_right_rounded-512.png' width='70' height='70' onClick={() => handleSlide(100)}/>
     </div>
   )
 }

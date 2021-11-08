@@ -278,7 +278,7 @@ OutFit
 
  app.get('/outfit/:username', (req, res) => {
    const username = req.params.username;
-   console.log(username);
+  //  console.log(username);
    if (storedOutfit[username] === undefined) {
      storedOutfit[username] = [];
    }
