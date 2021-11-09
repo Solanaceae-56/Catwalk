@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {GoThumbsup, GoReport} from 'react-icons/go';
 import moment from 'moment';
 import AnswersList from './AnswersList.jsx';
 import Modal from '../Modal.jsx';
+import AppContext from '../../index.jsx';
 const axios = require('axios');
 
 const customStyles = {
@@ -144,6 +145,14 @@ function Question(props) {
     "textAlign": 'left',
   }
 
+  const darkmode = useContext(AppContext);
+
+  var buttonStyle = {};
+  if (darkmode) {
+    buttonStyle['background-color'] = 'gold';
+    buttonStyle['border'] = '4px solid black';
+  }
+
   if (props.search.length < 3) {
     return (
       <div>
@@ -152,7 +161,7 @@ function Question(props) {
             <thead>
             <tr>
               <td style={textleft}>Q: {props.data['question_body']}</td>
-              <td style={textright} id={props.data['question_id']}>Helpful? <button id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button onClick={openModal} className="addanswer">Add an Answer!</button></td>
+              <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button style={buttonStyle} onClick={openModal} className="addanswer">Add an Answer!</button></td>
             </tr>
             </thead>
           </table>
@@ -200,7 +209,7 @@ function Question(props) {
           <table style={tablestyle}>
             <tr>
               <td style={textleft}>Q: {props.data['question_body']}</td>
-              <td style={textright} id={props.data['question_id']}>Helpful? <button id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button onClick={openModal}>Add an Answer!</button></td>
+              <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button style={buttonStyle} onClick={openModal}>Add an Answer!</button></td>
             </tr>
           </table>
         </div>

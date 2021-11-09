@@ -112,17 +112,13 @@ function QuestionsList(props) {
   }
 
 
-  //console.log(AppContext);
-  // const testvalue = useContext(AppContext);
-  // console.log(testvalue, 'testing');
-  // if (AppContext.dark === false) {
-  //   console.log('test')
-  // } else if (AppContext.dark === true) {
-  //   console.log('not')
-  // }
+  const darkmode = useContext(AppContext);
+  //console.log(testvalue, 'testing');
 
-  const butstyle = {
-    // color: 'blue'
+  var buttonStyle = {};
+  if (darkmode) {
+    buttonStyle['background-color'] = 'gold';
+    buttonStyle['border'] = '4px solid black';
   }
 
   if (questions.length === 0) {
@@ -131,7 +127,7 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        <button className="askquestion" style={butstyle} onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={buttonStyle} onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -154,7 +150,7 @@ function QuestionsList(props) {
     <div>
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        <button className="askquestion" style={butstyle} onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={buttonStyle} onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
