@@ -58,8 +58,8 @@ function SideBarList(props) {
   return (
     <div id='sideimgBar'>
       {upbutton}
-      {currFivePhotos.map(entry =>
-        <SideBarEntry entry={entry} current={props.current} handleImgChange={props.handleImgChange}/>
+      {currFivePhotos.map((entry, i) =>
+        <SideBarEntry key={i} entry={entry} current={props.current} handleImgChange={props.handleImgChange}/>
       )}
       {downbutton}
     </div>

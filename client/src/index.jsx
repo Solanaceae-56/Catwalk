@@ -7,13 +7,7 @@ import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
 import { createContext } from 'react';
 const AppContext = createContext();
-
-const darkTheme = {
-  "background-color": "darkgray"
-}
-const lightTheme = {
-  "background-color": "white"
-}
+export default AppContext;
 
 class App extends React.Component {
   constructor(props) {
@@ -95,7 +89,7 @@ class App extends React.Component {
     }
 
     return (
-      <AppContext.Provider dark={this.state.darkMode}>
+      <AppContext.Provider value={this.state.darkMode}>
         <div>
           {lightDark}
         </div>
@@ -110,4 +104,4 @@ class App extends React.Component {
   }
 }
 
-        ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

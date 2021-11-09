@@ -1,11 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import SideBarList from './SideBarList.jsx';
+import {InteractionContext} from '../Overview.jsx';
+import AppContext from '../../../index.jsx';
 
 function Image_Gallery(props) {
   var [current_Image, set_current_Image] = useState('');
   var [imageArr, set_imageArr] = useState([]);
   var [buttonL, set_buttonL] = useState(<div></div>);
   var [buttonR, set_buttonR] = useState(<div></div>);
+  var interaction = useContext(InteractionContext);
+  var dark = useContext(AppContext);
 
   var handleImgChange = function(data) {
     set_current_Image(data);
@@ -33,18 +37,25 @@ function Image_Gallery(props) {
     }
   }
 
+  var darkLight;
+  if (dark) {
+    darkLight = 'leftRightB-dark';
+  } else {
+    darkLight = 'leftRightB-light';
+  }
+
   useEffect(() => {
     let mounted = true;
     if (mounted && imageArr.length > 0) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
         set_buttonR(<div></div>);
-        set_buttonL(<button className='leftRightB' id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       } else if (current_Image.url === imageArr[0].url) {
-        set_buttonR(<button className='leftRightB' id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
         set_buttonL(<div></div>);
       } else {
-        set_buttonR(<button className='leftRightB' id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
-        set_buttonL(<button className='leftRightB' id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
     }
     return function cleanup() {
@@ -73,7 +84,7 @@ function Image_Gallery(props) {
   return (
     <div id='image-Gallery'>
       {buttonL}
-      <img id='main-img' src={current_Image.url} onClick={(e) => props.changeView(true, e)}/>
+      <img id='main-img' src={current_Image.url} onClick={(e) => {props.changeView(true, e); interaction.handleClick(e)}}/>
       <SideBarList list={imageArr} current={current_Image} handleImgChange={handleImgChange}/>
       {buttonR}
     </div>

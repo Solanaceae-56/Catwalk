@@ -5,8 +5,8 @@ function BubblesList(props) {
 
   return (
     <div id='selectorList'>
-      {props.list.map(entry =>
-        <Bubble data={entry} selected={props.selected} handleChange={props.handleChange}/>
+      {props.list.map((entry, i) =>
+        <Bubble data={entry} key={i} selected={props.selected} handleChange={props.handleChange}/>
       )}
     </div>
   );

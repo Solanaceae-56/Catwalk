@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {createContext} from 'react';
+import './Overview.css';
 import Star_Rating from './product-info/Star_Rating.jsx';
 import Style_Selector from './style-selector/Style_Selector.jsx';
 import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
+export const InteractionContext = createContext();
 
 class Overview extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Overview extends React.Component {
     this.handleDefaultChange = this.handleDefaultChange.bind(this);
     this.updateAllStyles = this.updateAllStyles.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleInteraction = this.handleInteraction.bind(this);
     this.state = {
       current_Product: {},
       current_Style: {},
@@ -20,7 +23,24 @@ class Overview extends React.Component {
       allStyles: [],
       mode: true,
       switch: false,
+      value: {
+        widget: 'Overview',
+        handleClick: this.handleInteraction,
+      }
     }
+  }
+
+  handleInteraction(e) {
+    console.log(e.target.id);
+    var date = Date();
+    console.log(date);
+    axios.post("/interactions", {params: {element: e.target.id, time: date , widget: this.state.value['widget']}})
+    .then((data) => {
+      console.log('nice');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   handleStyleChange(data) {
@@ -59,6 +79,7 @@ class Overview extends React.Component {
       current_Img: data,
     });
   }
+
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
       axios.get("/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
@@ -71,7 +92,6 @@ class Overview extends React.Component {
           console.log(err);
         });
     }
-
   }
 
   render() {
@@ -92,25 +112,25 @@ class Overview extends React.Component {
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
-        <div id='overview'>
-        <div id='logo'>Solanacea/Spicy</div>
-          <div id='infoBox_AddtoCart'>
-            <div id='product-info'>
-              <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
-              <div id='product-category'>{this.state.current_Product.category}</div>
-              <div id='product-title'>{this.state.current_Product.name}</div>
-              {priceTag}
-              {/* <div id='social-media'>
-                <button id='facebook'>Facebook</button>
-                <button id='twitter'>Twitter</button>
-                <button id='pinterest'>Pinterest</button>
-              </div> */}
-            </div>
-            <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+          <div id='overview'>
+            <div id='logo'>Solanacea/Spicy</div>
+              <div id='infoBox_AddtoCart'>
+                <div id='product-info'>
+                  <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
+                  <div id='product-category'>{this.state.current_Product.category}</div>
+                  <div id='product-title'>{this.state.current_Product.name}</div>
+                  {priceTag}
+                  {/* <div id='social-media'>
+                    <button id='facebook'>Facebook</button>
+                    <button id='twitter'>Twitter</button>
+                    <button id='pinterest'>Pinterest</button>
+                  </div> */}
+                </div>
+                <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+              </div>
+            <div id='product-overview'>{this.state.current_Product.description}</div>
+            <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
           </div>
-          <div id='product-overview'>{this.state.current_Product.description}</div>
-          <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
-        </div>;
     } else if (this.state.mode) {
       condition = <div>Rendering</div>
     } else {
@@ -118,9 +138,11 @@ class Overview extends React.Component {
     }
 
     return (
-      <div>
-        {condition}
-      </div>
+      <InteractionContext.Provider value={this.state.value}>
+        <div>
+          {condition}
+        </div>
+      </InteractionContext.Provider>
     );
   }
 }
