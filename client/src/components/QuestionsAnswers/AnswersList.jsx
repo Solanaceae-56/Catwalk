@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import Answer from './Answer.jsx';
+import AppContext from '../../index.jsx';
 
 function AnswersList(props) {
   const [answers, setAnswers] = useState({});
@@ -64,6 +65,14 @@ function AnswersList(props) {
     )
   }
 
+  const darkmode = useContext(AppContext);
+
+  var buttonStyle = {};
+  if (darkmode) {
+    buttonStyle['background-color'] = 'gold';
+    buttonStyle['border'] = '4px solid black';
+  }
+
   if (Object.keys(answers).length <= 2 || !isHidden) {
     //debugger;
     //console.log(renderAnswers);
@@ -82,7 +91,7 @@ function AnswersList(props) {
           {renderAnswers}
         </div>
         <div>
-          <button className="moreanswers" onClick={() => setIsHidden(false)}>More answers</button>
+          <button style={buttonStyle} className="moreanswers" onClick={() => setIsHidden(false)}>More answers</button>
         </div>
       </div>
     )

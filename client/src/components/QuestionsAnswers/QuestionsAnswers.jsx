@@ -1,5 +1,6 @@
-import React, { useState, useEffect , useRef} from 'react';
+import React, { useState, useEffect , useRef, useContext} from 'react';
 import QuestionsList from './QuestionsList.jsx';
+import AppContext from '../../index.jsx';
 const axios = require('axios');
 const config = require('../../../../config.js');
 
@@ -46,11 +47,20 @@ function QuestionsAnswers(props) {
     //console.log(count);
   }
 
+
+  const darkmode = useContext(AppContext);
+
+  var buttonStyle = {};
+  if (darkmode) {
+    buttonStyle['background-color'] = 'gold';
+    buttonStyle['border'] = '4px solid black';
+  }
+
   return (
     <div>
       <h1>Questions and Answers</h1>
       <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
-      <button className="morequestions" onClick={increaseCount}>More questions</button>
+      <button style={buttonStyle} className="morequestions" onClick={increaseCount}>More questions</button>
     </div>
   );
 
