@@ -1,9 +1,12 @@
 import React from 'react';
+import './Overview.css';
 import Star_Rating from './product-info/Star_Rating.jsx';
 import Style_Selector from './style-selector/Style_Selector.jsx';
 import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
+import { createContext } from 'react';
+const OverViewTracker = createContext();
 
 class Overview extends React.Component {
   constructor(props) {
@@ -13,6 +16,7 @@ class Overview extends React.Component {
     this.handleDefaultChange = this.handleDefaultChange.bind(this);
     this.updateAllStyles = this.updateAllStyles.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleInteraction = this.handleInteraction.bind(this);
     this.state = {
       current_Product: {},
       current_Style: {},
@@ -21,6 +25,10 @@ class Overview extends React.Component {
       mode: true,
       switch: false,
     }
+  }
+
+  handleInteraction(e) {
+    console.log(e.target.id);
   }
 
   handleStyleChange(data) {
@@ -59,6 +67,7 @@ class Overview extends React.Component {
       current_Img: data,
     });
   }
+
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
       axios.get("/products", {params: {productId: this.props.product_id, path: '/products/:product_id'}})
@@ -71,7 +80,6 @@ class Overview extends React.Component {
           console.log(err);
         });
     }
-
   }
 
   render() {
@@ -118,9 +126,11 @@ class Overview extends React.Component {
     }
 
     return (
-      <div>
-        {condition}
-      </div>
+      <OverViewTracker.Provider value={this.handleInteraction}>
+        <div>
+          {condition}
+        </div>
+      </OverViewTracker.Provider>
     );
   }
 }

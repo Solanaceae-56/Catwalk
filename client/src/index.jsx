@@ -8,13 +8,6 @@ import RelatedItemsComparison from './components/RelatedItems/RelatedItemsCompar
 import { createContext } from 'react';
 const AppContext = createContext();
 
-const darkTheme = {
-  "background-color": "darkgray"
-}
-const lightTheme = {
-  "background-color": "white"
-}
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -95,10 +88,8 @@ class App extends React.Component {
     }
 
     return (
-      <AppContext.Provider dark={this.state.darkMode}>
-        <div>
-          {lightDark}
-        </div>
+      <AppContext.Provider value={this.state.darkMode}>
+        {lightDark}
         <div className='app-container'>
           <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
           <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>

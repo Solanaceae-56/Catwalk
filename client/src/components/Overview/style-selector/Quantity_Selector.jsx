@@ -66,14 +66,14 @@ function Quantity_Selector(props) {
     <div id='add-to-cart'>
       <select id='size-selector' onChange={handleChangeSize}>
         <option selected disabled hidden>Select Size</option>
-        {filtered.map(entry =>
-          <option value={[entry.quantity, entry.size]}>{entry.size}</option>
+        {filtered.map((entry, i) =>
+          <option value={[entry.quantity, entry.size]} key={i}>{entry.size}</option>
         )}
       </select>
       <select id='quantity-selector' onChange={handleChangeQ}>
         <option selected disabled hidden>-</option>
-        {qArr.map(entry =>
-          <option value={entry}>{entry}</option>
+        {qArr.map((entry, i) =>
+          <option value={entry} key={i}>{entry}</option>
         )}
       </select>
       {validAddToBag()}
