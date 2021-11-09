@@ -59,8 +59,8 @@ function Answer(props) {
   return (
     <div className='answer' id={props.item.id} key={props.keyvalue} >
       <div className='body'>A: {props.item.body}</div>
-      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
-      <div className='help'>Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
+      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')} | Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
+      {/* <div className='help'>| Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div> */}
       {/* <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
       <div className='report' id='reportanswer' onClick={click}> Report? </div> */}
       <div className='photos'>
