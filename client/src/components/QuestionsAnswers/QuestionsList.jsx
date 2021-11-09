@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Question from './Question.jsx';
 import Modal from '../Modal.jsx';
+import AppContext from '../../index.jsx'
 const axios = require('axios');
 
 
@@ -110,13 +111,27 @@ function QuestionsList(props) {
     questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} />);
   }
 
+
+  //console.log(AppContext);
+  // const testvalue = useContext(AppContext);
+  // console.log(testvalue, 'testing');
+  // if (AppContext.dark === false) {
+  //   console.log('test')
+  // } else if (AppContext.dark === true) {
+  //   console.log('not')
+  // }
+
+  const butstyle = {
+    // color: 'blue'
+  }
+
   if (questions.length === 0) {
     return (
       <div>
         <div>
           There are no questions for this product.
         </div>
-        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={butstyle} onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -139,7 +154,7 @@ function QuestionsList(props) {
     <div>
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        <button className="askquestion" onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={butstyle} onClick={toggleModal}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
