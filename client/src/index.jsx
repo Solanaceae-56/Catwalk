@@ -7,6 +7,7 @@ import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
 import { createContext } from 'react';
 const AppContext = createContext();
+export default AppContext;
 
 class App extends React.Component {
   constructor(props) {
@@ -101,4 +102,4 @@ class App extends React.Component {
   }
 }
 
-        ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
