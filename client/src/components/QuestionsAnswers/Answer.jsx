@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {GoThumbsup, GoReport} from 'react-icons/go';
 import moment from 'moment';
+import AppContext from '../../index.jsx';
 const axios = require('axios');
 
 function Answer(props) {
@@ -51,16 +52,29 @@ function Answer(props) {
   const photomap = props.item.photos.map((photo) =>
     <img src={photo} width="300" height="300"/>
   );
+
+
+  const darkmode = useContext(AppContext);
+  var buttonStyle = {};
+  var boldStyle= {
+    'font-size': '15pt'
+  };
+  if (darkmode) {
+    boldStyle.color = 'gold';
+    buttonStyle['background-color'] = 'gold';
+    buttonStyle['border'] = '4px solid black';
+  }
+  //boldStyle.color = 'gold';
   var answerer = props.item['answerer_name'];
   if (props.item['answerer_name'] === "Seller") {
-    answerer = <b>{props.item['answerer_name']}</b>
+    answerer = <b style={boldStyle}>{props.item['answerer_name']}</b>
   }
 
   return (
     <div className='answer' id={props.item.id} key={props.keyvalue} >
       <div className='body'>A: {props.item.body}</div>
-      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')}</div>
-      <div className='help'>Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
+      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')} | Helpful? <button style={buttonStyle} id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button style={buttonStyle} id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
+      {/* <div className='help'>| Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div> */}
       {/* <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
       <div className='report' id='reportanswer' onClick={click}> Report? </div> */}
       <div className='photos'>

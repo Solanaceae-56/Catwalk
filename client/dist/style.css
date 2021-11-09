@@ -2,9 +2,9 @@
   display: grid;
 }
 
-b, strong {
-  color: rgb(224, 5, 5);
-}
+/* b, strong {
+  color: gold;
+} */
 
 .app-container {
     display: grid;
@@ -291,25 +291,29 @@ Comparison Modal
 }
 .answer {
   padding-top: 8px;
+  padding-bottom: 20px;
   /* border: 3px solid burlywood; */
 }
 
 .answerer {
+  /* display: inline-block; */
+  margin: 0 auto;
   text-align: left;
   padding-left: 28px;
+  padding-right: 7px;
 }
 
 .answerslist {
   height: 250px;
   overflow-y: auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
 
 .body {
   text-align: left;
   padding-left: 2px;
-  max-width: 50ch;
+  max-width: 35ch;
   margin:0 25px;
   text-indent: -25px;
 }
@@ -350,9 +354,10 @@ Comparison Modal
 }
 
 .help {
+  display: inline-block;
   text-align: left;
   padding-inline-end: 10px;
-  padding-left: 28px;
+  /* padding-left: 28px; */
 }
 
 .helpful {
@@ -373,6 +378,7 @@ Comparison Modal
   background-color: none;
 
 }
+
 .helpfulBtn:disabled{
 color: black;
 border:none;
@@ -407,6 +413,7 @@ background-color: none;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 .morequestions:hover, .askquestion:hover, .addanswer:hover {
@@ -489,4 +496,6 @@ textarea[name="answer"], textarea[name="photos"], textarea[name="question"] {
   width: 235px;
   margin-bottom: 20px;
   height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
