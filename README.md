@@ -13,3 +13,21 @@ https://testing-library.com/docs/queries/about/
 * * npm install
 * * npm run react-dev
 * * npm run server-dev
+
+* Overview
+**********
+
+
+
+* Related Products and Comparison
+*********************************
+
+
+* Questions and Answers
+***********************
+
+
+* Ratings and Reviews
+*********************
+
+

@@ -52,7 +52,7 @@ const RelatedCard = (props) => {
 
   return (
       <div className='related-card' id={props.relatedItem.data.id} >
-        <i className='related-card-action'className="far fa-star" onClick={toggleModal} ></i>
+        <i className='related-card-action'className="fas fa-star" onClick={toggleModal} ></i>
         {isOpen &&
         <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} style={"z-index:3"}/>}
         {itemImageUrl? <img className='related-img' src={itemImageUrl} alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img className='related-img' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
