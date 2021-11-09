@@ -3,7 +3,7 @@ import QuestionsList from './QuestionsList.jsx';
 import AppContext from '../../index.jsx';
 const axios = require('axios');
 const config = require('../../../../config.js');
-
+//export const questionsContext = createContext();
 function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {

@@ -6,14 +6,8 @@ import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
 import { createContext } from 'react';
-const AppContext = createContext(false);
-
-const darkTheme = {
-  "background-color": "darkgray"
-}
-const lightTheme = {
-  "background-color": "white"
-}
+const AppContext = createContext();
+export default AppContext;
 
 class App extends React.Component {
   constructor(props) {
@@ -109,5 +103,5 @@ class App extends React.Component {
     )
   }
 }
-export default AppContext;
-        ReactDOM.render(<App />, document.getElementById('app'));
+
+ReactDOM.render(<App />, document.getElementById('app'));
