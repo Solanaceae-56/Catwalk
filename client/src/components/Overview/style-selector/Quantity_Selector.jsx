@@ -44,7 +44,7 @@ function Quantity_Selector(props) {
 
   var addToCart = function() {
     var addToCartOneItemAtATime = [];
-    addToCartOneItemAtATime.push(axios.post("http://localhost:3000/cart", {sku_id: props.style}));
+    addToCartOneItemAtATime.push(axios.post("/cart", {sku_id: props.style}));
     Promise.all(addToCartOneItemAtATime)
       .then((data) => {
         console.log('success');

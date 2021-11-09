@@ -22,7 +22,7 @@ function Style_Selector(props) {
         set_all_Styles(props.allStyles);
         props.handleSwitch();
       } else {
-        axios.get("http://localhost:3000/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
+        axios.get("/products", {params: {productId: props.product_id, path: '/products/:product_id/styles'}})
           .then((data) => {
             set_all_Styles(data.data.results);
             set_selected_Style(data.data.results[0]);

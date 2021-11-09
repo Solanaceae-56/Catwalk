@@ -19,7 +19,7 @@ const RelatedCard = (props) => {
 
   useEffect(() => {
     let mounted = true;
-    axios.get('http://localhost:3000/products',
+    axios.get('/products',
     {params: {productId: props.relatedItem.data.id, path:'/products/:product_id/styles'}})
     .then(response => {
       setItemImageUrl(response.data.results[0].photos[0].url);
@@ -27,7 +27,7 @@ const RelatedCard = (props) => {
       setOriginalPrice(response.data.results[0].original_price);
     })
 
-    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.relatedItem.data.id}})
+    axios.get("/reviews/meta", {params: {product_id: props.relatedItem.data.id}})
     .then((data) => {
       var total = 0;
       var votes = 0;
