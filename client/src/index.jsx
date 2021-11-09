@@ -5,8 +5,15 @@ import axios from 'axios';
 import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
+import { createContext } from 'react';
+const AppContext = createContext();
 
-
+const darkTheme = {
+  "background-color": "darkgray"
+}
+const lightTheme = {
+  "background-color": "white"
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -15,13 +22,15 @@ class App extends React.Component {
       rating: 0,
       num_Of_Ratings: 0,
       product_id: 0,
-      name: ''
+      name: '',
+      darkMode: false,
     }
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleDarkMode = this.handleDarkMode.bind(this);
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3000/products", { params: { path: "/products" } })
+    axios.get("/products", { params: { path: "/products" } })
       .then((data) => {
         this.setState({
           product_id: data.data['0']['id'],
@@ -35,7 +44,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.product_id !== this.state.product_id) {
-      axios.get("http://localhost:3000/reviews/meta", { params: { product_id: this.state.product_id } })
+      axios.get("/reviews/meta", { params: { product_id: this.state.product_id } })
         .then((data) => {
           console.log(data.data);
           var total = 0;
@@ -49,7 +58,7 @@ class App extends React.Component {
             rating: average,
             num_Of_Ratings: votes,
           });
-        })
+        });
     }
   }
 
@@ -61,16 +70,44 @@ class App extends React.Component {
 
   }
 
+  handleDarkMode() {
+    if (this.state.darkMode) {
+      document.body.style.backgroundColor="white";
+      document.body.style.color="black";
+      this.setState({
+        darkMode: false
+      });
+    } else {
+      document.body.style.backgroundColor="rgb(60, 60, 60)";
+      document.body.style.color="white";
+      this.setState({
+        darkMode: true
+      });
+    }
+  }
+
   render() {
+    var lightDark;
+    if (this.state.darkMode) {
+      lightDark = <button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Light</button>;
+    } else {
+      lightDark = <button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Dark </button>;
+    }
+
     return (
-      <div className='app-container'>
-        <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings}/>
-        <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-        <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
-        <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
-      </div>
+      <AppContext.Provider dark={this.state.darkMode}>
+        <div>
+          {lightDark}
+        </div>
+        <div className='app-container'>
+          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
+          <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
+          <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
+          <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        </div>
+      </AppContext.Provider>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+        ReactDOM.render(<App />, document.getElementById('app'));

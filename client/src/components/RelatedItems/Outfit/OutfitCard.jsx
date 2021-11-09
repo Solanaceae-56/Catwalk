@@ -13,7 +13,7 @@ const OutfitCard = (props) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products',
+    axios.get('/products',
     {params: {productId: props.productId, path:'/products/:product_id/styles'}})
     .then(response => {
       setItemImageUrl(response.data.results[0].photos[0].url);
@@ -21,7 +21,7 @@ const OutfitCard = (props) => {
       setOriginalPrice(response.data.results[0].original_price);
     })
 
-    axios.get('http://localhost:3000/products',
+    axios.get('/products',
     {params: {productId: props.productId, path:'/products/:product_id'}})
     .then(response => {
       setName(response.data.name);
@@ -29,7 +29,7 @@ const OutfitCard = (props) => {
 
     })
 
-    axios.get("http://localhost:3000/reviews/meta", {params: {product_id: props.productId}})
+    axios.get("/reviews/meta", {params: {product_id: props.productId}})
     .then((data) => {
       var total = 0;
       var votes = 0;

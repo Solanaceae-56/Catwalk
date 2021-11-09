@@ -14,14 +14,14 @@ const RelatedList = (props) => {
   //https://stackoverflow.com/questions/52669596/promise-all-with-axios
   useEffect(() => {
     let mount = true;
-    axios.get('http://localhost:3000/products',
+    axios.get('/products',
         {params: {productId: props.defaultProduct_id, path:'/products/:product_id'}})
         .then((response) => {
           // console.log('pageProduct is', response);
           setPageProduct(response);
         })
 
-    axios.get('http://localhost:3000/products',
+    axios.get('/products',
         {params: {productId: props.defaultProduct_id, path:'/products/:product_id/related'}})
         .then((results) => {
           if (mount) {
@@ -29,7 +29,7 @@ const RelatedList = (props) => {
             //res is an array of promises
             const res =[];
             for (var i = 0; i < results.data.length; i ++ ) {
-              res.push(axios.get('http://localhost:3000/products',
+              res.push(axios.get('/products',
               {params: {productId: results.data[i], path:'/products/:product_id'}}));
             }
             // results.data.map((id) => {
