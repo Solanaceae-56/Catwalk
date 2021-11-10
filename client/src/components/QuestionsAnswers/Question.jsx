@@ -22,7 +22,6 @@ const customStyles = {
 function Question(props) {
   const [disable, setDisable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [questionId, setQuestionId] = useState(props.data['question_id']);
   const [helpful, setHelpful] = useState(props.data['question_helpfulness']);
   const [state, setState] = React.useState({
     nickname: "",
@@ -106,13 +105,13 @@ function Question(props) {
     //console.log(props.id);
     const postObj = {
       path: '/answers',
-      questionId: questionId,
+      questionId: props.data['question_id'],
       email: state.email,
       name: state.nickname,
       body: state.answer,
       photos: state.photos.split('\n').slice(0, 5)
     }
-    //console.log(obj);
+    //console.log(postObj);
     if (!state.email || !state.nickname || !state.answer) {
       //debugger;
       alert('One or more fields left empty');
@@ -158,6 +157,7 @@ function Question(props) {
     // buttonStyle['border'] = '4px solid black';
   }
 
+  //debugger;
   if (props.search.length < 3) {
     return (
       <div>
@@ -195,6 +195,7 @@ function Question(props) {
       </div >
     );
   } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search.toLowerCase()) !== -1) {
+    debugger;
     return (
       <div>
         <div className='question' key={props.keyvalue}>
@@ -230,11 +231,10 @@ function Question(props) {
       </div>
     );
   } else {
+    //debugger;
     setSearch(true);
     return (
-      <div>
-        No questions match search term!
-      </div>
+      null
     );
   }
 };

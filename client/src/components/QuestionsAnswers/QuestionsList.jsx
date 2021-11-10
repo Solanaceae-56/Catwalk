@@ -103,7 +103,6 @@ function QuestionsList(props) {
     sortedQuestions = data.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
   }
   for (var i = 0; i < sortedQuestions.length; i++) {
-    console.log(search);
     if (i === props.morequestions) {
       break;
     }

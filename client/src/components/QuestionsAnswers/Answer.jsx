@@ -32,13 +32,13 @@ function Answer(props) {
   };
 
   function handleReport(e) {
-    debugger;
+    //debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'reportanswer';
-    console.log(putPath);
+    //console.log(putPath);
     var qId = props.data['question_id'];
     //console.log(typeof (qId), qId);
-    console.log(props.data['question_id']);
+    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
       //console.log(response);
       if (putPath === 'helpfulquestion') {

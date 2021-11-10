@@ -108,7 +108,7 @@ function QuestionsAnswers(props) {
   }
 
   function submit() {
-    //debugger;
+    debugger;
     //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
       //debugger;
@@ -121,11 +121,12 @@ function QuestionsAnswers(props) {
       return;
     }
     const postObj = {
-      productId: props.id,
+      productId: Number(props.id),
       email: state.email,
       name: state.nickname,
       body: state.question,
     }
+    //console.log(postObj);
     //console.log(obj);
     axios.post("/qa/questions/", postObj).then((response) => {
       //console.log(response);
