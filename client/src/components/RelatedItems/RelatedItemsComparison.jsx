@@ -10,10 +10,21 @@ const RelatedItemsComparison = (props) => {
         setDefaultId(props.product_id);
     },[props.product_id])
 
+    const trackInteraction = (e) => {
+        let obj = {
+            element: e.target.className,
+            widget: 'Related Items & Comparison',
+            time: Date()
+        }
+        axios.post('/interactions', obj)
+        .then((res) => {})
+        .catch((err) => {
+        })
+    }
 
     if (defaultProduct_id) {
         return (
-            <div className='related-products'>
+            <div className='related-products' onClick={trackInteraction}>
                     <h3>RELATED PRODUCTS</h3>
                     <RelatedList   defaultProduct_id={defaultProduct_id} handleCardClick={props.handleCardClick}/>
                     <h3>YOUR OUTFIT</h3>
