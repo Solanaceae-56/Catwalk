@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import Answer from './Answer.jsx';
 import AppContext from '../../index.jsx';
+import {QuestionsContext} from './QuestionsAnswers.jsx';
 
 function AnswersList(props) {
   const [answers, setAnswers] = useState({});
   const [renderAnswers, setrenderAnswers] = useState([]);
   const [isHidden, setIsHidden] = useState(true);
-
+  const darkMode = useContext(AppContext);
+  const postInt = useContext(QuestionsContext);
 
   useEffect(() => {
     //console.log(answers);
@@ -27,34 +29,7 @@ function AnswersList(props) {
   }, [answers, isHidden])
 
   useEffect(() => {
-    //debugger;
-    //setList(props.data);
-    //console.log(list, 'list')
     setAnswers(props.data);
-    // var answersArr = [];
-    // var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
-    // //console.log(result, 'result');
-    // sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
-    // //console.log(sortedList, 'sort');
-    // for (var i = 0; i < sortedList.length; i++) {
-    //   answersArr.push(<Answer item={sortedList[i][1]} />);
-    //   if (isHidden && i === 1) {
-    //     break;
-    //   }
-    // }
-    // // var list_keys = Object.keys(list);
-    // // var arr = [];
-    // // for (var i = 0; i < list_keys.length; i++) {
-    // //   //debugger;
-    // //   //console.log(list[list_keys[i]]);
-    // //   arr.push(<Answer item={list[list_keys[i]]} />);
-    // //   if (isHidden && i === 1) {
-    // //     break;
-    // //   }
-    // // }
-    // setrenderAnswers(answersArr);
-    //console.log(renderAnswers, 'render');
-    //onclick toggel ishidden
   }, [isHidden, props.data]);
 
   if (answers === []) {
@@ -65,10 +40,8 @@ function AnswersList(props) {
     )
   }
 
-  const darkmode = useContext(AppContext);
-
   var buttonStyle = {};
-  if (darkmode) {
+  if (darkMode) {
     buttonStyle['background-color'] = 'gold';
     buttonStyle['border'] = '4px solid black';
   }
@@ -84,14 +57,13 @@ function AnswersList(props) {
       </div>
     );
   } else {
-    //debugger;
     return (
       <div className="answerslist">
         <div>
           {renderAnswers}
         </div>
         <div>
-          <button style={buttonStyle} className="moreanswers" onClick={() => setIsHidden(false)}>More answers</button>
+          <button style={buttonStyle} className="moreanswers" onClick={(e) => { setIsHidden(false); postInt.handlePost(e) }}>More answers</button>
         </div>
       </div>
     )

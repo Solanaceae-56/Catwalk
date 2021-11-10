@@ -1,9 +1,13 @@
-import React, { useState, useEffect , useRef, useContext} from 'react';
+import React, { useState, useEffect, useRef, useContext, createContext } from 'react';
 import QuestionsList from './QuestionsList.jsx';
 import AppContext from '../../index.jsx';
 const axios = require('axios');
 const config = require('../../../../config.js');
-//export const questionsContext = createContext();
+export const QuestionsContext = createContext();
+export const FailedSearchContext = createContext({
+  search: false,
+  setSearch: (status) => {}
+});
 function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
@@ -13,26 +17,28 @@ function usePrevious(value) {
 }
 
 function QuestionsAnswers(props) {
+  const [search, setSearch] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [productId, setProductId] = useState(0);
   const [count, setCount] = useState(15);
   const [moreQuestions, setMoreQuestions] = useState(2);
-  const prevquestions = usePrevious(questions);
   const [productName, setProductName] = useState(props.productName);
-  //console.log(props.productName);
+  const darkMode = useContext(AppContext);
+  const prevquestions = usePrevious(questions);
+  const clickObj = {
+    widget: 'Questions and Answers',
+    handlePost: handlePost.bind(this)
+  }
 
   useEffect(() => {
     setProductId(props.id);
     setProductName(props.productName);
-    //console.log('test');
   }, [props]);
 
   useEffect(() => {
     axios.get("/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
-      //console.log(response);
-      //console.log(response.data, 'what');
+      //console.log(response.data);
       setQuestions(response.data.results);
-      //console.log(questions, 'yo');
     });
     // axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 329015}}).then((response) => {
     //   //console.log(response.data);  //move this to answerlist??
@@ -41,27 +47,52 @@ function QuestionsAnswers(props) {
     // });
   }, [count, productId]);
 
+
+  function handlePost(e) {
+    var targetElement = e.target.id;
+    var backup = e.target.className;
+    if (typeof (backup) === 'object') {
+      backup = e.currentTarget.className;
+    }
+    if (!targetElement) {
+      targetElement = e.currentTarget.id;
+    }
+    if (!targetElement) {
+      targetElement = backup;
+    }
+    //console.log(targetElement, 'targetelement');
+    var date = Date();
+    axios.post("/interactions", { params: { element: targetElement, time: date, widget: clickObj['widget'] } })
+      .then((data) => {
+        //console.log('posted to interactions');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   function increaseCount() {
     setCount(count + 4);
     setMoreQuestions(moreQuestions + 2);
-    //console.log(count);
   }
 
-
-  const darkmode = useContext(AppContext);
-
   var buttonStyle = {};
-  if (darkmode) {
+  if (darkMode) {
     buttonStyle['background-color'] = 'gold';
     buttonStyle['border'] = '4px solid black';
   }
 
+
   return (
-    <div>
-      <h1>Questions and Answers</h1>
-      <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
-      <button style={buttonStyle} className="morequestions" onClick={increaseCount}>More questions</button>
-    </div>
+    <QuestionsContext.Provider value={clickObj}>
+      <div>
+        <h1>Questions and Answers</h1>
+        <FailedSearchContext.Provider value={{search, setSearch}}>
+        <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
+        </FailedSearchContext.Provider>
+        <button style={buttonStyle} className="morequestions" onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
+      </div>
+    </QuestionsContext.Provider>
   );
 
 
