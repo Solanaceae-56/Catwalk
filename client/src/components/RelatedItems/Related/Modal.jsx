@@ -1,7 +1,20 @@
 import React, {useState, useEffect} from 'react';
 
 const Modal = (props) => {
-  console.log('modal', props);
+  // console.log('modal', props);
+  const tableTitleStyle = {
+    fontSize: '25px'
+  }
+
+
+  const tableHeaderStyle = {
+    textDecoration: 'underline',
+    fontSize: '20px'
+  }
+
+  const tableRowStyle = {
+    textAlign: 'center'
+  }
 
   const relatedItem = props.relatedItem.data;
   const pageProduct = props.pageProduct.data;
@@ -63,24 +76,24 @@ const Modal = (props) => {
     var header = [];
     title.push(<td></td>, <td>Comparing</td>, <td></td>)
     header.push(<td>{pageProduct.name}</td>, <td></td>, <td>{relatedItem.name}</td>);
-    table.push(<tr>{title}</tr>)
-    table.push(<tr>{header}</tr>)
+    table.push(<tr style={tableTitleStyle}>{title}</tr>)
+    table.push(<tr style={tableHeaderStyle}>{header}</tr>)
     for (var i = 0; i < Object.keys(commonFeatures).length; i ++) {
         var children = [];
         var feature = Object.keys(commonFeatures)[i];
         children.push(<td>{commonFeatures[feature].value1 || '   '}</td>, <td>{feature}</td>, <td>{commonFeatures[feature].value2 || '   '}</td>);
-        table.push(<tr>{children}</tr>)
+        table.push(<tr style={tableRowStyle}>{children}</tr>)
     }
     return table;
   }
 
   return (
     <div className='modal-comparison-body'>
-      <div className='box'>
+      <div className='modal-box'>
         <div className='modal-table'>{createTable()}</div>
 
       </div>
-      <span className="close-icon" onClick={props.handleClose}>x</span>
+      <span className="modal-close-icon" onClick={props.handleClose}>x</span>
 
     </div>
   )
@@ -109,60 +122,7 @@ const Modal = (props) => {
 //     featureHolder[value] = ''
 //   })
 
-// console.log(featureHolder)
 
-  // const [commonFeatures, setCommonFeatures] = useState({});
-
-  // function mergeFeatures () {
-  //   const tempCommonFeatures = {};
-  //   pageProduct.features.forEach(item => {
-  //     commonFeatures[item.feature] = {
-  //       value1: item.value,
-  //       value2: null
-  //     }
-  //   })
-  //   relatedItem.features.forEach(item => {
-  //     if (commonFeatures[item.feature]) {
-  //       commonFeatures[item.feature].value2 = item.value;
-  //     } else {
-  //       commonFeatures[item.feature] = {
-  //         value1: null,
-  //         value2: item.value
-  //       }
-  //     }
-
-
-  //   })
-  //   // console.log('temp common features', tempCommonFeatures);
-  //   setCommonFeatures(tempCommonFeatures);
-
-  // }
-
-
-
-  // useEffect (()=> {
-  //   mergeFeatures();
-  //   console.log(commonFeatures)
-
-  // }, [])
-
-
-  // return (
-  //   <div className='comparison-modal'>
-  //    <div>
-  //    <h1>balabalabalabalalbalablalbalbalbalaaaaaaaaaaaaaa</h1>
-  //    {Object.keys(featureHolder).map((content, index) => (
-  //    <p key={`key${index+1}`} className="features-container">
-  //      {/* <span className="current-product">{overviewFeatures[content].value1 || '    '}</span> */}
-  //      <span>{overviewFeatures[content]? overviewFeatures[content] : ' '}</span>
-  //      <span className="characteristic">{content}</span>
-  //      <span className="related-product">{relatedFeatures[content]? relatedFeatures[content]: ''}</span>
-  //    </p>
-  //  ))}
-  //    </div>
-  // </div>
-
-  // )
 
 
   // https://www.cluemediator.com/create-simple-popup-in-reactjs

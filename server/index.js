@@ -288,7 +288,7 @@ OutFit
  app.delete('/outfit/:username.:outfitId', (req, res)=> {
   const username = req.params.username;
   const outfitId = req.params.outfitId;
-  console.log(username, outfitId);
+  // console.log(username, outfitId);
   if (storedOutfit[username] === undefined) {
     res.sendStatus(202);
     return;

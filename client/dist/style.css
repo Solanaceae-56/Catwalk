@@ -120,11 +120,22 @@ Related Items
 
 .left-arrow {
   align-self: center;
+  color: red;
 }
 
 .right-arrow {
   align-self: center;
 }
+
+.active {
+  align-self: center;
+  visibility: visible;
+}
+
+.non-active {
+  visibility: hidden;
+}
+
 
 .related-slide {
 
@@ -136,7 +147,7 @@ Related Items
 }
 
 .related-img {
-  height: 60%;
+  height: 70%;
   width: 100%;
   /* display: block; */
 
@@ -144,9 +155,10 @@ Related Items
 
 .fa-star {
   position: absolute;
-  top: -20px;
-  right: 0;
+  top: 10px;
+  right: 10px;
   z-index: 1;
+  color: #a5b7c2;
 
 }
 
@@ -159,7 +171,8 @@ Outfit
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+
 }
 
 .outfit-card {
@@ -183,7 +196,7 @@ Outfit
   position: relative;
   /* padding: 25px 15px; */
   background-color: white;
-  margin: 50px 0;
+  margin: 50px 15px;
   height: 450px;
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
@@ -192,6 +205,7 @@ Outfit
   color: black;
 
 }
+
 
 .outfit-card-sale-price {
   text-decoration: line-through;
@@ -224,34 +238,36 @@ Outfit
   overflow-x: hidden;
   white-space: nowrap;
 
+  /* display: flex;
+  flex-direction: row; */
+
+
 }
 
 .outfit-img {
-  height: 60%;
+  height: 75%;
   width: 100%;
   display: block;
-
 }
 
 .outfit-add {
   height: 60%;
   width: 100%;
+  object-fit: scale-down;
 }
 
 .fa-times-circle {
   position: absolute;
-  top: -20px;
-  right: 0;
+  top: 10px;
+  right: 10px;
   z-index: 1;
+  color: #a5b7c2;
 
 }
 /*===========================
 Comparison Modal
 ============================*/
-.modal-table {
-  text-align: center;
-  align-self: center;
-}
+
 
 .modal-comparison-body {
   position: fixed;
@@ -263,9 +279,9 @@ Comparison Modal
   z-index: 2;
 }
 
-.box {
+.modal-box {
   position: relative;
-  width: 70%;
+  width: 30%;
   margin: 0 auto;
   height: auto;
   max-height: 50vh;
@@ -275,14 +291,20 @@ Comparison Modal
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+  text-align: justify;
 }
 
-.close-icon {
-  content: 'x';
+.modal-table {
+  text-align: justify;
+
+}
+
+.modal-close-icon {
+  /* content: 'x'; */
   color: black;
   cursor: pointer;
   position: fixed;
-  right: calc(15% - 30px);
+  right: calc(35% - 30px);
   top: calc(100vh - 85vh - 33px);
   background: #ededed;
   width: 25px;
@@ -293,6 +315,8 @@ Comparison Modal
   border: 1px solid #999;
   font-size: 24px;
 }
+
+
 
 /*=======*/
 .addanswer {
