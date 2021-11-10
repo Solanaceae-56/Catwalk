@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react';
+import AppContext from '../../../index.jsx';
 
 function Zoomed_In(props) {
   var [current_Image, set_current_Image] = useState('');
@@ -6,6 +7,7 @@ function Zoomed_In(props) {
   var [bgPosition, set_bgPosition] = useState('0% 0%');
   var [buttonL, set_buttonL] = useState(<div></div>);
   var [buttonR, set_buttonR] = useState(<div></div>);
+  var dark = useContext(AppContext);
 
   var findIndexOf = function() {
     var result = -1;
@@ -35,18 +37,25 @@ function Zoomed_In(props) {
     set_bgPosition(x + '%' + ' ' + y + '%');
   }
 
+  var lightDarkClass;
+  if (dark) {
+    lightDarkClass = 'zoomedNavDark';
+  } else {
+    lightDarkClass = 'zoomNavLight';
+  }
+
   useEffect(() => {
     let mounted = true;
     if (mounted && imageArr.length > 0) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
         set_buttonR(<div></div>);
       } else {
-        set_buttonR(<button className='leftRightB' id='toTheRightZ' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className={lightDarkClass} id='toTheRightZ' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
       }
       if (current_Image.url === imageArr[0].url) {
         set_buttonL(<div></div>);
       } else {
-        set_buttonL(<button className='leftRightB' id='toTheLeftZ' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className={lightDarkClass} id='toTheLeftZ' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
       }
     }
     return function cleanup() {
@@ -77,7 +86,7 @@ function Zoomed_In(props) {
         <img id='zoomed-img' src={current_Image.url}/>
       </figure>
       {buttonR}
-      <button onClick={(e) => props.changeView(false, e)}>Exit</button>
+      <button class={lightDarkClass} id='exitButton' onClick={(e) => props.changeView(false, e)}>X</button>
     </div>
   );
 }

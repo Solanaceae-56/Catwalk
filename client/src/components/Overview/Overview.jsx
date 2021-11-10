@@ -145,9 +145,7 @@ class Overview extends React.Component {
 
     return (
       <InteractionContext.Provider value={this.state.value}>
-        <div>
-          {condition}
-        </div>
+        {condition}
       </InteractionContext.Provider>
     );
   }
