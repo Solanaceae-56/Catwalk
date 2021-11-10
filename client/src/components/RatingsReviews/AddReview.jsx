@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import Modal from '../Modal.jsx';
 import StarRating from "./StarRating.jsx";
 import './AddReview.css';
 import "./ReviewList.css";
 import axios from 'axios';
+import AppContext from "../../index.jsx";
 export default function AddReview(props) {
   const [showModal, setShowModal] = useState(false);
   const [charKeys, setCharKeys] = useState([]);
@@ -19,6 +20,7 @@ export default function AddReview(props) {
     name: ''
 
   });
+  const darkMode = useContext(AppContext);
   const characteristicsWords = {
     Size: ["A size too small", "½ a size too small", "Perfect", "½ a size too big", "A size too big"],
     Width: ["Too narrow", "Slightly narrow", "Perfect", "Slightly wide", "Too wide"],
@@ -116,15 +118,14 @@ export default function AddReview(props) {
 
   return (
     <div className="addReview">
-      <button id="addReview" onClick={toggleModal}>ADD REVIEW+</button>
-      {showModal ? <Modal handleClose={closeModal} content={
-        <>
-          <h2 id="modalTitle">WRITE YOUR REVIEW</h2>
-
-          <form id="addReviewModal">
+      <button id="addReview" className={darkMode?"darkModeBtn":"lightModeBtn"} onClick={toggleModal}>ADD REVIEW+</button>
+      {showModal ? <Modal handleClose={closeModal}  content={
+        <div className={`${darkMode?"darkForm":"lightForm"} modalContainer`}>
+          <h2 id="modalTitle" >WRITE YOUR REVIEW</h2>
+          <form id="addReviewModal" >
             <div>Rating</div><StarRating handleStar={handleStar} />
             <div className="recommendRow">
-              <label id="recomend">Do you recommend this product?<label>Yes</label><input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange}/><label>No</label><input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /> </label>
+              <label id="recomend">Do you recommend this product?</label><label>Yes<input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange}/></label><label>No<input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /></label>
             </div>
             <div className="characteristics">
               {
@@ -142,24 +143,23 @@ export default function AddReview(props) {
 
 
             </div>
-            <label>Review title
-              <input type="text" value={state.summary} name="summary" placeholder="Write your review title here." onChange={handleChange}></input>
-            </label>
+            <label>Review title  <input type="text" value={state.summary} name="summary" placeholder="Write your review title here." onChange={handleChange}></input></label>
+
             <label>Review
               <input type="text" value={state.body} name="body" placeholder="Write your review here." onChange={handleChange}>
               </input></label>
-            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
+            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} /></label>
 
             <label>What is your nickname?
               <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-            <label>What is your email?
-              <input type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com" onChange={handleChange}></input></label>
+            <label>What is your email? <input type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com" onChange={handleChange}></input></label>
+
             {/* <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
               <span>Please enter your photo links for every new line (max 5)</span> */}
-
+         <button clas type="submit" onClick={handleSubmit}>Submit</button>
           </form>
-          <button type="submit" onClick={handleSubmit}>Submit</button>
-        </>
+
+        </div>
 
       } /> : null}
 
