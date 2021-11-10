@@ -22,7 +22,6 @@ const customStyles = {
 function Question(props) {
   const [disable, setDisable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [questionId, setQuestionId] = useState(props.data['question_id']);
   const [helpful, setHelpful] = useState(props.data['question_helpfulness']);
   const [state, setState] = React.useState({
     nickname: "",
@@ -33,20 +32,25 @@ function Question(props) {
   const darkMode = useContext(AppContext);
   const postInt = useContext(QuestionsContext);
   const {search, setSearch} = useContext(FailedSearchContext);
+  const [somestate, setSomeState] = useState('');
   setSearch(false);
 
   useEffect(() => {
     setHelpful(props.data['question_helpfulness']);
   }, [props.data]);
 
+  function falseSearch() {
+    setSearch(true);
+  }
+
   function handleHelpful(e) {
-    debugger;
+    //debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'helpfulquestion';
-    console.log(putPath);
+    //console.log(putPath);
     var qId = props.data['question_id'];
     //console.log(typeof (qId), qId);
-    console.log(props.data['question_id']);
+    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
       //console.log(response);
       if (putPath === 'helpfulquestion') {
@@ -60,10 +64,10 @@ function Question(props) {
     debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'reportquestion';
-    console.log(putPath);
+    //console.log(putPath);
     var qId = props.data['question_id'];
     //console.log(typeof (qId), qId);
-    console.log(props.data['question_id']);
+    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
       //console.log(response);
       if (putPath === 'helpfulquestion') {
@@ -101,13 +105,13 @@ function Question(props) {
     //console.log(props.id);
     const postObj = {
       path: '/answers',
-      questionId: questionId,
+      questionId: props.data['question_id'],
       email: state.email,
       name: state.nickname,
       body: state.answer,
       photos: state.photos.split('\n').slice(0, 5)
     }
-    //console.log(obj);
+    //console.log(postObj);
     if (!state.email || !state.nickname || !state.answer) {
       //debugger;
       alert('One or more fields left empty');
@@ -119,7 +123,7 @@ function Question(props) {
       return;
     }
     axios.post("/qa/questions/", postObj).then((response) => {
-      console.log('posted answer');
+      //console.log('posted answer');
     });
     closeModal();
     setState({
@@ -139,14 +143,21 @@ function Question(props) {
   }
   const textleft = {
     "textAlign": 'left',
+    "fontSize": '16pt',
+    "maxWidth": '15ch',
+    // "margin": 'auto'
+    // "margin": "0 25px",
+    // "textIndent": "-25px"
   }
 
   var buttonStyle = {};
   if (darkMode) {
-    buttonStyle['background-color'] = 'gold';
-    buttonStyle['border'] = '4px solid black';
+    buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
+    buttonStyle['color'] = 'white';
+    // buttonStyle['border'] = '4px solid black';
   }
 
+  //debugger;
   if (props.search.length < 3) {
     return (
       <div>
@@ -155,7 +166,7 @@ function Question(props) {
             <thead>
               <tr>
                 <td style={textleft}>Q: {props.data['question_body']}</td>
-                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button style={buttonStyle} onClick={(e) => { openModal(), postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(), postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
               </tr>
             </thead>
           </table>
@@ -183,7 +194,8 @@ function Question(props) {
         </div>
       </div >
     );
-  } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search) !== -1) {
+  } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search.toLowerCase()) !== -1) {
+    debugger;
     return (
       <div>
         <div className='question' key={props.keyvalue}>
@@ -191,7 +203,7 @@ function Question(props) {
             <thead>
               <tr>
                 <td style={textleft}>Q: {props.data['question_body']}</td>
-                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button style={buttonStyle} onClick={(e) => { openModal(); postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(); postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
               </tr>
             </thead>
           </table>
@@ -219,11 +231,10 @@ function Question(props) {
       </div>
     );
   } else {
+    //debugger;
     setSearch(true);
     return (
-      <div>
-        No questions match search term!
-      </div>
+      null
     );
   }
 };

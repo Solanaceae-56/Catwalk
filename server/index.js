@@ -57,7 +57,7 @@ app.get('/qa/questions', (req, res) => {
   var count = req.query.count;
   if (path === '/answers') {
     axios.get(apiPath + '/qa/questions/' + questionId + '/answers', { headers: { 'Authorization': API_KEYS.token } }).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       res.send(response.data);
     });
   } else {
@@ -86,7 +86,6 @@ app.post('/interactions', (req, res) => {
 
 app.post('/qa/questions', (req, res) => {
   //console.log(req.body);
-  debugger;
   var path = req.body.path;
   var questionId = req.body.questionId;
   var questobj = {
@@ -105,18 +104,19 @@ app.post('/qa/questions', (req, res) => {
   }
   //console.log(path);
   //console.log(ansobj);
+  //console.log(questobj);
   if (path === '/answers') {
-    console.log(questionId, 'questionid');
+    //console.log(questionId, 'questionid');
     axios.post(apiPath + `/qa/questions/${questionId}/answers`, ansobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
-      console.log('created answer');
+      //console.log('created answer');
       //console.log(response);
       res.sendStatus(201);
     });
   } else {
     //console.log('here');
     axios.post(apiPath + '/qa/questions', questobj, { headers: { 'Authorization': API_KEYS.token }}).then((response) => {
-      console.log('created question');
-      console.log(response);
+      //console.log('created question');
+      //console.log(response);
       res.sendStatus(201);
     });
   }
@@ -129,25 +129,25 @@ app.put('/qa/questions/put', (req, res) => {
   if (path === 'helpfulquestion') {
     axios.put(apiPath + `/qa/questions/${questionId}/helpful`, {"question_helpfulness": 1 }, { headers: { 'Authorization': API_KEYS.token }})
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       res.sendStatus(204);
     });
   } else if (path === 'reportquestion') {
       axios.put(apiPath + `/qa/questions/${questionId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'helpfulanswer') {
       axios.put(apiPath + `/qa/answers/${answerId}/helpful`, {"helpfulness": 1}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         res.sendStatus(204);
       });
   } else if (path === 'reportanswer') {
       axios.put(apiPath + `/qa/answers/${answerId}/report`, {reported: true}, { headers: { 'Authorization': API_KEYS.token }})
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         res.sendStatus(204);
       });
     } else {
