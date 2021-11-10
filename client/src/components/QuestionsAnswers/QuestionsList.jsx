@@ -22,9 +22,9 @@ function QuestionsList(props) {
   const [productName, setProductName] = useState('');
   const [state, setState] = React.useState({
     searchString: "",
-    nickname: "",
-    email: "",
-    question: "",
+    // nickname: "",
+    // email: "",
+    // question: "",
   })
   const [data, setData] = useState([]);
   const darkMode = useContext(AppContext);
@@ -103,6 +103,7 @@ function QuestionsList(props) {
     sortedQuestions = data.sort((a, b) => b['question_helpfulness'] - a['question_helpfulness']);
   }
   for (var i = 0; i < sortedQuestions.length; i++) {
+    console.log(search);
     if (i === props.morequestions) {
       break;
     }
@@ -114,17 +115,17 @@ function QuestionsList(props) {
 
   var buttonStyle = {};
   if (darkMode) {
-    buttonStyle['background-color'] = 'gold';
-    buttonStyle['border'] = '4px solid black';
+    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
+    buttonStyle['border'] = '1px solid black';
   }
 
   if (questions.length === 0) {
     return (
-      <div>
+      <div className="questionslist">
         <div>
           There are no questions for this product.
         </div>
-        <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e) }}>Ask a Question</button>
+        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e) }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -138,16 +139,16 @@ function QuestionsList(props) {
               <span>For authentication reasons, you will not be emailed.</span>
             </form>
             <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />}
+          </>} handleClose={toggleModal} />} */}
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="questionslist">
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e); }}>Ask a Question</button>
+        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e); }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -161,7 +162,7 @@ function QuestionsList(props) {
               <span>For authentication reasons, you will not be emailed.</span>
             </form>
             <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />}
+          </>} handleClose={toggleModal} />} */}
         <div className="questions">
           {questions}
         </div>
