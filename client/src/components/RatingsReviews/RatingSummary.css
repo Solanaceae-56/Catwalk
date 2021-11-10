@@ -1,4 +1,9 @@
 .ratingSummary{
   display:flex;
-  justify-content: space-around;
+  justify-content:space-around;
+  align-items: baseline;
+  width:300px;
+}
+.ratingRecommend{
+  width:300px;
 }
