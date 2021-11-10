@@ -1,5 +1,6 @@
 .characteristics{
   display:flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   gap:20px;
@@ -11,35 +12,54 @@
   align-items: flex-start;
 }
 .recommendRow{
+  border:2px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-/* .reviewListFooter >button{
-  border: 2px solid black;
-  border-color: #e7e7e7;
-  color: black;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.reviewListFooter >button:hover {
-  background: #e7e7e7;
+
+/* #addReviewModal, #modalTitle{
+  color:black
 } */
-#addReview {
-  border: 2px solid black;
+.lightModeBtn{
+  border: 2px solid;
   border-color: #e7e7e7;
   color: black;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-}
-#addReview:hover {
-  background: #e7e7e7;
 }
 
-#addReviewModal, #modalTitle{
-  color:black
+.lightModeBtn:hover{
+  background-color: #e7e7e7;
+}
+.darkModeBtn{
+  border: 2px solid;
+  border-color: #757575;
+  color: white;
+  background: #757575;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.darkModeBtn:hover{
+  background:black;
+  border-color: black;
+}
+
+.darkForm {
+  background-color: black;
+  color:white;
+}
+.lightForm {
+  background-color: white;
+  color:black;
+}
+.modalContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

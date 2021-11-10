@@ -28,3 +28,11 @@
 .reviewItemContainer{
   max-width: 80%;
 }
+.breakline{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width:100%;
+    height:1px;
+    background-color:black;
+
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import ReviewList from "./ReviewList.jsx";
 import RatingList from "./RatingList.jsx";
 import "./RatingsReviews.css";
+import axios from "axios";
 export const ReviewsContext = createContext();
 export default function RatingsReviews(props) {
   const [reviewState, setReviewState] = useState({
@@ -23,11 +24,28 @@ export default function RatingsReviews(props) {
           num_Of_Ratings: props.num_Of_Ratings
     }))
   }, [props])
+  const handleInterClick =(e)=>{
+    // console.log(e.target.tagName);
+    // console.log("Review Widge");
+    // console.log(Date());
+
+    let obj ={
+      element:e.target.className,
+      widget:"ratings&reviews",
+      time:Date()
+    }
+    axios.post("/interactions",obj)
+    .then((res)=>{
+    }).catch((err)=>{
+    })
+  }
   return (
-    <div className="review">
+    //<ReviewWidge.Provider value={handleInterClick}>
+    <div className="review" onClick={handleInterClick}>
       <h2 className="sectionTitle">Ratings & Reviews</h2>
       <ReviewList product_id={reviewState.product_id} averageRating={reviewState.rating} num_Of_Ratings={reviewState.num_Of_Ratings} />
 
     </div>
+    //</ReviewWidge.Provider>
   )
 }

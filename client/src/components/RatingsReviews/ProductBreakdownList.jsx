@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import "./ProductBreakdown.css";
 const characteristicsWords = {
-  Size: ["A size too small", "Perfect", "A size too big"],
-  Width: ["Too narrow", "Perfect", "Too wide"],
+  Size: ["Small", "Perfect", "Big"],
+  Width: ["Narrow", "Perfect", "Wide"],
   Comfort: ["Uncomfortable", "Ok", "Perfect"],
   Quality: ["Poor", "Expected", "Perfect"],
-  Length: ["Runs short", "Perfect", "Runs long"],
-  Fit: ["Runs tight", "Perfect", "Runs loose"]
+  Length: ["Short", "Perfect", "Long"],
+  Fit: ["Tight", "Perfect", "Loose"]
 }
 export default function ProductBreakdownList(props) {
 

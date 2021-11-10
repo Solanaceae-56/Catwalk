@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import { ReviewsContext } from "./RatingsReviews.jsx";
 import RatingList from './RatingList.jsx';
 import ReviewItem from "./ReviewItem.jsx";
 import AddReview from "./AddReview.jsx";
 import "./ReviewList.css";
 import axios from 'axios';
+import AppContext from "../../index.jsx";
 
 export default function ReviewList(props) {
   const [reviews, setReviews] = useState([]);
@@ -15,6 +16,7 @@ export default function ReviewList(props) {
   const [totalReviews, setTotalReviews] = useState(0);
   const [initialReviews, setInitialReviews] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
+  const darkmode = useContext(AppContext);
 
   useEffect(() => {
     axios.get('/reviews', { params: { product_id: product_id, sort: sort, page: page, count: count } })
@@ -74,7 +76,7 @@ export default function ReviewList(props) {
 
           <div className="reviewListFooter">
             <button
-              id="moreReviews"
+              className={darkmode?"darkModeBtn":"lightModeBtn"}
               onClick={() => { setCount(count + 2) }}
               style={(totalReviews - count < 2) ? { display: 'none' } : { display: 'inline' }}>MORE REVIEWS</button>
             <AddReview characteristics={characteristics} product_id={product_id} />

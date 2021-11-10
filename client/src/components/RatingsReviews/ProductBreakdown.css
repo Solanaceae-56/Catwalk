@@ -14,27 +14,31 @@
   list-style: none;
   padding: 2px;
   margin:0px 0px 3px 0;
-  width:275px
+  width:270px
 }
 .label-bar >li{
   flex-grow: 0;
   flex-shrink: 0;
   color:darkgray;
   max-width:20px;
+  white-space: nowrap;
+  font-size: smaller;
 }
 
 .product-bar-pointer{
   position: relative;
   top:-10px;
   left:-150px;
-  color:darkgrey
 }
 
 .label-title{
   position: relative;
+  left: 0px;
+  font-weight: bolder;
   display: block;
-  color:darkgrey;
-  padding:0;
+  padding-bottom:5px;
+  padding-left: auto;
+  width:20px
 }
 .productBreakdown{
   display: block;
