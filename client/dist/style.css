@@ -6,14 +6,29 @@
   color: gold;
 } */
 
+#lightDarkMode {
+  background-color: rgb(163, 163, 163);
+  transition-duration: 0.4s;
+  font-size: 20px;
+  border-radius: 10% 10% 10% 10%;
+  width: 75px;
+  height: 30px;
+}
+
+#lightDarkMode:hover {
+  background-color: rgb(226, 226, 226);
+}
+
 .app-container {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    max-width: 1005px;
-    font-family: 'Zen Antique';
-    grid-template-rows: repeat(4, 1fr);
-    margin: auto;
+  display: grid;
+  grid-row: 1/2;
+  grid-column: 1/2;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1005px;
+  font-family: 'Zen Antique';
+  grid-template-rows: repeat(4, 1fr);
+  margin: auto;
 }
 
 .app-container > div {

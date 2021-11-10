@@ -90,11 +90,11 @@ class App extends React.Component {
 
     return (
       <AppContext.Provider value={this.state.darkMode}>
-        <div>
+        <div id='lightmodeButton'>
           {lightDark}
         </div>
         <div className='app-container'>
-          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
+          <Overview product_id={this.state.product_id} darkmode={this.state.darkMode} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
           <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
           <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
           <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>

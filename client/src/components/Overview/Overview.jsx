@@ -5,6 +5,7 @@ import Style_Selector from './style-selector/Style_Selector.jsx';
 import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
+import AppContext from '../../index.jsx';
 export const InteractionContext = createContext();
 
 class Overview extends React.Component {
@@ -33,7 +34,6 @@ class Overview extends React.Component {
   handleInteraction(e) {
     console.log(e.target.id);
     var date = Date();
-    console.log(date);
     axios.post("/interactions", {params: {element: e.target.id, time: date , widget: this.state.value['widget']}})
     .then((data) => {
       console.log('nice');
@@ -108,12 +108,18 @@ class Overview extends React.Component {
       priceTag = <div id='price'>Not Available</div>
     }
 
+    let logoBack;
+    if (this.props.darkmode) {
+      logoBack = 'logoDark';
+    } else {
+      logoBack = 'logoLight';
+    }
 
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
           <div id='overview'>
-            <div id='logo'>Solanacea/Spicy</div>
+            <div className={logoBack} id='logo'>Solanacea/Spicy</div>
               <div id='infoBox_AddtoCart'>
                 <div id='product-info'>
                   <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
