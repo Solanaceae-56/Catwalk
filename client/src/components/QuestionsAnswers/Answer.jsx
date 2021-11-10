@@ -11,7 +11,7 @@ function Answer(props) {
   const darkMode = useContext(AppContext);
   const postInt = useContext(QuestionsContext);
 
-  
+
   useEffect(() => {
     setHelpfulness(props.item.helpfulness);
   }, [props.item])
@@ -32,13 +32,13 @@ function Answer(props) {
   };
 
   function handleReport(e) {
-    debugger;
+    //debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'reportanswer';
-    console.log(putPath);
+    //console.log(putPath);
     var qId = props.data['question_id'];
     //console.log(typeof (qId), qId);
-    console.log(props.data['question_id']);
+    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
       //console.log(response);
       if (putPath === 'helpfulquestion') {
@@ -53,7 +53,7 @@ function Answer(props) {
     display: "inline-block"
   }
   const photomap = props.item.photos.map((photo) =>
-    <img src={photo} width="150" height="150" />
+    <img className="images" src={photo} width="150" height="150"/>
   );
 
   var buttonStyle = {};
@@ -62,8 +62,8 @@ function Answer(props) {
   };
   if (darkMode) {
     boldStyle.color = 'gold';
-    buttonStyle['background-color'] = 'gold';
-    buttonStyle['border'] = '4px solid black';
+    buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
+    buttonStyle['color'] = 'white';
   }
   var answerer = props.item['answerer_name'];
   if (props.item['answerer_name'] === "Seller") {

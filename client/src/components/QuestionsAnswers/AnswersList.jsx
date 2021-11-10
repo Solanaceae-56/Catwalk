@@ -42,8 +42,8 @@ function AnswersList(props) {
 
   var buttonStyle = {};
   if (darkMode) {
-    buttonStyle['background-color'] = 'gold';
-    buttonStyle['border'] = '4px solid black';
+    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
+    buttonStyle['border'] = '1px solid black';
   }
 
   if (Object.keys(answers).length <= 2 || !isHidden) {
