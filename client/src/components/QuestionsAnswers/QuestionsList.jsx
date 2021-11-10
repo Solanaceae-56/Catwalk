@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import Question from './Question.jsx';
 import Modal from '../Modal.jsx';
 import AppContext from '../../index.jsx'
+import { QuestionsContext } from './QuestionsAnswers.jsx';
+import {FailedSearchContext} from './QuestionsAnswers.jsx';
+
 const axios = require('axios');
-
-
 const customStyles = {
   content: {
     top: '50%',
@@ -17,10 +18,7 @@ const customStyles = {
 };
 
 function QuestionsList(props) {
-  //const [list, setList] = useState([]);
-  //const [searchString, setSearchString] = useState('')
   const [isOpen, setIsOpen] = useState(false);
-  //const [modalIsOpen, setIsOpen] = useState(false);
   const [productName, setProductName] = useState('');
   const [state, setState] = React.useState({
     searchString: "",
@@ -29,7 +27,9 @@ function QuestionsList(props) {
     question: "",
   })
   const [data, setData] = useState([]);
-  //Modal.setAppElement('#app');
+  const darkMode = useContext(AppContext);
+  const postInt = useContext(QuestionsContext);
+  const {search} = useContext(FailedSearchContext);
 
   useEffect(() => {
     setProductName(props.name);
@@ -96,8 +96,6 @@ function QuestionsList(props) {
     });
   }
 
-  //console.log(props.answers, 'questionslist');
-  //console.log(props.questions, 'inquestions');
   var sortedQuestions;
   if (data === []) {
     sortedQuestions = data;
@@ -109,14 +107,13 @@ function QuestionsList(props) {
       break;
     }
     questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} />);
+    if (search === true) {
+      break;
+    }
   }
 
-
-  const darkmode = useContext(AppContext);
-  //console.log(testvalue, 'testing');
-
   var buttonStyle = {};
-  if (darkmode) {
+  if (darkMode) {
     buttonStyle['background-color'] = 'gold';
     buttonStyle['border'] = '4px solid black';
   }
@@ -127,7 +124,7 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        <button className="askquestion" style={buttonStyle} onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e) }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -140,7 +137,7 @@ function QuestionsList(props) {
                 <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
               <span>For authentication reasons, you will not be emailed.</span>
             </form>
-            <button onClick={submit}>Submit</button>
+            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />}
       </div>
     )
@@ -150,7 +147,7 @@ function QuestionsList(props) {
     <div>
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        <button className="askquestion" style={buttonStyle} onClick={toggleModal}>Ask a Question</button>
+        <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e); }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -163,7 +160,7 @@ function QuestionsList(props) {
                 <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
               <span>For authentication reasons, you will not be emailed.</span>
             </form>
-            <button onClick={submit}>Submit</button>
+            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />}
         <div className="questions">
           {questions}

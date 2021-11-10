@@ -40,7 +40,6 @@ class App extends React.Component {
     if (prevState.product_id !== this.state.product_id) {
       axios.get("/reviews/meta", { params: { product_id: this.state.product_id } })
         .then((data) => {
-          console.log(data.data);
           var total = 0;
           var votes = 0;
           for (var key in data.data.ratings) {
@@ -93,8 +92,13 @@ class App extends React.Component {
         <div id='lightmodeButton'>
           {lightDark}
         </div>
+<<<<<<< HEAD
         <div className='app-container'>
           <Overview product_id={this.state.product_id} darkmode={this.state.darkMode} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
+=======
+        <div className='app-container' onClick={this.handleClickElement}>
+          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} />
+>>>>>>> 8c50a7a404865e081894d65492358e5b674b715d
           <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
           <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
           <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>

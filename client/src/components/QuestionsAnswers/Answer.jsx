@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {GoThumbsup, GoReport} from 'react-icons/go';
+import { GoThumbsup, GoReport } from 'react-icons/go';
 import moment from 'moment';
 import AppContext from '../../index.jsx';
+import { QuestionsContext } from './QuestionsAnswers.jsx';
 const axios = require('axios');
 
 function Answer(props) {
-  //console.log(props.item);
   const [helpfulness, setHelpfulness] = useState(props.item.helpfulness);
   const [disable, setDisable] = useState(false);
+  const darkMode = useContext(AppContext);
+  const postInt = useContext(QuestionsContext);
 
-  useEffect( () => {
+  
+  useEffect(() => {
     setHelpfulness(props.item.helpfulness);
   }, [props.item])
 
@@ -50,21 +53,18 @@ function Answer(props) {
     display: "inline-block"
   }
   const photomap = props.item.photos.map((photo) =>
-    <img src={photo} width="300" height="300"/>
+    <img src={photo} width="150" height="150" />
   );
 
-
-  const darkmode = useContext(AppContext);
   var buttonStyle = {};
-  var boldStyle= {
-    'font-size': '15pt'
+  var boldStyle = {
+    'fontSize': '15pt'
   };
-  if (darkmode) {
+  if (darkMode) {
     boldStyle.color = 'gold';
     buttonStyle['background-color'] = 'gold';
     buttonStyle['border'] = '4px solid black';
   }
-  //boldStyle.color = 'gold';
   var answerer = props.item['answerer_name'];
   if (props.item['answerer_name'] === "Seller") {
     answerer = <b style={boldStyle}>{props.item['answerer_name']}</b>
@@ -73,10 +73,7 @@ function Answer(props) {
   return (
     <div className='answer' id={props.item.id} key={props.keyvalue} >
       <div className='body'>A: {props.item.body}</div>
-      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')} | Helpful? <button style={buttonStyle} id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button style={buttonStyle} id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div>
-      {/* <div className='help'>| Helpful? <button id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button id='reportanswer' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport /></button></div> */}
-      {/* <div className='helpful' id="helpfulanswer" onClick={click}> Yes ({helpfulness})</div>
-      <div className='report' id='reportanswer' onClick={click}> Report? </div> */}
+      <div className='answerer'>by {answerer}, {moment.utc(props.item.date).format('MM/DD/YYYY')} | Helpful? <button style={buttonStyle} id='helpfulanswer' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button> <span> ({helpfulness}) | </span> <button style={buttonStyle} id='reportanswer' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button></div>
       <div className='photos'>
         {photomap}
       </div>

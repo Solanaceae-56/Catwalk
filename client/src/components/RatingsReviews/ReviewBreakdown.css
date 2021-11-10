@@ -1,14 +1,21 @@
+.reviewBreakdown{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
 .reviewBarContainer{
   display:flex;
   justify-content: center;
   align-items: baseline;
   gap:10px;
+  width:300px;
 }
 
 
 .reviewBar{
   background-color: lightgray;
-  width:150px;
+  width:80%;
   height:75%;
   border-radius: 0px;
   /* (height of inner div) / 2 + padding */
@@ -22,6 +29,9 @@
   /* Adjust with JavaScript */
   height: 10px;
   border-radius: 0px;
+}
+.filterLabel{
+  white-space: nowrap;
 }
 .filterLabel:hover{
   text-decoration: underline;

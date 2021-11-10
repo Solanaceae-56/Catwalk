@@ -2,17 +2,29 @@
   display:flex;
   flex-direction: row;
   justify-content: start;
+  align-items: baseline;
 
 }
 .helpfulBtn {
     color: black;
     cursor: pointer;
     border:none;
-    background-color: none;
+    background-color:white;
 
 }
 .helpfulBtn:disabled{
   color: black;
   border:none;
-  background-color: none;
+  background-color: white;
+}
+.helpfulBtnDark {
+  color: white;
+  cursor: pointer;
+  border:none;
+  background-color: rgb(60, 60, 60);
+}
+.helpfulBtnDark:disabled{
+  color: white;
+  border:none;
+  background-color: rgb(60, 60, 60);
 }
