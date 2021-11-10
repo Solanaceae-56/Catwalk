@@ -1,11 +1,14 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import RelatedCard from './RelatedCard.jsx';
 // import relatedItems_id from './sampleData/relatedItems_id.js';
 import axios from 'axios';
 import {Promise} from "bluebird";
+import AppContext from '../../../index.jsx';
 
 
 const RelatedList = (props) => {
+
+  const darkTheme = useContext(AppContext);
 
   const [relatedItems, setRelatedItems] = useState([]);
   const [pageProduct, setPageProduct] = useState({});
