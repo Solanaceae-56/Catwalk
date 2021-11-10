@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {GoThumbsup, GoReport} from 'react-icons/go';
+import { GoThumbsup, GoReport } from 'react-icons/go';
 import moment from 'moment';
 import AnswersList from './AnswersList.jsx';
 import Modal from '../Modal.jsx';
 import AppContext from '../../index.jsx';
+import { QuestionsContext } from './QuestionsAnswers.jsx';
+import {FailedSearchContext} from './QuestionsAnswers.jsx';
 const axios = require('axios');
 
 const customStyles = {
@@ -18,9 +20,6 @@ const customStyles = {
 };
 
 function Question(props) {
-  //console.log(props.data, 'data');
-  //console.log(props.data.answers);
-  //const [modalIsOpen, setIsOpen] = useState(false);
   const [disable, setDisable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionId, setQuestionId] = useState(props.data['question_id']);
@@ -31,17 +30,14 @@ function Question(props) {
     answer: "",
     photos: "",
   })
-
-
+  const darkMode = useContext(AppContext);
+  const postInt = useContext(QuestionsContext);
+  const {search, setSearch} = useContext(FailedSearchContext);
+  setSearch(false);
 
   useEffect(() => {
     setHelpful(props.data['question_helpfulness']);
   }, [props.data]);
-
-  //Modal.setAppElement('#app');
-  if (props.data.answers.length > 2) {
-    //
-  }
 
   function handleHelpful(e) {
     debugger;
@@ -100,7 +96,7 @@ function Question(props) {
     setIsOpen(!isOpen);
   }
 
-  function submit(e) {
+  function submit() {
     //debugger;
     //console.log(props.id);
     const postObj = {
@@ -123,7 +119,7 @@ function Question(props) {
       return;
     }
     axios.post("/qa/questions/", postObj).then((response) => {
-      //console.log(response);
+      console.log('posted answer');
     });
     closeModal();
     setState({
@@ -145,10 +141,8 @@ function Question(props) {
     "textAlign": 'left',
   }
 
-  const darkmode = useContext(AppContext);
-
   var buttonStyle = {};
-  if (darkmode) {
+  if (darkMode) {
     buttonStyle['background-color'] = 'gold';
     buttonStyle['border'] = '4px solid black';
   }
@@ -159,46 +153,33 @@ function Question(props) {
         <div className='question' key={props.keyvalue}>
           <table style={tablestyle}>
             <thead>
-            <tr>
-              <td style={textleft}>Q: {props.data['question_body']}</td>
-              <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button style={buttonStyle} onClick={openModal} className="addanswer">Add an Answer!</button></td>
-            </tr>
+              <tr>
+                <td style={textleft}>Q: {props.data['question_body']}</td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button style={buttonStyle} onClick={(e) => { openModal(), postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+              </tr>
             </thead>
           </table>
         </div>
-        {/* <div className='qbody'>Q: {props.data['question_body']}</div>
-          <div className='misc'>
-            <div className='help'>Helpful?</div>
-            <div className='helpful' id='helpfulquestion' onClick={click}> Yes ({helpful})</div>
-            <div className='report' id='reportquestion' onClick={click}>Report?</div>
-          </div>
-        </div> */}
-        {/* <div className='addanswer' onClick={add}>Add Answer</div> */}
-        {/* <button onClick={openModal}>Add an Answer</button> */}
-        {
-          isOpen && <Modal content={
-            <>
-              <h1 className="header">Submit your Answer</h1>
-              <h2 className="header">{props.name}: {props.data['question_body']}</h2>
-              <div className="modal"></div>
-              <form id="addAnswerModal">
-                <label>Your answer:<textarea value={state.answer} name="answer" onChange={handleChange} maxLength="1000" rows={4} cols={40} /></label>
-                <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson543!" onChange={handleChange} maxLength="60"></input></label>
-                <span>For privacy reasons, do not use your full name or email address</span>
-                <label>What is your email?
-                  <input type="text" value={state.email} name="email" placeholder="Example: jack@email.com" onChange={handleChange} maxLength="60"></input></label>
-                <span>For authentication reasons, you will not be emailed.</span>
-                <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
-                <span>Please enter your photo links for every new line (max 5)</span>
-              </form>
-              <button onClick={submit}>Submit</button>
-            </>} handleClose={toggleModal} />
+        {isOpen && <Modal content={
+          <>
+            <h1 className="header">Submit your Answer</h1>
+            <h2 className="header">{props.name}: {props.data['question_body']}</h2>
+            <div className="modal"></div>
+            <form id="addAnswerModal">
+              <label>Your answer:<textarea value={state.answer} name="answer" onChange={handleChange} maxLength="1000" rows={4} cols={40} /></label>
+              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson543!" onChange={handleChange} maxLength="60"></input></label>
+              <span>For privacy reasons, do not use your full name or email address</span>
+              <label>What is your email?
+                <input type="text" value={state.email} name="email" placeholder="Example: jack@email.com" onChange={handleChange} maxLength="60"></input></label>
+              <span>For authentication reasons, you will not be emailed.</span>
+              <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
+              <span>Please enter your photo links for every new line (max 5)</span>
+            </form>
+            <button id="submitanswer" onClick={(e) => { submit(e); postInt.handlePost(e) }}>Submit</button>
+          </>} handleClose={toggleModal} />
         }
         <div className='answers'>
           <AnswersList data={props.data.answers} />
-          {/* <div className='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
-      <div className='misc'>Helpful? 'yes'</div>
-      <div className='misc'>Add Answer</div> */}
         </div>
       </div >
     );
@@ -207,13 +188,14 @@ function Question(props) {
       <div>
         <div className='question' key={props.keyvalue}>
           <table style={tablestyle}>
-            <tr>
-              <td style={textleft}>Q: {props.data['question_body']}</td>
-              <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={handleHelpful}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={handleReport}><GoReport/></button> <button style={buttonStyle} onClick={openModal}>Add an Answer!</button></td>
-            </tr>
+            <thead>
+              <tr>
+                <td style={textleft}>Q: {props.data['question_body']}</td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button style={buttonStyle} onClick={(e) => { openModal(); postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+              </tr>
+            </thead>
           </table>
         </div>
-        <button onClick={openModal}>Add an Answer</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Submit your Answer</h1>
@@ -229,22 +211,21 @@ function Question(props) {
               <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
               <span>Please enter your photo links for every new line (max 5)</span>
             </form>
-            <button onClick={submit}>Submit</button>
+            <button id="submitanswer" onClick={(e) => {submit(e);postInt.handlePost(e)}}>Submit</button>
           </>} handleClose={toggleModal} />}
         <div className='answers'>
           <AnswersList data={props.data.answers} />
-          {/* <div className='misc'>by {props.data.answers['answerer_name']}, {moment().format(date)}</div>
-        <div className='misc'>Helpful? 'yes'</div>
-        <div className='misc'>Add Answer</div> */}
         </div>
       </div>
     );
+  } else {
+    setSearch(true);
+    return (
+      <div>
+        No questions match search term!
+      </div>
+    );
   }
-  return (
-    <div>
-      No questions match search term!
-    </div>
-  )
 };
 
 export default Question;
