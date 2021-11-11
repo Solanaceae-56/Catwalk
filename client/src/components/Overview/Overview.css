@@ -182,12 +182,14 @@
   grid-column: 1/7;
   font-size: 30px;
   text-align: center;
+  border-radius: 5px;
 }
 
 #quantity-selector {
   grid-row: 2/4;
   grid-column: 8/11;
   font-size: 30px;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -196,6 +198,7 @@
   grid-column: 1/9;
   text-align: center;
   font-size: 30px;
+  border-radius: 5px;
 }
 
 #invalidEntry {
@@ -204,6 +207,7 @@
   text-align: center;
   font-size: 30px;
   color: rgb(255, 176, 248);
+  border-radius: 5px;
 }
 
 #image-Gallery {
@@ -237,6 +241,7 @@
   object-fit: cover;
   cursor: zoom-in;
   display: block;
+  border-radius: 20px;
 }
 
 #sideimgBar {
