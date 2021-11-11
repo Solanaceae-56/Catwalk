@@ -120,7 +120,6 @@ Related Items
 
 .left-arrow {
   align-self: center;
-  color: red;
 }
 
 .right-arrow {
@@ -150,15 +149,25 @@ Related Items
   height: 70%;
   width: 100%;
   /* display: block; */
+  object-fit: cover;
+  cursor: pointer;
+
+}
+
+.no-image {
+  height: 70%;
+  width: 100%;
+  cursor: pointer;
 
 }
 
 .fa-star {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   z-index: 1;
   color: #a5b7c2;
+  cursor: pointer;
 
 }
 
@@ -248,20 +257,24 @@ Outfit
   height: 75%;
   width: 100%;
   display: block;
+  object-fit: cover;
+
 }
 
 .outfit-add {
   height: 60%;
   width: 100%;
   object-fit: scale-down;
+  cursor: pointer;
 }
 
 .fa-times-circle {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   z-index: 1;
   color: #a5b7c2;
+  cursor: pointer;
 
 }
 /*===========================
@@ -280,7 +293,24 @@ Comparison Modal
 }
 
 .modal-box {
-  position: relative;
+  position: fixed;
+  z-index: 11;
+  left: 50%;
+  top: 50%;
+  width: 25%;
+  height: 15%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+  max-height:85%;
+  margin-top: 50px;
+  margin-bottom:50px;
+  animation: modalFadeIn 0.5s;
+  background-color: white;
+  border: 1px solid green;
+  border-radius: 15px;
+  padding: 2% 5%;
+
+  /* position: relative;
   width: 30%;
   margin: 0 auto;
   height: auto;
@@ -291,7 +321,9 @@ Comparison Modal
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
-  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 
 .modal-table {
@@ -300,12 +332,12 @@ Comparison Modal
 }
 
 .modal-close-icon {
-  /* content: 'x'; */
+
   color: black;
   cursor: pointer;
   position: fixed;
-  right: calc(35% - 30px);
-  top: calc(100vh - 85vh - 33px);
+  right: calc(33% - 30px);
+  top: calc(100vh - 58vh - 33px);
   background: #ededed;
   width: 25px;
   height: 25px;

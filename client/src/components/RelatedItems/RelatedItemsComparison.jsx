@@ -25,9 +25,9 @@ const RelatedItemsComparison = (props) => {
     if (defaultProduct_id) {
         return (
             <div className='related-products' onClick={trackInteraction}>
-                    <h3>RELATED PRODUCTS</h3>
+                    <h1>Related Products</h1>
                     <RelatedList   defaultProduct_id={defaultProduct_id} handleCardClick={props.handleCardClick}/>
-                    <h3>YOUR OUTFIT</h3>
+                    <h1>Your Outfit</h1>
                     <OutfitList defaultProduct_id={defaultProduct_id}/>
             </div>
 

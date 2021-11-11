@@ -55,7 +55,7 @@ const RelatedCard = (props) => {
         <i className='related-card-action'className="fas fa-star" onClick={toggleModal} ></i>
         {isOpen &&
         <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} style={"z-index:3"}/>}
-        {itemImageUrl? <img className='related-img' src={itemImageUrl} alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img className='related-img' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
+        {itemImageUrl? <img className='related-img' src={itemImageUrl} alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img className='no-image' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
         <div className='related-card-category' id={props.relatedItem.data.id}>{props.relatedItem.data.category}</div>
         <div className='related-card-name' id={props.relatedItem.data.id} >{props.relatedItem.data.name}</div>
         {salePrice? <div className='related-card-sale-price' id={props.relatedItem.data.id}>{salePrice}</div> : <div className='related-card-original-price' id={props.relatedItem.data.id}>{originalPrice}</div> }

@@ -11,6 +11,7 @@ https://testing-library.com/docs/queries/about/
 *****************
 * Installation
 * * npm install
+* * npm install react-icons --save
 * * npm run react-dev
 * * npm run server-dev
 
