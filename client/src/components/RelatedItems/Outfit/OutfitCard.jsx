@@ -59,9 +59,6 @@ const OutfitCard = (props) => {
         </div>
     </div>)
 )
-
-
 }
-
 
 export default OutfitCard;

@@ -1,8 +1,15 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
+import AppContext from '../../../index.jsx';
+import {BsArrowLeftSquare} from 'react-icons/bs';
+import {BsArrowRightSquare} from 'react-icons/bs';
+import {BsArrowLeftSquareFill} from 'react-icons/bs';
+import {BsArrowRightSquareFill} from 'react-icons/bs';
 
 const OutfitList = (props) => {
+
+  const darkTheme = useContext(AppContext);
 
   const username = 'dummy';
   // const [pageProduct, setPageProduct] = useState({});
@@ -45,11 +52,11 @@ const OutfitList = (props) => {
 
   const handleLoad = () => {
     var element = ref.current;
-    //console.log(element.scrollLeft, element.scrollWidth, element.clientWidth)
+    console.log(element.scrollLeft, element.scrollWidth, element.clientWidth)
     if (element.clientWidth) {
       element.addEventListener('scroll', () => {
         setShowLeftArrow(element.scrollLeft > 0);
-        setShowRightArrow(element.scrollLeft < element.scrollWidth - element.clientWidth);
+        setShowRightArrow((element.scrollWidth === element.clientWidth) || (element.scrollLeft < element.scrollWidth - element.clientWidth));
       });
     }
   }
@@ -61,7 +68,7 @@ const OutfitList = (props) => {
 
   return (
     <div className='outfit-list'>
-      <img className='left-arrow'  className={showLeftArrow ? 'active' : 'non-active'} src='https://static.thenounproject.com/png/627785-200.png' width='70' height='70' onClick={() => handleSlide(-100)}/>
+      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(-100)}/>}
       <div className='outfit-slide' ref={ref} onLoad={handleLoad}>
         <div className='outfit-list-add-outfit'>
           <img className='outfit-add' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzhJV3XJfPqf_txRnqYivCCWtJtfQ5o28Bt1NDrKrQhLt5eW8jpnCStBerRmX1JDjPSQ&  usqp=CAU' alt="click to add to outfit list"  onClick={addToList}/>
@@ -75,7 +82,7 @@ const OutfitList = (props) => {
 
       </div>
 
-         <img className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} src='https://cdn1.iconfinder.com/data/icons/mixed-17/16/icon_right_rounded-512.png' width='70' height='70' onClick={() => handleSlide(100)}/>
+      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : < BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }}  onClick={() => handleSlide(100)}/>}
     </div>
 
   )
