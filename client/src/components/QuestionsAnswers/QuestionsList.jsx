@@ -22,9 +22,6 @@ function QuestionsList(props) {
   const [productName, setProductName] = useState('');
   const [state, setState] = React.useState({
     searchString: "",
-    // nickname: "",
-    // email: "",
-    // question: "",
   })
   const [data, setData] = useState([]);
   const darkMode = useContext(AppContext);
@@ -42,7 +39,6 @@ function QuestionsList(props) {
   var questions = [];
 
   function handleChange(e) {
-    //debugger;
     const value = e.target.value;
     setState({
       ...state,
@@ -65,10 +61,8 @@ function QuestionsList(props) {
   }
 
   function submit() {
-    //debugger;
     //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
-      //debugger;
       alert('One or more fields left empty');
       return;
     }
@@ -112,33 +106,12 @@ function QuestionsList(props) {
     }
   }
 
-  var buttonStyle = {};
-  if (darkMode) {
-    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    buttonStyle['border'] = '1px solid black';
-  }
-
   if (questions.length === 0) {
     return (
       <div className="questionslist">
         <div>
           There are no questions for this product.
         </div>
-        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e) }}>Ask a Question</button>
-        {isOpen && <Modal content={
-          <>
-            <h1 className="header">Ask your question</h1>
-            <h2 className="header">about the {productName}</h2>
-            <form id="askQuestionModal">
-              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
-              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-              <span>For privacy reasons, do not use your full name or email address</span>
-              <label>What is your email?
-                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-              <span>For authentication reasons, you will not be emailed.</span>
-            </form>
-            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />} */}
       </div>
     )
   }
@@ -147,21 +120,6 @@ function QuestionsList(props) {
     <div className="questionslist">
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e); }}>Ask a Question</button>
-        {isOpen && <Modal content={
-          <>
-            <h1 className="header">Ask your question</h1>
-            <h2 className="header">about the {productName}</h2>
-            <form id="askQuestionModal">
-              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
-              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-              <span>For privacy reasons, do not use your full name or email address</span>
-              <label>What is your email?
-                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-              <span>For authentication reasons, you will not be emailed.</span>
-            </form>
-            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />} */}
         <div className="questions">
           {questions}
         </div>

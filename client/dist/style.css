@@ -352,14 +352,31 @@ Comparison Modal
 
 /*=======*/
 .addanswer {
-  border: 2px solid black;
+  border: 2px solid;
   border-color: #e7e7e7;
   color: black;
-  /* padding: 14px 28px; */
+  padding: 7px 14px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
 }
+
+.addanswer-dark {
+border: 2px solid;
+border-color: #757575;
+color: white;
+background: #757575;
+padding: 7px 14px;
+font-size: 16px;
+cursor: pointer;
+border-radius: 5px;
+}
+
+.addanswer-dark:hover {
+  background-color: black;
+  border-color: black;
+}
+
 .answer {
   padding-top: 8px;
   padding-bottom: 20px;
@@ -478,7 +495,22 @@ background-color: none;
 }
 
 .moreanswers:hover {
-  background: #e7e7e7;
+  background-color: #e7e7e7;
+}
+
+.moreanswers-dark {
+  background-color: rgb(100, 232, 241);
+  margin-left: 20px;
+  border: 1px solid black;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.moreanswers-dark:hover {
+  background-color: black;
 }
 
 .morequestions, .askquestion{
@@ -498,6 +530,21 @@ background-color: none;
   background-color: #e7e7e7;
 }
 
+.morequestions-dark, .askquestion-dark {
+  background-color:rgb(100, 232, 241);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding: 14px 28px;
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+.morequestions-dark:hover, .askquestion-dark:hover {
+  background-color: black;
+}
 .photos {
   /* display: inline-block; */
   text-align: left;
