@@ -2,28 +2,26 @@
 #overview {
   display: grid;
   grid-row: 1/2;
-  grid-template-columns: 600px auto;
+  grid-template-columns: 800px auto;
   grid-template-rows: 100px 800px auto;
-}
-
-#lightDarkMode {
-  background-color: rgb(163, 163, 163);
-  transition-duration: 0.4s;
-  font-size: 20px;
-  border-radius: 10% 10% 10% 10%;
-  width: 100px;
-  height: 30px;
-}
-
-#lightDarkMode:hover {
-  background-color: rgb(226, 226, 226);
 }
 
 #logo {
   grid-row: 1/2;
-  grid-column: 1/2;
+  grid-column: 1/3;
   text-align: left;
   font-size: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.logoLight {
+  background-color: rgb(218, 124, 213);
+}
+
+.logoDark {
+  background-color: rgb(134, 207, 212);
 }
 
 #infoBox_AddtoCart {
@@ -31,7 +29,15 @@
   grid-row: 2/3;
   grid-column: 2/3;
   grid-template-rows: 1fr 2fr;
-  padding-left: 10px;
+  padding-left: 30px;
+}
+
+.lineDark {
+  border-bottom: 2px solid rgb(134, 207, 212);
+}
+
+.lineLight {
+  border-bottom: 2px solid rgb(218, 124, 213);
 }
 
 #product-info {
@@ -44,6 +50,11 @@
   text-align: left;
 }
 
+#product-category {
+  padding-top: 10px;
+  font-size: 25px;
+}
+
 #product-title {
   font-size: 65px;
 }
@@ -51,11 +62,25 @@
 #star-rating {
   grid-row: 1/2;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  padding-top: 10px;
+  grid-template-columns: 1fr 5fr;
+}
+
+.darkRefLink {
+  color:rgb(100, 232, 241);
+}
+
+.lightRefLink {
+  color: rgb(218, 124, 213);
+}
+
+#readAll {
+  padding-left: 5px;
 }
 
 #price {
   height: 48px;
+  padding-top: 5px;
 }
 
 #originalPrice {
@@ -68,7 +93,7 @@
   grid-column: 1/2;
   grid-row: 3/4;
   font-size: 20px;
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 #style-selector {
@@ -102,6 +127,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -111,6 +137,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   border: 3px solid rgb(100, 232, 241);
   display: block;
   margin-left: auto;
@@ -121,6 +148,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   border: 3px solid rgb(247, 120, 240);
   display: block;
   margin-left: auto;
@@ -140,6 +168,7 @@
 
 .dark-size-selector {
   border: 1px solid black;
+  color: white;
   background-color: rgb(100, 232, 241);
 }
 
@@ -150,32 +179,31 @@
 
 #size-selector {
   grid-row: 2/4;
-  grid-column: 1/6;
+  grid-column: 1/7;
   font-size: 30px;
   text-align: center;
 }
 
 #quantity-selector {
   grid-row: 2/4;
-  grid-column: 7/9;
+  grid-column: 8/11;
   font-size: 30px;
   text-align: center;
-}
-
-.addToBag {
-  grid-row: 5/7;
-  grid-column: 1/7;
-  text-align: center;
-  font-size: 30px;
 }
 
 #validEntry {
-  color: rgb(54, 48, 41);
-  background-color: rgb(100, 232, 241);
+  grid-row: 5/7;
+  grid-column: 1/9;
+  text-align: center;
+  font-size: 30px;
 }
 
 #invalidEntry {
-  color: rgb(221, 213, 203);
+  grid-row: 5/7;
+  grid-column: 1/9;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(255, 176, 248);
 }
 
 #image-Gallery {
@@ -204,12 +232,11 @@
 #main-img {
   grid-column: 1/11;
   grid-row: 1/11;
-  max-height: 800px;
-  max-width: 600px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   cursor: zoom-in;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #sideimgBar {
@@ -219,10 +246,45 @@
   padding-top: 10px;
 }
 
+.empty {
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.upDownButton-Dark {
+  background-color: transparent;
+  border: none;
+  color:rgb(100, 232, 241);
+  transition-duration: 0.4s;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.upDownButton-Dark:hover {
+  color: rgb(247, 120, 240);
+}
+
+.upDownButton-Light {
+  background-color: transparent;
+  border: none;
+  color:rgb(247, 120, 240);
+  transition-duration: 0.4s;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.upDownButton-Light:hover {
+  color: rgb(100, 232, 241);
+}
+
 .thumbnailImg {
   width: 80px;
   height: 80px;
   border-radius: 5% 5% 5% 5%;
+  object-fit: cover;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -230,6 +292,8 @@
 .thumbnailImg_highlighted {
   width: 80px;
   height: 80px;
+  object-fit: cover;
+  border-radius: 5% 5% 5% 5%;
   border: 3px solid rgb(100, 232, 241);
   margin-top: 10px;
   margin-bottom: 10px;
@@ -238,6 +302,8 @@
 .thumbnailImg_highlighted_light {
   width: 80px;
   height: 80px;
+  object-fit: cover;
+  border-radius: 5% 5% 5% 5%;
   border: 3px solid rgb(247, 120, 240);
   margin-top: 10px;
   margin-bottom: 10px;
@@ -294,17 +360,67 @@
 }
 
 #Zoomed {
-  display: flex;
+  display: grid;
   cursor: zoom-out;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   height: 100vh;
   width: 100vw;
 }
 
+#zoom-effect, #toTheRightZ {
+  grid-row: 5/6;
+  grid-column: 10/11;
+}
+
+#zoom-effect, #exitButton {
+  grid-row: 2/3;
+  grid-column: 9/10;
+}
+
+#zoom-effect, #toTheLeftZ {
+  grid-row: 5/6;
+  grid-column: 1/2;
+}
+
+.zoomedNavDark {
+  color: rgb(100, 232, 241);
+}
+
+.zoomedNavDark:hover {
+  color: rgb(218, 124, 213)
+}
+
+.zoomedNavLight {
+  color: rgb(218, 124, 213)
+}
+
+.zoomedNavLight:hover {
+  color:rgb(100, 232, 241);
+}
+
+#toTheRightZ {
+  grid-row: 5/6;
+  grid-column: 10/11;
+  font-size: 30px;
+  font-weight: 800;
+  background-color: transparent;
+  border: none;
+}
+
+#toTheLeftZ {
+  grid-row: 5/6;
+  grid-column: 1/2;
+  font-size: 30px;
+  font-weight: 800;
+  border: none;
+  background-color: transparent;
+}
+
 #zoom-effect {
   display: block;
-  width: 600px;
+  grid-row: 2/10;
+  grid-column: 2/10;
   background-size: 250%;
   background-repeat: no-repeat;
 }
@@ -313,9 +429,25 @@
   opacity: 0;
 }
 
+#exitButton {
+  grid-row: 2/3;
+  grid-column: 9/10;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  color: black;
+  border: none;
+  transition-duration: 0.4s;
+}
+
+#exitButton:hover {
+  color:rgb(100, 232, 241);
+}
+
 #zoomed-img {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   pointer-events: none;
 }

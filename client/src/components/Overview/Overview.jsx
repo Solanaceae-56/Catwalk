@@ -1,10 +1,11 @@
-import React, {createContext} from 'react';
+import React, {createContext, useContext} from 'react';
 import './Overview.css';
 import Star_Rating from './product-info/Star_Rating.jsx';
 import Style_Selector from './style-selector/Style_Selector.jsx';
 import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
+import AppContext from '../../index.jsx';
 export const InteractionContext = createContext();
 
 class Overview extends React.Component {
@@ -33,7 +34,6 @@ class Overview extends React.Component {
   handleInteraction(e) {
     console.log(e.target.id);
     var date = Date();
-    console.log(date);
     axios.post("/interactions", {params: {element: e.target.id, time: date , widget: this.state.value['widget']}})
     .then((data) => {
       console.log('nice');
@@ -95,30 +95,39 @@ class Overview extends React.Component {
   }
 
   render() {
+    let logoBack;
+    let lineColor;
+    if (this.props.darkmode) {
+      logoBack = 'logoDark';
+      lineColor = 'lineDark';
+    } else {
+      logoBack = 'logoLight';
+      lineColor = 'lineLight';
+    }
+
     let priceTag;
     if (this.state.current_Style && this.state.current_Style.sale_price === null) {
-      priceTag = <div id='price'>${this.state.current_Style.original_price}</div>;
+      priceTag = <div className={lineColor} id='price'>${this.state.current_Style.original_price}</div>;
     } else if (this.state.current_Style && this.state.current_Style.sale_price !== null) {
       priceTag =
-        <div id='price'>
+        <div className={lineColor} id='price'>
           <div id='originalPrice'>${this.state.current_Style.original_price}</div>
           <div id='salePrice'>${this.state.current_Style.sale_price}</div>
         </div>;
     } else {
-      priceTag = <div id='price'>Not Available</div>
+      priceTag = <div className={lineColor} id='price'>Not Available</div>
     }
-
 
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
           <div id='overview'>
-            <div id='logo'>Solanacea/Spicy</div>
+            <div className={logoBack} id='logo'>Solanacea/Spicy</div>
               <div id='infoBox_AddtoCart'>
                 <div id='product-info'>
                   <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
-                  <div id='product-category'>{this.state.current_Product.category}</div>
-                  <div id='product-title'>{this.state.current_Product.name}</div>
+                  <div className={lineColor} id='product-category'>{this.state.current_Product.category}</div>
+                  <div className={lineColor} id='product-title'>{this.state.current_Product.name}</div>
                   {priceTag}
                   {/* <div id='social-media'>
                     <button id='facebook'>Facebook</button>
@@ -139,9 +148,7 @@ class Overview extends React.Component {
 
     return (
       <InteractionContext.Provider value={this.state.value}>
-        <div>
-          {condition}
-        </div>
+        {condition}
       </InteractionContext.Provider>
     );
   }
