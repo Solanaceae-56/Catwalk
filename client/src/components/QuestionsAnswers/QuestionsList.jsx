@@ -106,7 +106,7 @@ function QuestionsList(props) {
     if (i === props.morequestions) {
       break;
     }
-    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} />);
+    questions.push(<Question data={sortedQuestions[i]} name={props.name} search={state.searchString} keyvalue={i} key={i}/>);
     if (search === true) {
       break;
     }
