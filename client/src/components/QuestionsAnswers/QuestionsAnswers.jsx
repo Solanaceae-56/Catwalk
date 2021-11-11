@@ -141,9 +141,14 @@ function QuestionsAnswers(props) {
   }
 
   var buttonStyle = {};
+  var questionClass = "morequestions";
+  var answerClass = "askquestion"
+  //var darkstyle = "darkmodebutton";
   if (darkMode) {
-    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    buttonStyle['border'] = '1px solid black';
+    // buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
+    // buttonStyle['border'] = '1px solid black';
+    questionClass = "morequestions-dark"
+    answerClass = "askquestion-dark"
   }
 
 
@@ -154,7 +159,7 @@ function QuestionsAnswers(props) {
         <FailedSearchContext.Provider value={{search, setSearch}}>
         <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
         </FailedSearchContext.Provider>
-        <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); handlePost(e) }}>Ask a Question</button>
+        <button className={answerClass} style={buttonStyle} onClick={(e) => { toggleModal(); handlePost(e) }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -169,7 +174,7 @@ function QuestionsAnswers(props) {
             </form>
             <button id="submitquestion" onClick={(e) => { submit(); handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />}
-        <button style={buttonStyle} className="morequestions" onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
+        <button style={buttonStyle} className={questionClass} onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
       </div>
     </QuestionsContext.Provider>
   );

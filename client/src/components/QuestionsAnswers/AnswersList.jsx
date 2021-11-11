@@ -41,9 +41,11 @@ function AnswersList(props) {
   }
 
   var buttonStyle = {};
+  var answersClass = "moreanswers"
   if (darkMode) {
-    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    buttonStyle['border'] = '1px solid black';
+    // buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
+    // buttonStyle['border'] = '1px solid black';
+    answersClass = "moreanswers-dark";
   }
 
   if (Object.keys(answers).length <= 2 || !isHidden) {
@@ -63,7 +65,7 @@ function AnswersList(props) {
           {renderAnswers}
         </div>
         <div>
-          <button style={buttonStyle} className="moreanswers" onClick={(e) => { setIsHidden(false); postInt.handlePost(e) }}>More answers</button>
+          <button style={buttonStyle} className={answersClass} onClick={(e) => { setIsHidden(false); postInt.handlePost(e) }}>More answers</button>
         </div>
       </div>
     )

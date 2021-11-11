@@ -124,21 +124,6 @@ function QuestionsList(props) {
         <div>
           There are no questions for this product.
         </div>
-        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e) }}>Ask a Question</button>
-        {isOpen && <Modal content={
-          <>
-            <h1 className="header">Ask your question</h1>
-            <h2 className="header">about the {productName}</h2>
-            <form id="askQuestionModal">
-              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
-              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-              <span>For privacy reasons, do not use your full name or email address</span>
-              <label>What is your email?
-                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-              <span>For authentication reasons, you will not be emailed.</span>
-            </form>
-            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />} */}
       </div>
     )
   }
@@ -147,21 +132,6 @@ function QuestionsList(props) {
     <div className="questionslist">
       <input type="text" id="search" name="searchString" onChange={handleChange} value={state.searchString} placeholder="Have a question? Search for answers..."></input>
       <div>
-        {/* <button className="askquestion" style={buttonStyle} onClick={(e) => { toggleModal(); postInt.handlePost(e); }}>Ask a Question</button>
-        {isOpen && <Modal content={
-          <>
-            <h1 className="header">Ask your question</h1>
-            <h2 className="header">about the {productName}</h2>
-            <form id="askQuestionModal">
-              <label>What is your question?<textarea value={state.question} name="question" onChange={handleChange} rows={4} cols={40} /></label>
-              <label>What is your nickname?<input type="text" value={state.nickname} name="nickname" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-              <span>For privacy reasons, do not use your full name or email address</span>
-              <label>What is your email?
-                <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
-              <span>For authentication reasons, you will not be emailed.</span>
-            </form>
-            <button id="submitquestion" onClick={(e) => { submit(); postInt.handlePost(e) }}>Submit</button>
-          </>} handleClose={toggleModal} />} */}
         <div className="questions">
           {questions}
         </div>

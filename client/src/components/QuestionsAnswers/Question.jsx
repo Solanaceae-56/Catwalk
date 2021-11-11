@@ -151,10 +151,12 @@ function Question(props) {
   }
 
   var buttonStyle = {};
+  var answerClass = "addanswer";
   if (darkMode) {
-    buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
-    buttonStyle['color'] = 'white';
+    // buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
+    // buttonStyle['color'] = 'white';
     // buttonStyle['border'] = '4px solid black';
+    answerClass = "addanswer-dark";
   }
 
   //debugger;
@@ -166,7 +168,7 @@ function Question(props) {
             <thead>
               <tr>
                 <td style={textleft}>Q: {props.data['question_body']}</td>
-                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(), postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button id='reportquestion' style={buttonStyle} className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(), postInt.handlePost(e) }} className={answerClass}>Add an Answer!</button></td>
               </tr>
             </thead>
           </table>
