@@ -12,13 +12,10 @@ function AnswersList(props) {
   const postInt = useContext(QuestionsContext);
 
   useEffect(() => {
-    //console.log(answers);
-    //debugger;
     var answersArr = [];
     var sortedList = Object.keys(answers).map((key) => [key, answers[key]]);
     //console.log(result, 'result');
     sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
-    //console.log(sortedList, 'sort');
     for (var i = 0; i < sortedList.length; i++) {
       answersArr.push(<Answer item={sortedList[i][1]} keyvalue={i} />);
       if (isHidden && i === 1) {
@@ -40,17 +37,12 @@ function AnswersList(props) {
     )
   }
 
-  var buttonStyle = {};
   var answersClass = "moreanswers"
   if (darkMode) {
-    // buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    // buttonStyle['border'] = '1px solid black';
     answersClass = "moreanswers-dark";
   }
 
   if (Object.keys(answers).length <= 2 || !isHidden) {
-    //debugger;
-    //console.log(renderAnswers);
     return (
       <div className="answerslist">
         <div>
@@ -65,7 +57,7 @@ function AnswersList(props) {
           {renderAnswers}
         </div>
         <div>
-          <button style={buttonStyle} className={answersClass} onClick={(e) => { setIsHidden(false); postInt.handlePost(e) }}>More answers</button>
+          <button className={answersClass} onClick={(e) => { setIsHidden(false); postInt.handlePost(e) }}>More answers</button>
         </div>
       </div>
     )

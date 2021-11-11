@@ -44,7 +44,6 @@ function Question(props) {
   }
 
   function handleHelpful(e) {
-    //debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'helpfulquestion';
     //console.log(putPath);
@@ -61,7 +60,6 @@ function Question(props) {
   }
 
   function handleReport(e) {
-    debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'reportquestion';
     //console.log(putPath);
@@ -78,7 +76,6 @@ function Question(props) {
   }
 
   function handleChange(e) {
-    //debugger;
     const value = e.target.value;
     setState({
       ...state,
@@ -101,7 +98,6 @@ function Question(props) {
   }
 
   function submit() {
-    //debugger;
     //console.log(props.id);
     const postObj = {
       path: '/answers',
@@ -113,7 +109,6 @@ function Question(props) {
     }
     //console.log(postObj);
     if (!state.email || !state.nickname || !state.answer) {
-      //debugger;
       alert('One or more fields left empty');
       return;
     }
@@ -145,21 +140,17 @@ function Question(props) {
     "textAlign": 'left',
     "fontSize": '16pt',
     "maxWidth": '15ch',
-    // "margin": 'auto'
-    // "margin": "0 25px",
-    // "textIndent": "-25px"
   }
 
   var buttonStyle = {};
   var answerClass = "addanswer";
   if (darkMode) {
-    // buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
-    // buttonStyle['color'] = 'white';
-    // buttonStyle['border'] = '4px solid black';
+    buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
+    buttonStyle['color'] = 'white';
     answerClass = "addanswer-dark";
+    // buttonStyle['border'] = '4px solid black';
   }
 
-  //debugger;
   if (props.search.length < 3) {
     return (
       <div>
@@ -197,7 +188,6 @@ function Question(props) {
       </div >
     );
   } else if (props.search.length >= 3 && props.data['question_body'].toLowerCase().indexOf(props.search.toLowerCase()) !== -1) {
-    debugger;
     return (
       <div>
         <div className='question' key={props.keyvalue}>
@@ -205,7 +195,7 @@ function Question(props) {
             <thead>
               <tr>
                 <td style={textleft}>Q: {props.data['question_body']}</td>
-                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(); postInt.handlePost(e) }} className="addanswer">Add an Answer!</button></td>
+                <td style={textright} id={props.data['question_id']}>Helpful? <button style={buttonStyle} id='helpfulquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleHelpful(e); postInt.handlePost(e) }}><GoThumbsup /></button><span> ({helpful}) | </span> <button style={buttonStyle} id='reportquestion' className="helpfulBtn" disabled={disable} onClick={(e) => { handleReport(e); postInt.handlePost(e) }}><GoReport /></button> <button onClick={(e) => { openModal(); postInt.handlePost(e) }} className={answerClass}>Add an Answer!</button></td>
               </tr>
             </thead>
           </table>
@@ -233,7 +223,6 @@ function Question(props) {
       </div>
     );
   } else {
-    //debugger;
     setSearch(true);
     return (
       null

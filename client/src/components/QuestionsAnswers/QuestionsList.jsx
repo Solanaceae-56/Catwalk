@@ -22,9 +22,6 @@ function QuestionsList(props) {
   const [productName, setProductName] = useState('');
   const [state, setState] = React.useState({
     searchString: "",
-    // nickname: "",
-    // email: "",
-    // question: "",
   })
   const [data, setData] = useState([]);
   const darkMode = useContext(AppContext);
@@ -42,7 +39,6 @@ function QuestionsList(props) {
   var questions = [];
 
   function handleChange(e) {
-    //debugger;
     const value = e.target.value;
     setState({
       ...state,
@@ -65,10 +61,8 @@ function QuestionsList(props) {
   }
 
   function submit() {
-    //debugger;
     //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
-      //debugger;
       alert('One or more fields left empty');
       return;
     }
@@ -110,12 +104,6 @@ function QuestionsList(props) {
     if (search === true) {
       break;
     }
-  }
-
-  var buttonStyle = {};
-  if (darkMode) {
-    buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    buttonStyle['border'] = '1px solid black';
   }
 
   if (questions.length === 0) {

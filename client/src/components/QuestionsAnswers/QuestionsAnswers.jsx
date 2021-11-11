@@ -48,11 +48,6 @@ function QuestionsAnswers(props) {
       //console.log(response.data);
       setQuestions(response.data.results);
     });
-    // axios.get("http://localhost:3000/qa/questions", {params: {path: '/answers', questionId: 329015}}).then((response) => {
-    //   //console.log(response.data);  //move this to answerlist??
-    //   setAnswers(response.data.results);
-    //   //console.log(answers, 'yo');
-    // });
   }, [count, productId]);
 
 
@@ -91,8 +86,6 @@ function QuestionsAnswers(props) {
       ...state,
       [e.target.name]: value
     });
-    //console.log(state.searchString);
-    //console.log(state.question);
   }
 
   function openModal() {
@@ -108,7 +101,6 @@ function QuestionsAnswers(props) {
   }
 
   function submit() {
-    debugger;
     //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
       //debugger;
@@ -140,13 +132,9 @@ function QuestionsAnswers(props) {
     });
   }
 
-  var buttonStyle = {};
   var questionClass = "morequestions";
   var answerClass = "askquestion"
-  //var darkstyle = "darkmodebutton";
   if (darkMode) {
-    // buttonStyle['backgroundColor'] = 'rgb(100, 232, 241)';
-    // buttonStyle['border'] = '1px solid black';
     questionClass = "morequestions-dark"
     answerClass = "askquestion-dark"
   }
@@ -159,7 +147,7 @@ function QuestionsAnswers(props) {
         <FailedSearchContext.Provider value={{search, setSearch}}>
         <QuestionsList questions={questions} name={productName} id={productId} morequestions={moreQuestions} />
         </FailedSearchContext.Provider>
-        <button className={answerClass} style={buttonStyle} onClick={(e) => { toggleModal(); handlePost(e) }}>Ask a Question</button>
+        <button className={answerClass} onClick={(e) => { toggleModal(); handlePost(e) }}>Ask a Question</button>
         {isOpen && <Modal content={
           <>
             <h1 className="header">Ask your question</h1>
@@ -174,7 +162,7 @@ function QuestionsAnswers(props) {
             </form>
             <button id="submitquestion" onClick={(e) => { submit(); handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />}
-        <button style={buttonStyle} className={questionClass} onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
+        <button className={questionClass} onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
       </div>
     </QuestionsContext.Provider>
   );
