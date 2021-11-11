@@ -393,7 +393,7 @@ border-radius: 5px;
 }
 
 .answerslist {
-  height: 250px;
+  height: 355px;
   overflow-y: auto;
   /* border: 2px solid black; */
 }
@@ -485,7 +485,7 @@ background-color: none;
 
 .moreanswers {
   background-color: rgb(247, 120, 240);
-  margin-left: 20px;
+  margin-left: 11px;
   border: 1px solid black;
   color: black;
   padding: 14px 28px;
