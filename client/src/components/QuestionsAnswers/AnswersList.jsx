@@ -20,7 +20,7 @@ function AnswersList(props) {
     sortedList.sort((a, b) => b[1].helpfulness - a[1].helpfulness);
     //console.log(sortedList, 'sort');
     for (var i = 0; i < sortedList.length; i++) {
-      answersArr.push(<Answer item={sortedList[i][1]} keyvalue={i} />);
+      answersArr.push(<Answer item={sortedList[i][1]} keyvalue={i} key={i}/>);
       if (isHidden && i === 1) {
         break;
       }
