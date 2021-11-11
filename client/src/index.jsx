@@ -93,7 +93,7 @@ class App extends React.Component {
           {lightDark}
         </div>
         <div className='app-container' onClick={this.handleClickElement}>
-          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode}/>
+
           <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
           <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
           <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>

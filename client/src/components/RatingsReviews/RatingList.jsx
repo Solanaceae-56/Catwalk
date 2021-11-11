@@ -34,8 +34,9 @@ export default function RatingList(props) {
       recommendRate: recommend,
       characteristics: response.data.characteristics
     })
-  }
-  )
+  }).catch((err)=>{
+    console.log(err);
+  })
 }, [props.product_id])
 return (
   <div id="ratingListContainer">

@@ -143,20 +143,22 @@ export default function AddReview(props) {
 
 
             </div>
-            <label>Review title  <input type="text" value={state.summary} name="summary" placeholder="Write your review title here." onChange={handleChange}></input></label>
+            <label>Review title</label>
+            <input type="text" size="50" value={state.summary} name="summary" placeholder="Write your review title here." onChange={handleChange}></input>
 
-            <label>Review
-              <input type="text" value={state.body} name="body" placeholder="Write your review here." onChange={handleChange}>
-              </input></label>
-            <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} /></label>
+            <label>Review content:</label>
+            <textarea value={state.body} name="body" placeholder="Write your review here." rows={3} cols={80} onChange={handleChange}>
+              </textarea>
+            <label>Your photos:
+              <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} /></label>
 
-            <label>What is your nickname?
-              <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input></label>
-            <label>What is your email? <input type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com" onChange={handleChange}></input></label>
+            <label>What is your nickname? </label>
+            <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input>
+            <label>What is your email?</label>
+            <input id="email" type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com " onChange={handleChange}></input>
 
-            {/* <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
-              <span>Please enter your photo links for every new line (max 5)</span> */}
-         <button clas type="submit" onClick={handleSubmit}>Submit</button>
+
+         <button className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
           </form>
 
         </div>
