@@ -3,19 +3,24 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  gap:20px;
+  align-items: flex-start;
+  gap:5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .charRow{
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
-  align-items: flex-start;
+  justify-content:space-around;
+  align-items: first baseline;
 }
 .recommendRow{
   border:2px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: baseline;
+
 }
 
 /* #addReviewModal, #modalTitle{
@@ -61,5 +66,21 @@
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: first baseline;
+  gap:20px;
+}
+#addReviewModal {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+#addReviewModal >label{
+  margin: 10px 0 10px 0;
+  text-align: left;
+}
+.star {
+  font-size:x-large;
+}
+#recomend {
+  margin: 10px 0 10px 0;
 }

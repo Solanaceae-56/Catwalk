@@ -52,8 +52,8 @@ const RelatedList = (props) => {
 
   const handleLoad = () => {
     var element = ref.current;
-    console.log(element.scrollLeft);
-    console.log(element.scrollWidth - element.clientWidth);
+    // console.log(element.scrollLeft);
+    // console.log(element.scrollWidth - element.clientWidth);
     // console.log(element.scrollLeft, element.scrollWidth, element.clientWidth)
     if (element.clientWidth) {
       element.addEventListener('scroll', () => {
