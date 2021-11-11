@@ -49,13 +49,13 @@ function Image_Gallery(props) {
     if (mounted && imageArr.length > 0) {
       if (current_Image.url === imageArr[imageArr.length-1].url) {
         set_buttonR(<div></div>);
-        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => {handleLRButton('left', e); interaction.handleClick(e)}}> {'<'} </button>);
       } else if (current_Image.url === imageArr[0].url) {
-        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
+        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => {handleLRButton('right', e); interaction.handleClick(e)}}> {'>'} </button>);
         set_buttonL(<div></div>);
       } else {
-        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => handleLRButton('right', e)}> {'>'} </button>);
-        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => handleLRButton('left', e)}> {'<'} </button>);
+        set_buttonR(<button className={darkLight} id='toTheRight' onClick={(e) => {handleLRButton('right', e); interaction.handleClick(e)}}> {'>'} </button>);
+        set_buttonL(<button className={darkLight} id='toTheLeft' onClick={(e) => {handleLRButton('left', e); interaction.handleClick(e)}}> {'<'} </button>);
       }
     }
     return function cleanup() {

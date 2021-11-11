@@ -4,6 +4,10 @@ import RelatedCard from './RelatedCard.jsx';
 import axios from 'axios';
 import {Promise} from "bluebird";
 import AppContext from '../../../index.jsx';
+import {BsArrowLeftSquare} from 'react-icons/bs';
+import {BsArrowRightSquare} from 'react-icons/bs';
+import {BsArrowLeftSquareFill} from 'react-icons/bs';
+import {BsArrowRightSquareFill} from 'react-icons/bs';
 
 
 const RelatedList = (props) => {
@@ -59,7 +63,7 @@ const RelatedList = (props) => {
       element.addEventListener('scroll', () => {
 
         setShowLeftArrow(element.scrollLeft > 0);
-        setShowRightArrow(element.scrollLeft < element.scrollWidth - element.clientWidth);
+        setShowRightArrow((element.scrollLeft < element.scrollWidth - element.clientWidth) || (element.scrollWidth < element.clientWidth));
       });
     }
   }
@@ -68,15 +72,21 @@ const RelatedList = (props) => {
     ref.current.scrollLeft += width;
   }
 
+
   return (
     (relatedItems!==undefined) &&<div className='related-item'>
 
-      <img className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} src='https://static.thenounproject.com/png/627785-200.png' width='70' height='70' onClick={() => handleSlide(-100)}/>
+      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64}  onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(-100)}/>}
        <div className='related-slide' ref={ref} onLoad={handleLoad} >
        {relatedItems.map((relatedItem, i) => <RelatedCard key={i}  value={relatedItem.data.id}  relatedItem={relatedItem} pageProduct={pageProduct} handleCardClick={props.handleCardClick}/>)}</div>
-      <img className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} src='https://cdn1.iconfinder.com/data/icons/mixed-17/16/icon_right_rounded-512.png' width='70' height='70' onClick={() => handleSlide(100)}/>
+      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : <BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(100)}/>}
     </div>
   )
 }
 
 export default RelatedList;
+
+//<img className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} src='https://static.thenounproject.com/png/627785-200.png' width='70' height='70' onClick={() => handleSlide(-100)}/>
+//<img className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} src='https://cdn1.iconfinder.com/data/icons/mixed-17/16/icon_right_rounded-512.png' width='70' height='70' onClick={() => handleSlide(100)}/>
+
+

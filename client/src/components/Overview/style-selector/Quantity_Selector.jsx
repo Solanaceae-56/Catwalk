@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import AppContext from '../../../index.jsx'
+import AppContext from '../../../index.jsx';
+import {InteractionContext} from '../Overview.jsx';
 
 function Quantity_Selector(props) {
   var [currentSize, setCurrentSize] = useState('Select Size');
@@ -8,6 +9,7 @@ function Quantity_Selector(props) {
   var [chosenQ, set_chosenQ] = useState(0);
   var [qArr, set_qArr] = useState([]);
   var dark = useContext(AppContext);
+  var interaction = useContext(InteractionContext);
 
   var handleChangeSize = function(e) {
     var split = e.target.value.split(',');
@@ -56,14 +58,6 @@ function Quantity_Selector(props) {
       });
   }
 
-  var validAddToBag = function() {
-    if (chosenQ > 0 && currentSize !== 'Select Size') {
-      return <button onClick={addToCart} className='addToBag' id='validEntry'>Add To Bag</button>;
-    } else {
-      return <button id='invalidEntry' className='addToBag'>Add To Bag</button>;
-    }
-  };
-
   var darkLightClass;
   if (dark) {
     darkLightClass = 'dark-size-selector';
@@ -71,15 +65,23 @@ function Quantity_Selector(props) {
     darkLightClass = 'light-size-selector';
   }
 
+  var validAddToBag = function() {
+    if (chosenQ > 0 && currentSize !== 'Select Size') {
+      return <button onClick={(e) => {addToCart(e), interaction.handleClick(e)}} className={darkLightClass} id='validEntry'>Add To Bag</button>;
+    } else {
+      return <button id='invalidEntry' className='addToBag'>Add To Bag</button>;
+    }
+  };
+
   return (
     <div id='add-to-cart'>
-      <select className={darkLightClass} id='size-selector' onChange={handleChangeSize}>
+      <select className={darkLightClass} id='size-selector' onChange={(e) => {handleChangeSize(e), interaction.handleClick(e)}}>
         <option selected disabled hidden>Select Size</option>
         {filtered.map((entry, i) =>
           <option value={[entry.quantity, entry.size]} key={i}>{entry.size}</option>
         )}
       </select>
-      <select className={darkLightClass} id='quantity-selector' onChange={handleChangeQ}>
+      <select className={darkLightClass} id='quantity-selector' onChange={(e) => {handleChangeQ(e); interaction.handleClick(e)}}>
         <option selected disabled hidden>-</option>
         {qArr.map((entry, i) =>
           <option value={entry} key={i}>{entry}</option>
