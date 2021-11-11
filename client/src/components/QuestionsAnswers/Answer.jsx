@@ -50,8 +50,8 @@ function Answer(props) {
   const inline = {
     display: "inline-block"
   }
-  const photomap = props.item.photos.map((photo) =>
-    <img className="images" src={photo} width="150" height="150"/>
+  const photomap = props.item.photos.map((photo, i) =>
+    <img className="images" key={i} src={photo} width="150" height="150"/>
   );
 
   var buttonStyle = {};
