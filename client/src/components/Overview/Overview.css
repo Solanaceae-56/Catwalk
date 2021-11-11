@@ -2,7 +2,7 @@
 #overview {
   display: grid;
   grid-row: 1/2;
-  grid-template-columns: 600px auto;
+  grid-template-columns: 800px auto;
   grid-template-rows: 100px 800px auto;
 }
 
@@ -13,7 +13,7 @@
   font-size: 40px;
   padding-top: 10px;
   padding-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .logoLight {
@@ -32,6 +32,14 @@
   padding-left: 30px;
 }
 
+.lineDark {
+  border-bottom: 2px solid rgb(134, 207, 212);
+}
+
+.lineLight {
+  border-bottom: 2px solid rgb(218, 124, 213);
+}
+
 #product-info {
   display: grid;
   grid-row: 1/2;
@@ -42,6 +50,11 @@
   text-align: left;
 }
 
+#product-category {
+  padding-top: 10px;
+  font-size: 25px;
+}
+
 #product-title {
   font-size: 65px;
 }
@@ -49,11 +62,25 @@
 #star-rating {
   grid-row: 1/2;
   display: grid;
+  padding-top: 10px;
   grid-template-columns: 1fr 5fr;
+}
+
+.darkRefLink {
+  color:rgb(100, 232, 241);
+}
+
+.lightRefLink {
+  color: rgb(218, 124, 213);
+}
+
+#readAll {
+  padding-left: 5px;
 }
 
 #price {
   height: 48px;
+  padding-top: 5px;
 }
 
 #originalPrice {
@@ -66,7 +93,7 @@
   grid-column: 1/2;
   grid-row: 3/4;
   font-size: 20px;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 #style-selector {
@@ -100,6 +127,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -109,6 +137,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   border: 3px solid rgb(100, 232, 241);
   display: block;
   margin-left: auto;
@@ -119,6 +148,7 @@
   border-radius: 50% 50% 50% 50%;
   width: 75px;
   height: 75px;
+  object-fit: cover;
   border: 3px solid rgb(247, 120, 240);
   display: block;
   margin-left: auto;
@@ -149,31 +179,31 @@
 
 #size-selector {
   grid-row: 2/4;
-  grid-column: 1/6;
+  grid-column: 1/7;
   font-size: 30px;
   text-align: center;
 }
 
 #quantity-selector {
   grid-row: 2/4;
-  grid-column: 7/9;
+  grid-column: 8/11;
   font-size: 30px;
   text-align: center;
 }
 
 #validEntry {
   grid-row: 5/7;
-  grid-column: 1/7;
+  grid-column: 1/9;
   text-align: center;
   font-size: 30px;
 }
 
 #invalidEntry {
   grid-row: 5/7;
-  grid-column: 1/7;
+  grid-column: 1/9;
   text-align: center;
   font-size: 30px;
-  color: rgb(221, 213, 203);
+  color: rgb(255, 176, 248);
 }
 
 #image-Gallery {
@@ -216,6 +246,14 @@
   padding-top: 10px;
 }
 
+.empty {
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: 700;
+}
+
 .upDownButton-Dark {
   background-color: transparent;
   border: none;
@@ -246,6 +284,7 @@
   width: 80px;
   height: 80px;
   border-radius: 5% 5% 5% 5%;
+  object-fit: cover;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -253,6 +292,8 @@
 .thumbnailImg_highlighted {
   width: 80px;
   height: 80px;
+  object-fit: cover;
+  border-radius: 5% 5% 5% 5%;
   border: 3px solid rgb(100, 232, 241);
   margin-top: 10px;
   margin-bottom: 10px;
@@ -261,6 +302,8 @@
 .thumbnailImg_highlighted_light {
   width: 80px;
   height: 80px;
+  object-fit: cover;
+  border-radius: 5% 5% 5% 5%;
   border: 3px solid rgb(247, 120, 240);
   margin-top: 10px;
   margin-bottom: 10px;
@@ -352,15 +395,15 @@
   color: rgb(218, 124, 213)
 }
 
-.zoomedNavLight {
+.zoomedNavLight:hover {
   color:rgb(100, 232, 241);
 }
 
 #toTheRightZ {
   grid-row: 5/6;
   grid-column: 10/11;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
   background-color: transparent;
   border: none;
 }
@@ -368,8 +411,8 @@
 #toTheLeftZ {
   grid-row: 5/6;
   grid-column: 1/2;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
   border: none;
   background-color: transparent;
 }

@@ -41,7 +41,7 @@ function Zoomed_In(props) {
   if (dark) {
     lightDarkClass = 'zoomedNavDark';
   } else {
-    lightDarkClass = 'zoomNavLight';
+    lightDarkClass = 'zoomedNavLight';
   }
 
   useEffect(() => {

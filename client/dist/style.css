@@ -26,9 +26,9 @@
 
 .app-container {
   display: grid;
-  max-width: 1005px;
+  max-width: 1010px;
   font-family: 'Zen Antique';
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 1050px repeat(3, 1fr);
 }
 
 .app-container > div {
@@ -37,17 +37,17 @@
 
 #ratingsReviews {
   display: grid;
-  grid-row: 4;
+  grid-row: 4/5;
 }
 
 #questionsAnswers {
   display: grid;
-  grid-row: 3;
+  grid-row: 3/4;
 }
 
 #relatedItems {
   display: grid;
-  grid-row: 2;
+  grid-row: 2/3;
 }
 
 /*==================================================
