@@ -1,19 +1,34 @@
 #app {
   display: grid;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1005px;
+  margin-left: 75px;
+  margin-right: auto;
 }
 
 /* b, strong {
   color: gold;
 } */
 
+#lightDarkMode {
+  background-color: rgb(163, 163, 163);
+  transition-duration: 0.4s;
+  font-size: 20px;
+  border-radius: 10% 10% 10% 10%;
+  width: 75px;
+  height: 30px;
+}
+
+#lightDarkMode:hover {
+  background-color: rgb(226, 226, 226);
+}
+
 .app-container {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    max-width: 1005px;
-    font-family: 'Zen Antique';
-    grid-template-rows: repeat(4, 1fr);
-    margin: auto;
+  display: grid;
+  max-width: 1010px;
+  font-family: 'Zen Antique';
+  grid-template-rows: 1050px repeat(3, 1fr);
 }
 
 .app-container > div {
@@ -22,17 +37,17 @@
 
 #ratingsReviews {
   display: grid;
-  grid-row: 4;
+  grid-row: 4/5;
 }
 
 #questionsAnswers {
   display: grid;
-  grid-row: 3;
+  grid-row: 3/4;
 }
 
 #relatedItems {
   display: grid;
-  grid-row: 2;
+  grid-row: 2/3;
 }
 
 /*==================================================
