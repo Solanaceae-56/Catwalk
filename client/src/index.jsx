@@ -26,7 +26,7 @@ export class App extends React.Component {
   componentDidMount() {
     axios.get("/products", { params: { path: "/products" } })
       .then((data) => {
-        console.log(data.data);
+        //console.log(data.data);
         this.setState({
           product_id: data.data['0']['id'],
           name: data.data['0']['name'],

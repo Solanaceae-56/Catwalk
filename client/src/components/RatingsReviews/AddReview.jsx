@@ -40,7 +40,7 @@ export default function AddReview(props) {
     //const value = e.target.value;
     if (e.target.name === "recommend") {
       let radioboolean = (e.target.value === "true");
-      console.log({[e.target.name]: radioboolean});
+      //console.log({[e.target.name]: radioboolean});
       setState({
         ...state,
         [e.target.name]: radioboolean
@@ -70,20 +70,23 @@ export default function AddReview(props) {
     })
   }
   const handleSubmit = () => {
+
+    const test = /^\S+@\S+\.\S{3}$/;
     if (!state.email || !state.name || !state.rating || !state.body) {
       //debugger;
-      alert('One or more fields left empty');
+      alert('One or more * fields left empty');
       return;
+
     }
-    if (Object.keys(state.characteristics).length !== Object.keys(props.characteristics).length) {
+    else if (Object.keys(state.characteristics).length !== Object.keys(props.characteristics).length) {
       alert("Please select all characteristics");
-      return;
+      return ;
     }
-    const test = /^\S+@\S+\.\S{3}$/;
-    if (!state.email.match(test)) {
+    else if (!state.email.match(test)) {
       alert('Please enter a valid email');
-      return;
+      return ;
     }
+
     const obj = {
       product_id: props.product_id,
       rating: state.rating,
@@ -123,9 +126,9 @@ export default function AddReview(props) {
         <div className="lightForm modalContainer">
           <h2 id="modalTitle" >WRITE YOUR REVIEW</h2>
           <form id="addReviewModal" >
-            <div>Rating</div><StarRating handleStar={handleStar} />
+            <div>Rating*</div><StarRating handleStar={handleStar} />
             <div className="recommendRow">
-              <label id="recomend">Do you recommend this product?</label><label>Yes<input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange}/></label><label>No<input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /></label>
+              <label id="recomend">Do you recommend this product?*</label><label>Yes<input type="radio" id="recommendRadioTrue" value={true} name="recommend" onChange={handleChange}/></label><label>No<input type="radio" id="recommendRadioFalse" value={false} name="recommend" onChange={handleChange} /></label>
             </div>
             <div className="characteristics">
               {
@@ -146,19 +149,19 @@ export default function AddReview(props) {
             <label>Review title</label>
             <input type="text" size="50" value={state.summary} name="summary" placeholder="Write your review title here." onChange={handleChange}></input>
 
-            <label>Review content:</label>
+            <label>Review content*</label>
             <textarea value={state.body} name="body" placeholder="Write your review here." rows={3} cols={80} onChange={handleChange}>
               </textarea>
             <label>Your photos:
               <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} placeholder="Add your photo url here" /></label>
 
-            <label>What is your nickname? </label>
+            <label>What is your nickname?* </label>
             <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input>
-            <label>What is your email?</label>
+            <label>What is your email?* </label>
             <input id="email" type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com " onChange={handleChange}></input>
 
 
-         <button id="submitBtn" className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
+         <button id="submitBtn" className="lightModeBtn" type="submit" onClick={(e) => { e.preventDefault();handleSubmit(e);}}>Submit</button>
           </form>
 
         </div>
