@@ -9,7 +9,7 @@ const Modal = (props) => {
 
   const tableHeaderStyle = {
     textDecoration: 'underline',
-    fontSize: '20px'
+    fontSize: '20px',
   }
 
   const tableRowStyle = {
@@ -81,7 +81,7 @@ const Modal = (props) => {
     for (var i = 0; i < Object.keys(commonFeatures).length; i ++) {
         var children = [];
         var feature = Object.keys(commonFeatures)[i];
-        children.push(<td>{commonFeatures[feature].value1 || '   '}</td>, <td>{feature}</td>, <td>{commonFeatures[feature].value2 || '   '}</td>);
+        children.push(<td>{commonFeatures[feature].value1 || '-'}</td>, <td>{feature}</td>, <td>{commonFeatures[feature].value2 || '-'}</td>);
         table.push(<tr style={tableRowStyle}>{children}</tr>)
     }
     return table;

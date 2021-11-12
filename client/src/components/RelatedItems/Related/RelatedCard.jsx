@@ -1,10 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import axios from 'axios';
 import Modal from './Modal.jsx';
 import ReviewStars from '../../RatingsReviews/ReviewStars.jsx';
+import AppContext from '../../../index.jsx';
 
 
 const RelatedCard = (props) => {
+
+  const darkTheme = useContext(AppContext);
+
+  const darkThemeStyle = {
+    backgroundColor: 'white'
+  }
+
+  const lightThemeStyle = {
+    backgroundColor: 'rgb(239, 239, 239)'
+  }
 
   const [itemImageUrl, setItemImageUrl] = useState('');
   const [commonFeatures, setCommonFeatures] = useState({});
@@ -51,11 +62,11 @@ const RelatedCard = (props) => {
 
 
   return (
-      <div className='related-card' id={props.relatedItem.data.id} >
-        <i className='related-card-action'className="fas fa-star" onClick={toggleModal} ></i>
+      <div className='related-card' className={darkTheme? 'related-card-dark' : 'related-card-light'} id={props.relatedItem.data.id} >
+        <i  className="fas fa-star"  onClick={toggleModal} ></i>
         {isOpen &&
         <Modal handleClose={toggleModal} relatedItem={props.relatedItem} pageProduct={props.pageProduct} style={"z-index:3"}/>}
-        {itemImageUrl? <img className='related-img' src={itemImageUrl} alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img className='no-image' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
+        {itemImageUrl? <img className='related-img' src={itemImageUrl} alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> :<img className='no-image' style={{backgroundColor: 'white'}} src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt={props.relatedItem.data.name} id={props.relatedItem.data.id} onClick={props.handleCardClick}/> }
         <div className='related-card-category' id={props.relatedItem.data.id}>{props.relatedItem.data.category}</div>
         <div className='related-card-name' id={props.relatedItem.data.id} >{props.relatedItem.data.name}</div>
         {salePrice? <div className='related-card-sale-price' id={props.relatedItem.data.id}>{salePrice}</div> : <div className='related-card-original-price' id={props.relatedItem.data.id}>{originalPrice}</div> }
@@ -68,6 +79,8 @@ const RelatedCard = (props) => {
 
 
 export default RelatedCard;
+
+//onMouseOver={darkTheme? "this.style.color='rgb(100, 232, 241)'" : "this.style.color='rgb(247, 120, 240)'"} onMouseOut="this.style.color='#a5b7c2'"
 
 
 

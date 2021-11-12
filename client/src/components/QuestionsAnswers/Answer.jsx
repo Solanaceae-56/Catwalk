@@ -59,7 +59,7 @@ function Answer(props) {
     'fontSize': '15pt'
   };
   if (darkMode) {
-    boldStyle.color = 'gold';
+    boldStyle.color = 'rgb(100, 232, 241)';
     buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
     buttonStyle['color'] = 'white';
   }

@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import ReviewStars from '../../RatingsReviews/ReviewStars.jsx';
+import AppContext from '../../../index.jsx';
 
 const OutfitCard = (props) => {
+
+  const darkTheme = useContext(AppContext);
 
   const [itemImageUrl, setItemImageUrl] = useState('');
   const [salePrice, setSalePrice] = useState(null);
@@ -48,7 +51,7 @@ const OutfitCard = (props) => {
 
 
   return (
-    (<div className='outfit-card'>
+    (<div className='outfit-card' className={darkTheme? 'related-card-dark' : 'related-card-light'}>
         <i className="far fa-times-circle" id={props.productId} onClick={props.removeFromList}></i>
         {itemImageUrl? <img className='outfit-img' src={itemImageUrl} alt="product default image" width="180" height="200"/> :<img className='outfit-img' src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png' alt="product default image" width="150" height="200"/> }
         <div className='outfit-card-category'>{category}</div>
