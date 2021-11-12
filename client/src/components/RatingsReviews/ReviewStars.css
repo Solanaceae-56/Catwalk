@@ -2,13 +2,14 @@
   position: relative;
   display: inline-block;
   color: transparent;
+  white-space: nowrap;
 }
 
 .stars-container:before {
   position: absolute;
   top: 0;
   left: 0;
-  content: '★★★★★';
+  content: '';
   color: lightgray;
 }
 
@@ -16,8 +17,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  content: '★★★★★';
-  color: gold;
+  content: '🌶🌶🌶🌶🌶';
+  color: yellow;
   overflow: hidden;
 }
 
