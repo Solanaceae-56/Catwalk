@@ -409,10 +409,11 @@ Comparison Modal
 
 /*=======*/
 .addanswer {
-  border: 1px solid;
-  border-color: black;
+  /* border: 1px solid;
+  border-color: black; */
+  border: none;
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
   padding: 7px 14px;
   font-size: 16px;
   cursor: pointer;
@@ -420,14 +421,14 @@ Comparison Modal
 }
 
 .addanswer:hover {
-  color: rgb(247, 120, 240);
   background-color: rgb(100, 232, 241);
+  color: white;
 }
 
 .addanswer-dark {
-border: 1px solid;
+border: none;
 background-color: rgb(100, 232, 241);
-color: rgb(247, 120, 240);
+color: white;
 padding: 7px 14px;
 font-size: 16px;
 cursor: pointer;
@@ -436,7 +437,7 @@ border-radius: 5px;
 
 .addanswer-dark:hover {
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
 }
 
 .answer {
@@ -547,9 +548,9 @@ background-color: none;
 
 .moreanswers {
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
   margin-left: 11px;
-  border: 1px solid black;
+  border: none;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
@@ -557,15 +558,15 @@ background-color: none;
 }
 
 .moreanswers:hover {
-  color: rgb(247, 120, 240);
+  color: white;
   background-color: rgb(100, 232, 241);
 }
 
 .moreanswers-dark {
   background-color: rgb(100, 232, 241);
   margin-left: 20px;
-  border: 1px solid black;
-  color: rgb(247, 120, 240);
+  border: none;
+  color: white;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
@@ -574,14 +575,14 @@ background-color: none;
 
 .moreanswers-dark:hover {
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
 }
 
 .morequestions, .askquestion{
   margin-right: 15px;
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
-  border: 1px solid black;
+  color: black;
+  border: none;
   /* border-color: rgb(247, 120, 240); */
   padding: 14px 28px;
   font-size: 16px;
@@ -591,25 +592,25 @@ background-color: none;
 }
 
 .morequestions:hover, .askquestion:hover{
-  color: rgb(247, 120, 240);
+  color: white;
   background-color: rgb(100, 232, 241);
 }
 
 .morequestions-dark, .askquestion-dark {
   background-color:rgb(100, 232, 241);
-  color: rgb(247, 120, 240);
+  color: white;
   cursor: pointer;
   border-radius: 5px;
   margin-right: 15px;
   margin-bottom: 15px;
   padding: 14px 28px;
   font-size: 16px;
-  border: 1px solid black;
+  border: none;
 }
 
 .morequestions-dark:hover, .askquestion-dark:hover {
   background-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
 }
 .photos {
   /* display: inline-block; */
