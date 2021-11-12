@@ -84,3 +84,8 @@
 #recomend {
   margin: 10px 0 10px 0;
 }
+#submitBtn {
+  align-self: flex-end;
+  padding: 10px 20px;
+  margin-top:10px;
+}

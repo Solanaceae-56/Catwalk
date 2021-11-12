@@ -158,7 +158,7 @@ export default function AddReview(props) {
             <input id="email" type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com " onChange={handleChange}></input>
 
 
-         <button className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
+         <button id="submitBtn" className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
           </form>
 
         </div>
