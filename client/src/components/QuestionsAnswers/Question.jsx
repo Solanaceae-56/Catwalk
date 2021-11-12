@@ -223,7 +223,7 @@ function Question(props) {
       </div>
     );
   } else {
-    setSearch(true);
+    //setSearch(true);
     return (
       null
     );
