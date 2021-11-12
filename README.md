@@ -32,3 +32,8 @@ https://testing-library.com/docs/queries/about/
 *********************
 
 
+* Tests
+*******
+* * npm run test
+
+

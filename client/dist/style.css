@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   max-width: 1005px;
-  margin-left: 75px;
+  margin-left: 10%;
   margin-right: auto;
 }
 
@@ -26,9 +26,10 @@
 
 .app-container {
   display: grid;
+  margin: auto;
   max-width: 1010px;
   font-family: 'Zen Antique';
-  grid-template-rows: 1050px repeat(3, 1fr);
+  grid-template-rows: 1050px 1fr 700px 800px;
 }
 
 .app-container > div {
@@ -41,6 +42,7 @@
 }
 
 #questionsAnswers {
+  margin-top: 15px;
   display: grid;
   grid-row: 3/4;
 }
@@ -80,20 +82,53 @@ Related Items
   overflow-x: auto;
 } */
 
-.related-card {
+.related-card-dark {
+  background-color: white;
   display: inline-block;
   /* border: solid 1px black; */
   position: relative;
   /* padding: 25px 15px; */
-  background-color: white;
+  /* background-color: white; */
   margin: 50px 15px;
   height: 450px;
   width: 270px;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
   color: black;
-  /* z-index: 1; */
+  border-radius: 10px;
 }
+
+.related-card-light {
+  background-color: #eeeeee;
+  display: inline-block;
+  /* border: solid 1px black; */
+  position: relative;
+  /* padding: 25px 15px; */
+  /* background-color: white; */
+  margin: 50px 15px;
+  height: 450px;
+  width: 270px;
+  box-shadow: 0 2px 5px #ccc;
+  text-align: left;
+  color: black;
+  border-radius: 10px;
+}
+
+/* .related-card {
+  display: inline-block;
+
+  position: relative;
+
+
+  margin: 50px 15px;
+  height: 450px;
+  width: 270px;
+  box-shadow: 0 2px 5px #ccc;
+  text-align: left;
+  color: black;
+
+} */
+
 
 .related-card-category {
   text-transform: uppercase;
@@ -120,19 +155,23 @@ Related Items
 
 .left-arrow {
   align-self: center;
+  cursor: pointer;
 }
 
 .right-arrow {
   align-self: center;
+  cursor: pointer;
 }
 
 .active {
   align-self: center;
   visibility: visible;
+  cursor: pointer;
 }
 
 .non-active {
   visibility: hidden;
+  cursor: pointer;
 }
 
 
@@ -146,18 +185,20 @@ Related Items
 }
 
 .related-img {
-  height: 70%;
+  height: 75%;
   width: 100%;
   /* display: block; */
   object-fit: cover;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
 
 }
 
 .no-image {
-  height: 70%;
+  height: 75%;
   width: 100%;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
 
 }
 
@@ -168,6 +209,11 @@ Related Items
   z-index: 1;
   color: #a5b7c2;
   cursor: pointer;
+
+}
+
+.fa-star:hover {
+  color:rgb(247, 120, 240);
 
 }
 
@@ -197,6 +243,7 @@ Outfit
   text-align: left;
   /* z-index: 1; */
   color: black;
+  border-radius: 10px;
 }
 
 .outfit-list-add-outfit {
@@ -212,6 +259,7 @@ Outfit
   text-align: center;
   /* z-index: 1; */
   color: black;
+  border-radius: 10px;
 
 }
 
@@ -258,6 +306,8 @@ Outfit
   width: 100%;
   display: block;
   object-fit: cover;
+  border-radius: 10px 10px 0 0;
+
 
 }
 
@@ -266,6 +316,7 @@ Outfit
   width: 100%;
   object-fit: scale-down;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
 }
 
 .fa-times-circle {
@@ -275,6 +326,11 @@ Outfit
   z-index: 1;
   color: #a5b7c2;
   cursor: pointer;
+
+}
+
+.fa-times-circle:hover {
+  color: rgb(247, 120, 240);
 
 }
 /*===========================
@@ -337,7 +393,7 @@ Comparison Modal
   cursor: pointer;
   position: fixed;
   right: calc(33% - 30px);
-  top: calc(100vh - 58vh - 33px);
+  top: calc(100vh - 58vh - 10px);
   background: #ededed;
   width: 25px;
   height: 25px;
@@ -346,6 +402,7 @@ Comparison Modal
   text-align: center;
   border: 1px solid #999;
   font-size: 24px;
+  z-index: 3;
 }
 
 
