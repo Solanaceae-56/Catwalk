@@ -6,7 +6,6 @@ import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
 import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
 import { createContext } from 'react';
-import "./components/RatingsReviews/toggleSwitch.css";
 const AppContext = createContext();
 export default AppContext;
 
@@ -82,28 +81,22 @@ class App extends React.Component {
   }
 
   render() {
-    //var lightDark;
-    // if (this.state.darkMode) {
-    //   lightDark = <button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Light</button>;
-    // } else {
-    //   lightDark = <button id='lightDarkMode' onClick={(e) => this.handleDarkMode(e)}> Dark </button>;
-    // }
+    var lightDark;
+    if (this.state.darkMode) {
+      lightDark = 'lineDark';
+    } else {
+      lightDark = 'lineLight';
+    }
 
     return (
       <AppContext.Provider value={this.state.darkMode}>
-        <div className="darkModeSwitch">
-          <label className="switch" >
-            <input type="checkbox" onChange={this.handleDarkMode} />
-            <span className="slider round"></span>
-          </label>
-        </div>
         {/* <div id='lightmodeButton'>
           {lightDark}
         </div> */}
         <div className='app-container' onClick={this.handleClickElement}>
-          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} />
-          <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-          <div id='relatedItems'><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
+          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} onChange={this.handleDarkMode}/>
+          <div id='questionsAnswers' className={lightDark} ><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
+          <div id='relatedItems' className={lightDark}><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
           <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
         </div>
       </AppContext.Provider>

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import AppContext from '../../../index.jsx';
+import "../../RatingsReviews/toggleSwitch.css";
 
 function Zoomed_In(props) {
   var [current_Image, set_current_Image] = useState('');
@@ -38,10 +39,16 @@ function Zoomed_In(props) {
   }
 
   var lightDarkClass;
+  var lineColor;
+  var logoBack;
   if (dark) {
     lightDarkClass = 'zoomedNavDark';
+    lineColor = 'lineDark';
+    logoBack = 'logoDark';
   } else {
     lightDarkClass = 'zoomedNavLight';
+    lineColor = 'lineLight';
+    logoBack = 'logoLight';
   }
 
   useEffect(() => {
@@ -76,7 +83,14 @@ function Zoomed_In(props) {
   }, [props.current_Image.url]);
 
   return (
-    <div id='Zoomed'>
+    <div id='Zoomed' className={lineColor}>
+      <div className="darkModeSwitch" id='lightDarkSwitchZoomed'>
+        <label className="switch" >
+          <input type="checkbox" onChange={props.sliderChange} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div className={logoBack} id='logoZoomed'>Solanacea/Spicy</div>
       {buttonL}
       <figure id='zoom-effect' onMouseMove={handleMouseMovement}
       style={{
@@ -86,7 +100,7 @@ function Zoomed_In(props) {
         <img id='zoomed-img' src={current_Image.url}/>
       </figure>
       {buttonR}
-      <button class={lightDarkClass} id='exitButton' onClick={(e) => props.changeView(false, e)}>X</button>
+      <button className={lightDarkClass} id='exitButton' onClick={(e) => props.changeView(false, e)}>X</button>
     </div>
   );
 }
