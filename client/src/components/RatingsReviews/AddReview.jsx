@@ -120,7 +120,7 @@ export default function AddReview(props) {
     <div className="addReview">
       <button id="addReview" className={darkMode?"darkModeBtn":"lightModeBtn"} onClick={toggleModal}>ADD REVIEW+</button>
       {showModal ? <Modal handleClose={closeModal}  content={
-        <div className="lightform modalContainer"/*{`${darkMode?"darkForm":"lightForm modalContainer"} */>
+        <div className="lightForm modalContainer">
           <h2 id="modalTitle" >WRITE YOUR REVIEW</h2>
           <form id="addReviewModal" >
             <div>Rating</div><StarRating handleStar={handleStar} />
@@ -131,7 +131,7 @@ export default function AddReview(props) {
               {
                 charKeys.map((charkey) => {
                   return <div className="charRow" key={charkey}>
-                    <label className="charElement">{charkey}</label>
+                    <label className="charElement charTitle">{charkey}</label>
                     <label className="charElement"><input type="radio" value={1} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][0]}</label>
                     <label className="charElement"><input type="radio" value={2} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][1]}</label>
                     <label className="charElement"><input type="radio" value={3} name={charkey} onChange={handleCharChange} />{characteristicsWords[charkey][2]}</label>
