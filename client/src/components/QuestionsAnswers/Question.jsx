@@ -179,7 +179,7 @@ function Question(props) {
               <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
               <span>Please enter your photo links for every new line (max 5)</span>
             </form>
-            <button id="submitanswer" onClick={(e) => { submit(e); postInt.handlePost(e) }}>Submit</button>
+            <button id="submitanswer" className={answerClass} onClick={(e) => { submit(e); postInt.handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />
         }
         <div className='answers'>
@@ -215,7 +215,7 @@ function Question(props) {
               <label>Your photos:<textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={40} /></label>
               <span>Please enter your photo links for every new line (max 5)</span>
             </form>
-            <button id="submitanswer" onClick={(e) => {submit(e);postInt.handlePost(e)}}>Submit</button>
+            <button id="submitanswer" className={answerClass} onClick={(e) => {submit(e);postInt.handlePost(e)}}>Submit</button>
           </>} handleClose={toggleModal} />}
         <div className='answers'>
           <AnswersList data={props.data.answers} />
