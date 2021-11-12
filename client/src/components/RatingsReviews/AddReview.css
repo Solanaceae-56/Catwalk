@@ -28,30 +28,34 @@
 } */
 .lightModeBtn{
   border: 2px solid;
-  border-color: #e7e7e7;
-  color: black;
+  border-color: rgb(247, 120, 240);
+  color: rgb(100, 232, 241);
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  background-color:rgb(247, 120, 240) ;
 }
 
 .lightModeBtn:hover{
-  background-color: #e7e7e7;
+  background-color: rgb(100, 232, 241);
+  border-color: rgb(100, 232, 241);
+  color:rgb(247, 120, 240)
 }
 .darkModeBtn{
   border: 2px solid;
-  border-color: #757575;
-  color: white;
-  background: #757575;
+  border-color: rgb(100, 232, 241);
+  color: rgb(247, 120, 240);
+  background: rgb(100, 232, 241);
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
 }
 .darkModeBtn:hover{
-  background:black;
-  border-color: black;
+  background:rgb(247, 120, 240);
+  border-color: rgb(247, 120, 240);
+  color:rgb(100, 232, 241)
 }
 
 .darkForm {
@@ -83,4 +87,9 @@
 }
 #recomend {
   margin: 10px 0 10px 0;
+}
+#submitBtn {
+  align-self: flex-end;
+  padding: 10px 20px;
+  margin-top:10px;
 }

@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const API_KEYS = require('../config.js');
-
 const PORT = 3000;
 const app = express();
 const apiPath = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
@@ -10,7 +9,6 @@ const apiPath = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
 app.use(express.static(path.join(__dirname, '../client', 'dist')));
 app.use(express.json());
-
 app.get('/products', (req, res) => {
   var path = req.query.path;
   var productId = req.query.productId;

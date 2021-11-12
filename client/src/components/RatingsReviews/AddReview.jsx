@@ -120,7 +120,7 @@ export default function AddReview(props) {
     <div className="addReview">
       <button id="addReview" className={darkMode?"darkModeBtn":"lightModeBtn"} onClick={toggleModal}>ADD REVIEW+</button>
       {showModal ? <Modal handleClose={closeModal}  content={
-        <div className={`${darkMode?"darkForm":"lightForm"} modalContainer`}>
+        <div className="lightform modalContainer"/*{`${darkMode?"darkForm":"lightForm modalContainer"} */>
           <h2 id="modalTitle" >WRITE YOUR REVIEW</h2>
           <form id="addReviewModal" >
             <div>Rating</div><StarRating handleStar={handleStar} />
@@ -150,7 +150,7 @@ export default function AddReview(props) {
             <textarea value={state.body} name="body" placeholder="Write your review here." rows={3} cols={80} onChange={handleChange}>
               </textarea>
             <label>Your photos:
-              <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} /></label>
+              <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} placeholder="Add your photo url here" /></label>
 
             <label>What is your nickname? </label>
             <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input>
@@ -158,7 +158,7 @@ export default function AddReview(props) {
             <input id="email" type="text" value={state.email} name="email" placeholder="Example: jackson11@gmail.com " onChange={handleChange}></input>
 
 
-         <button className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
+         <button id="submitBtn" className="lightModeBtn" type="submit" onClick={handleSubmit}>Submit</button>
           </form>
 
         </div>

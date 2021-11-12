@@ -42,7 +42,7 @@ export default function RatingsReviews(props) {
   return (
     //<ReviewWidge.Provider value={handleInterClick}>
     <div className="review" onClick={handleInterClick}>
-      <h2 className="sectionTitle">Ratings & Reviews</h2>
+      <h1 className="sectionTitle">Ratings & Reviews</h1>
       <ReviewList product_id={reviewState.product_id} averageRating={reviewState.rating} num_Of_Ratings={reviewState.num_Of_Ratings} />
 
     </div>

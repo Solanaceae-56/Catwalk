@@ -17,7 +17,6 @@ function Answer(props) {
   }, [props.item])
 
   function handleHelpful(e) {
-    //debugger;
     //console.log(e.target.id);
     var putPath = 'helpfulanswer';
     //console.log(e.target.parentNode.id);
@@ -32,7 +31,6 @@ function Answer(props) {
   };
 
   function handleReport(e) {
-    //debugger;
     //console.log(e.target.parentNode.id)
     var putPath = 'reportanswer';
     //console.log(putPath);
