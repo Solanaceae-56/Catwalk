@@ -120,7 +120,7 @@ export default function AddReview(props) {
     <div className="addReview">
       <button id="addReview" className={darkMode?"darkModeBtn":"lightModeBtn"} onClick={toggleModal}>ADD REVIEW+</button>
       {showModal ? <Modal handleClose={closeModal}  content={
-        <div className={`${darkMode?"darkForm":"lightForm"} modalContainer`}>
+        <div className="lightform modalContainer"/*{`${darkMode?"darkForm":"lightForm modalContainer"} */>
           <h2 id="modalTitle" >WRITE YOUR REVIEW</h2>
           <form id="addReviewModal" >
             <div>Rating</div><StarRating handleStar={handleStar} />
