@@ -96,9 +96,9 @@ class App extends React.Component {
             <span className="slider round"></span>
           </label>
         </div>
-        <div id='lightmodeButton'>
+        {/* <div id='lightmodeButton'>
           {lightDark}
-        </div>
+        </div> */}
         <div className='app-container' onClick={this.handleClickElement}>
           <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} />
           <div id='questionsAnswers'><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
