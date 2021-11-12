@@ -6,7 +6,6 @@ const PORT = 3000;
 const app = express();
 const apiPath = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
-
 app.use(express.static(path.join(__dirname, '../client', 'dist')));
 app.use(express.json());
 app.get('/products', (req, res) => {

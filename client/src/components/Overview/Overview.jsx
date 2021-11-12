@@ -6,6 +6,7 @@ import Image_Gallery from './image_gallery/Image_Gallery.jsx';
 import Zoomed_In from './image_gallery/Zoomed_In.jsx';
 import axios from 'axios';
 import AppContext from '../../index.jsx';
+import "../RatingsReviews/toggleSwitch.css";
 export const InteractionContext = createContext();
 
 class Overview extends React.Component {
@@ -121,29 +122,35 @@ class Overview extends React.Component {
     let condition;
     if (this.state.mode && this.state.current_Product.name !== undefined) {
       condition =
-          <div id='overview'>
+          <div id='overview' className={lineColor}>
+            <div className="darkModeSwitch" id='lightDarkSwitch'>
+              <label className="switch" >
+                <input type="checkbox" onChange={this.props.onChange} />
+                <span className="slider round"></span>
+              </label>
+            </div>
             <div className={logoBack} id='logo'>Solanacea/Spicy</div>
-              <div id='infoBox_AddtoCart'>
-                <div id='product-info'>
-                  <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
-                  <div className={lineColor} id='product-category'>{this.state.current_Product.category}</div>
-                  <div className={lineColor} id='product-title'>{this.state.current_Product.name}</div>
-                  {priceTag}
-                  {/* <div id='social-media'>
-                    <button id='facebook'>Facebook</button>
-                    <button id='twitter'>Twitter</button>
-                    <button id='pinterest'>Pinterest</button>
-                  </div> */}
-                </div>
-                <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+            <div id='infoBox_AddtoCart'>
+              <div id='product-info'>
+                <Star_Rating id='starRatingProduct' rating={this.props.rating} reviewTotal={this.props.num_Of_Ratings}/>
+                <div className={lineColor} id='product-category'>{this.state.current_Product.category}</div>
+                <div className={lineColor} id='product-title'>{this.state.current_Product.name}</div>
+                {priceTag}
+                {/* <div id='social-media'>
+                  <button id='facebook'>Facebook</button>
+                  <button id='twitter'>Twitter</button>
+                  <button id='pinterest'>Pinterest</button>
+                </div> */}
               </div>
+              <Style_Selector product_id={this.props.product_id} handleChange={this.handleStyleChange} updateAllStyles={this.updateAllStyles} currImg={this.state.current_Img} allStyles={this.state.allStyles} currStyle={this.state.current_Style} changeImg={this.changeCurrImg} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
+            </div>
             <div id='product-overview'>{this.state.current_Product.description}</div>
             <Image_Gallery current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} currImg={this.state.current_Img} changeView={this.handleDefaultChange} handleSwitch={this.handleSwitch} switch={this.state.switch}/>
           </div>
     } else if (this.state.mode) {
       condition = <div>Rendering</div>
     } else {
-      condition = <Zoomed_In current_Image={this.state.current_Img} current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} changeView={this.handleDefaultChange}/>;
+      condition = <Zoomed_In current_Image={this.state.current_Img} current_Style={this.state.current_Style} changeCurrImg={this.changeCurrImg} changeView={this.handleDefaultChange} sliderChange={this.props.onChange}/>;
     }
 
     return (
