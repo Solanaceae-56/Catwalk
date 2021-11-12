@@ -150,7 +150,7 @@ export default function AddReview(props) {
             <textarea value={state.body} name="body" placeholder="Write your review here." rows={3} cols={80} onChange={handleChange}>
               </textarea>
             <label>Your photos:
-              <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} /></label>
+              <textarea value={state.photos} name="photos" onChange={handleChange} rows={5} cols={80} placeholder="Add your photo url here" /></label>
 
             <label>What is your nickname? </label>
             <input type="text" value={state.name} name="name" placeholder="Example: jackson11!" onChange={handleChange}></input>
