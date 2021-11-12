@@ -68,7 +68,7 @@ const OutfitList = (props) => {
 
   return (
     <div className='outfit-list'>
-      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(-100)}/>}
+      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: '#a6a6a6' }} onClick={() => handleSlide(-100)}/>}
       <div className='outfit-slide' ref={ref} onLoad={handleLoad}>
         <div className='outfit-list-add-outfit'>
           <img className='outfit-add' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzhJV3XJfPqf_txRnqYivCCWtJtfQ5o28Bt1NDrKrQhLt5eW8jpnCStBerRmX1JDjPSQ&  usqp=CAU' alt="click to add to outfit list"  onClick={addToList}/>
@@ -82,7 +82,7 @@ const OutfitList = (props) => {
 
       </div>
 
-      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : < BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }}  onClick={() => handleSlide(100)}/>}
+      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : < BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: '#a6a6a6' }}  onClick={() => handleSlide(100)}/>}
     </div>
 
   )

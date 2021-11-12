@@ -76,10 +76,10 @@ const RelatedList = (props) => {
   return (
     (relatedItems!==undefined) &&<div className='related-item'>
 
-      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64}  onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(-100)}/>}
+      {darkTheme? <BsArrowLeftSquare className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64}  onClick={() => handleSlide(-100)}/> : <BsArrowLeftSquareFill className='left-arrow' className={showLeftArrow ? 'active' : 'non-active'} size={64} style={{ color: '#a6a6a6' }} onClick={() => handleSlide(-100)}/>}
        <div className='related-slide' ref={ref} onLoad={handleLoad} >
        {relatedItems.map((relatedItem, i) => <RelatedCard key={i}  value={relatedItem.data.id}  relatedItem={relatedItem} pageProduct={pageProduct} handleCardClick={props.handleCardClick}/>)}</div>
-      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : <BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: 'grey' }} onClick={() => handleSlide(100)}/>}
+      {darkTheme? <BsArrowRightSquare className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} onClick={() => handleSlide(100)}/> : <BsArrowRightSquareFill className='right-arrow' className={showRightArrow ? 'active' : 'non-active'} size={64} style={{ color: '#a6a6a6' }} onClick={() => handleSlide(100)}/>}
     </div>
   )
 }
