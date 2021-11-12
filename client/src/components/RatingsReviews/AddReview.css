@@ -1,18 +1,38 @@
 .characteristics{
-  display:flex;
+  /* display:flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap:5px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 10px; */
+  display: grid;
+
 }
 .charRow{
-  display: flex;
+  /* display: flex;
   flex-direction: row;
+  flex-flow: row wrap;
   justify-content:space-around;
   align-items: first baseline;
+  justify-self: start; */
+  display: inline-grid;
+  grid-column-gap: 5px;
+  grid-template-columns: [col1-start] 53px repeat(5,158px [col2-start]);justify-items: start;
+  align-items:baseline;
+
+}
+.charElement {
+  width:165px;
+  align-self: start;
+  text-align: initial;
+  font-size: small;
+  font-style: italic;
+}
+.charTitle{
+  font-weight: bolder;
+  font-style: normal;
 }
 .recommendRow{
   border:2px;
@@ -29,7 +49,7 @@
 .lightModeBtn{
   border: 2px solid;
   border-color: rgb(247, 120, 240);
-  color: rgb(100, 232, 241);
+  color: black;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
@@ -40,12 +60,12 @@
 .lightModeBtn:hover{
   background-color: rgb(100, 232, 241);
   border-color: rgb(100, 232, 241);
-  color:rgb(247, 120, 240)
+  color:white;
 }
 .darkModeBtn{
   border: 2px solid;
   border-color: rgb(100, 232, 241);
-  color: rgb(247, 120, 240);
+  color: white;
   background: rgb(100, 232, 241);
   padding: 14px 28px;
   font-size: 16px;
@@ -55,13 +75,13 @@
 .darkModeBtn:hover{
   background:rgb(247, 120, 240);
   border-color: rgb(247, 120, 240);
-  color:rgb(100, 232, 241)
+  color:black;
 }
 
-.darkForm {
+/* .darkForm {
   background-color: black;
   color:white;
-}
+} */
 .lightForm {
   background-color: white;
   color:black;
@@ -71,7 +91,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: first baseline;
-  gap:20px;
 }
 #addReviewModal {
   align-self: center;
@@ -79,7 +98,7 @@
   flex-direction: column;
 }
 #addReviewModal >label{
-  margin: 10px 0 10px 0;
+  margin: 5px 0 5px 0;
   text-align: left;
 }
 .star {

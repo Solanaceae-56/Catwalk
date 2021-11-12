@@ -1,6 +1,7 @@
 var path = require("path");
 var SRC_DIR = path.join(__dirname, "/client/src");
 var DIST_DIR = path.join(__dirname, "/client/dist");
+var CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
@@ -24,4 +25,5 @@ module.exports = {
       }
     ],
   },
+
 };
