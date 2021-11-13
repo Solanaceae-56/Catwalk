@@ -3,7 +3,6 @@ import QuestionsList from './QuestionsList.jsx';
 import AppContext from '../../index.jsx';
 import Modal from '../Modal.jsx';
 const axios = require('axios');
-const config = require('../../../../config.js');
 export const QuestionsContext = createContext();
 export const FailedSearchContext = createContext({
   search: '',

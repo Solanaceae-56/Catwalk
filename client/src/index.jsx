@@ -26,7 +26,6 @@ export class App extends React.Component {
   componentDidMount() {
     axios.get("/products", { params: { path: "/products" } })
       .then((data) => {
-        //console.log(data.data);
         this.setState({
           product_id: data.data['0']['id'],
           name: data.data['0']['name'],
@@ -90,9 +89,6 @@ export class App extends React.Component {
 
     return (
       <AppContext.Provider value={this.state.darkMode}>
-        {/* <div id='lightmodeButton'>
-          {lightDark}
-        </div> */}
         <div className='app-container' onClick={this.handleClickElement}>
           <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} onChange={this.handleDarkMode} />
           <Suspense fallback={<div>Loading...</div>}>
