@@ -80,7 +80,7 @@ const RelatedCard = (props) => {
 
 export default RelatedCard;
 
-//onMouseOver={darkTheme? "this.style.color='rgb(100, 232, 241)'" : "this.style.color='rgb(247, 120, 240)'"} onMouseOut="this.style.color='#a5b7c2'"
+
 
 
 
