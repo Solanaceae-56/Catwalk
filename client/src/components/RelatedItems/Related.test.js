@@ -19,5 +19,5 @@ afterAll(() => server.close())
 test('loads and displays greeting', async () => {
   render(<RelatedItemsComparison />)
 
-  expect(screen.findByTestId('testing')).toHaveTextContent('RelatedItemsComparison')
+  expect(screen.findByTestId('related-products')).toHaveTextContent('Related Products')
 })
