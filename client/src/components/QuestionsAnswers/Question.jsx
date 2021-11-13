@@ -44,14 +44,9 @@ function Question(props) {
   }
 
   function handleHelpful(e) {
-    //console.log(e.target.parentNode.id)
     var putPath = 'helpfulquestion';
-    //console.log(putPath);
     var qId = props.data['question_id'];
-    //console.log(typeof (qId), qId);
-    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
-      //console.log(response);
       if (putPath === 'helpfulquestion') {
         setHelpful(helpful + 1);
       }
@@ -60,14 +55,9 @@ function Question(props) {
   }
 
   function handleReport(e) {
-    //console.log(e.target.parentNode.id)
     var putPath = 'reportquestion';
-    //console.log(putPath);
     var qId = props.data['question_id'];
-    //console.log(typeof (qId), qId);
-    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
-      //console.log(response);
       if (putPath === 'helpfulquestion') {
         setHelpful(helpful + 1);
       }
@@ -81,8 +71,6 @@ function Question(props) {
       ...state,
       [e.target.name]: value
     });
-    //console.log(state.searchString);
-    //console.log(state.photos);
   }
 
   function openModal() {
@@ -98,7 +86,6 @@ function Question(props) {
   }
 
   function submit() {
-    //console.log(props.id);
     const postObj = {
       path: '/answers',
       questionId: props.data['question_id'],
@@ -107,7 +94,6 @@ function Question(props) {
       body: state.answer,
       photos: state.photos.split('\n').slice(0, 5)
     }
-    //console.log(postObj);
     if (!state.email || !state.nickname || !state.answer) {
       alert('One or more fields left empty');
       return;
@@ -118,7 +104,6 @@ function Question(props) {
       return;
     }
     axios.post("/qa/questions/", postObj).then((response) => {
-      //console.log('posted answer');
     });
     closeModal();
     setState({
@@ -148,7 +133,6 @@ function Question(props) {
     buttonStyle['backgroundColor'] = 'rgb(60, 60, 60)';
     buttonStyle['color'] = 'white';
     answerClass = "addanswer-dark";
-    // buttonStyle['border'] = '4px solid black';
   }
 
   if (props.search.length < 3) {
@@ -223,7 +207,6 @@ function Question(props) {
       </div>
     );
   } else {
-    //setSearch(true);
     return (
       null
     );
