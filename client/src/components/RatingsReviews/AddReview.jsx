@@ -37,10 +37,9 @@ export default function AddReview(props) {
   const closeModal = () => { setShowModal(false) };
 
   const handleChange = (e) => {
-    //const value = e.target.value;
+
     if (e.target.name === "recommend") {
       let radioboolean = (e.target.value === "true");
-      //console.log({[e.target.name]: radioboolean});
       setState({
         ...state,
         [e.target.name]: radioboolean
@@ -73,7 +72,7 @@ export default function AddReview(props) {
 
     const test = /^\S+@\S+\.\S{3}$/;
     if (!state.email || !state.name || !state.rating || !state.body) {
-      //debugger;
+
       alert('One or more * fields left empty');
       return;
 
@@ -99,10 +98,9 @@ export default function AddReview(props) {
       photos: state.photos.split('\n').slice(0, 5)
 
     }
-    console.log(obj);
 
     axios.post("http://localhost:3000/reviews", obj).then((response) => {
-      //console.log(response);
+
     });
     closeModal();
     setState({
@@ -117,7 +115,6 @@ export default function AddReview(props) {
       name: ''
     });
   }
-  // console.log("from add review", props.characteristics)
 
   return (
     <div className="addReview">
