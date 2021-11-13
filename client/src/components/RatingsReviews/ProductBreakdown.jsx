@@ -22,7 +22,6 @@ export default function ProductBreakdown(props) {
 
         <ul className="label-bar">
           <li><span className="charWords">{words[0]}</span></li>
-          {/* <li><span className="charWords">{words[1]}</span></li> */}
           <li className="label-bar-end"><span className="charWords">{words[2]}</span></li>
         </ul>
     </div>

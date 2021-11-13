@@ -50,8 +50,7 @@ export default function ReviewList(props) {
   useEffect(() => {
     setProduct_id(props.product_id)
   }, [props.product_id])
-  //console.log('reviewList',characteristics,props.product_id)
-  //console.log(props.characteristics)
+
   return (
     <ReviewsContext.Provider value={{ reviews, setReviews, initialReviews }}>
       {(reviews !== undefined) && <div className="reviewratingListContainer">
