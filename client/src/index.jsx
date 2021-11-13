@@ -1,4 +1,4 @@
-import React , {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
@@ -94,12 +94,12 @@ export class App extends React.Component {
           {lightDark}
         </div> */}
         <div className='app-container' onClick={this.handleClickElement}>
-          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} onChange={this.handleDarkMode}/>
+          <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} onChange={this.handleDarkMode} />
           <Suspense fallback={<div>Loading...</div>}>
-          <div id='questionsAnswers' className={lightDark} ><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
-          <div id='relatedItems' className={lightDark}><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
-          <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
-        </Suspense>
+            <div id='questionsAnswers' className={lightDark} ><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
+            <div id='relatedItems' className={lightDark}><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
+            <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+          </Suspense>
         </div>
       </AppContext.Provider>
     )
