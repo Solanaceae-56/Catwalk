@@ -17,6 +17,7 @@
 .env.test.local
 .env.production.local
 bundle.js
+bundle.js.gz
 config.js
 tocken.env
 npm-debug.log*
