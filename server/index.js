@@ -5,9 +5,12 @@ const API_KEYS = require('../config.js');
 const PORT = 3000;
 const app = express();
 const apiPath = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const expressStaticGzip = require("express-static-gzip");
 
-app.use(express.static(path.join(__dirname, '../client', 'dist')));
+//app.use(express.static(path.join(__dirname, '../client', 'dist')));
+
 app.use(express.json());
+app.use(expressStaticGzip(path.join(__dirname, '../client', 'dist')));
 app.get('/products', (req, res) => {
   var path = req.query.path;
   var productId = req.query.productId;
