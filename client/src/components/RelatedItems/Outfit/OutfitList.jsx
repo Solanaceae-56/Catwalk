@@ -12,7 +12,6 @@ const OutfitList = (props) => {
   const darkTheme = useContext(AppContext);
 
   const username = 'dummy';
-  // const [pageProduct, setPageProduct] = useState({});
   const [outfitList, setOutfitList] = useState([]);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -20,12 +19,10 @@ const OutfitList = (props) => {
   const addToList = () => {
     axios.post(`/outfit/${username}.${props.defaultProduct_id}`)
     .then((response) => {
-      // console.log('post to outfit list', response);
     })
 
     axios.get(`/outfit/${username}`,)
     .then((response) => {
-      // console.log('getting outfit list',response.data);
       setOutfitList(response.data);
     })
   }
@@ -33,7 +30,6 @@ const OutfitList = (props) => {
   const removeFromList = (e) => {
     axios.delete(`/outfit/${username}.${e.target.id}`)
     .then((response) => {
-      // console.log('outfit delete', response);
       setOutfitList(response.data);
     })
   }
@@ -41,18 +37,14 @@ const OutfitList = (props) => {
   useEffect(() => {
     axios.get(`/outfit/${username}`,)
     .then((response) => {
-      // console.log('getting outfit list in use effect',response.data);
       setOutfitList(response.data);
     })
   }, [])
-
-  // console.log('who is first?');
 
   const ref = useRef();
 
   const handleLoad = () => {
     var element = ref.current;
-    console.log(element.scrollLeft, element.scrollWidth, element.clientWidth)
     if (element.clientWidth) {
       element.addEventListener('scroll', () => {
         setShowLeftArrow(element.scrollLeft > 0);

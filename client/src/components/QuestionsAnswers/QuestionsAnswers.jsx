@@ -9,6 +9,7 @@ export const FailedSearchContext = createContext({
   search: '',
   setSearch: (status) => {}
 });
+
 function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
@@ -26,7 +27,6 @@ function QuestionsAnswers(props) {
   const [productName, setProductName] = useState(props.productName);
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = React.useState({
-    // searchString: "",
     nickname: "",
     email: "",
     question: "",
@@ -45,7 +45,6 @@ function QuestionsAnswers(props) {
 
   useEffect(() => {
     axios.get("/qa/questions", { params: { productId: productId, count: count } }).then((response) => {
-      //console.log(response.data);
       setQuestions(response.data.results);
     });
   }, [count, productId]);
@@ -63,11 +62,9 @@ function QuestionsAnswers(props) {
     if (!targetElement) {
       targetElement = backup;
     }
-    //console.log(targetElement, 'targetelement');
     var date = Date();
     axios.post("/interactions", { params: { element: targetElement, time: date, widget: clickObj['widget'] } })
       .then((data) => {
-        //console.log('posted to interactions');
       })
       .catch((err) => {
         console.log(err);
@@ -80,7 +77,6 @@ function QuestionsAnswers(props) {
   }
 
   function handleChange(e) {
-    //debugger;
     const value = e.target.value;
     setState({
       ...state,
@@ -101,9 +97,7 @@ function QuestionsAnswers(props) {
   }
 
   function submit() {
-    //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
-      //debugger;
       alert('One or more fields left empty');
       return;
     }
@@ -118,10 +112,7 @@ function QuestionsAnswers(props) {
       name: state.nickname,
       body: state.question,
     }
-    //console.log(postObj);
-    //console.log(obj);
     axios.post("/qa/questions/", postObj).then((response) => {
-      //console.log(response);
     });
     closeModal();
     setState({

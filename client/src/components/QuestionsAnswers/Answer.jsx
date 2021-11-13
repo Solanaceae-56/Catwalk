@@ -17,12 +17,9 @@ function Answer(props) {
   }, [props.item])
 
   function handleHelpful(e) {
-    //console.log(e.target.id);
     var putPath = 'helpfulanswer';
-    //console.log(e.target.parentNode.id);
     var aId = props.item.id;
     axios.put("/qa/questions/put", { path: putPath, answerId: aId }).then((response) => {
-      //console.log(response);
       if (putPath === 'helpfulanswer') {
         setHelpfulness(helpfulness + 1);
       }
@@ -31,21 +28,15 @@ function Answer(props) {
   };
 
   function handleReport(e) {
-    //console.log(e.target.parentNode.id)
     var putPath = 'reportanswer';
-    //console.log(putPath);
     var qId = props.data['question_id'];
-    //console.log(typeof (qId), qId);
-    //console.log(props.data['question_id']);
     axios.put("/qa/questions/put", { path: putPath, questionId: qId }).then((response) => {
-      //console.log(response);
       if (putPath === 'helpfulquestion') {
         setHelpful(helpful + 1);
       }
     });
     setDisable(true);
   }
-
 
   const inline = {
     display: "inline-block"

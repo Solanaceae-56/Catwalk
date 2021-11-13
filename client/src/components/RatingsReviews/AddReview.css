@@ -1,22 +1,10 @@
 .characteristics{
-  /* display:flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap:5px;
-  padding-top: 10px;
-  padding-bottom: 10px; */
+
   display: grid;
 
 }
 .charRow{
-  /* display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
-  justify-content:space-around;
-  align-items: first baseline;
-  justify-self: start; */
+
   display: inline-grid;
   grid-column-gap: 5px;
   grid-template-columns: [col1-start] 53px repeat(5,158px [col2-start]);justify-items: start;
@@ -43,9 +31,7 @@
 
 }
 
-/* #addReviewModal, #modalTitle{
-  color:black
-} */
+
 .lightModeBtn{
   border: 2px solid;
   border-color: rgb(247, 120, 240);

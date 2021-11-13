@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import RelatedList from './Related/RelatedList.jsx';
 import OutfitList from './Outfit/OutfitList.jsx';
 import axios from 'axios';
-// import relatedItemsId from './relatedItemsId.js';
+
 
 const RelatedItemsComparison = (props) => {
     const [defaultProduct_id, setDefaultId] = useState();
