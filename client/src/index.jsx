@@ -1,10 +1,10 @@
-import React from 'react';
+import React , {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/Overview/Overview.jsx';
 import axios from 'axios';
-import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx';
-import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx';
-import RelatedItemsComparison from './components/RelatedItems/RelatedItemsComparison.jsx';
+const RatingsReviews = React.lazy(() => import('./components/RatingsReviews/RatingsReviews.jsx'));
+const QuestionsAnswers = React.lazy(() => import('./components/QuestionsAnswers/QuestionsAnswers.jsx'));
+const RelatedItemsComparison = React.lazy(() => import('./components/RelatedItems/RelatedItemsComparison.jsx'));
 import { createContext } from 'react';
 const AppContext = createContext();
 export default AppContext;
@@ -95,9 +95,11 @@ export class App extends React.Component {
         </div> */}
         <div className='app-container' onClick={this.handleClickElement}>
           <Overview product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} darkmode={this.state.darkMode} onChange={this.handleDarkMode}/>
+          <Suspense fallback={<div>Loading...</div>}>
           <div id='questionsAnswers' className={lightDark} ><QuestionsAnswers productName={this.state.name} id={this.state.product_id} /></div>
           <div id='relatedItems' className={lightDark}><RelatedItemsComparison handleCardClick={this.handleCardClick} product_id={this.state.product_id} /></div>
           <div id='ratingsReviews'><RatingsReviews product_id={this.state.product_id} rating={this.state.rating} num_Of_Ratings={this.state.num_Of_Ratings} /></div>
+        </Suspense>
         </div>
       </AppContext.Provider>
     )
