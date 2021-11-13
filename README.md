@@ -2,9 +2,9 @@
 
 ## An eccomerce website that is fully interactive
 
-|![alt text](/client/images/homepage.PNG?raw=true "home page")|
-|:--:|
-| <b>Home page of the website.</b>|
+<img alt="app demo" src="client/images/homepage.png">
+
+<b>Home page of the website.</b>|
 
 ## Tech Stack
 
@@ -66,12 +66,15 @@ npm run test
 
 ### Overview
 **********
+
 Able to navigate through all images and styles using arrows or clicking on the iamge itself. Can expand the picture by clicking on the product image. Can also chose size and quantity to add to cart. The homepage itself has a light and dark mode.
 
 
 ### Related Products and Comparison
 *********************************
-|![alt text](/client/images/related_products.PNG?raw=true "related products")|
+
+<img alt="related products" src="client/images/related_products.png">
+
 Related products and comparison module consists of two lists. Items in the first list are related to the product shown in the overview section above. Carousel of cards allows users to navigate between the cards. Upon clicking on the star incon, a modal would pop up which compares features between the related item and the product item.  Once a card is clicked, users will navigate to the detail page for that product in the card.
 
 Items in the second list are selected to group together as an outfit by user. It gives the user the ability to add the current product item and navigate through this list.
@@ -80,13 +83,17 @@ Items in the second list are selected to group together as an outfit by user. It
 
 ### Questions and Answers
 ***********************
-|![alt text](/client/images/question_answers.PNG?raw=true "home page")|
+
+<img alt="questions and answers" src="client/images/question_answers.png">
 
 Module that responds to the current product shown in the Overview.  Contains a list of sorted questions by helpfulness as well as answers for their respective question.  Users can like the question/answer if it is helpful or report if necessary.  Users can also post a question/answer if they do not find a suitable response to what they are looking for.  The data is retrieved through an API call to a server.
 
 
 ### Ratings and Reviews
 *********************
+
+<img alt="reviews" src="client/images/ratings_reviews.png">
+
 Ratings and Reviews widget has two major components, rating component is visualization of rating data from server, review component will dynamically render a list of reviews. Rating component has a filter function to filter select stars of reviews. Review component has show more reviews, sort reviews and add review that can be interracted with user.
 
 
