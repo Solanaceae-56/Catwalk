@@ -160,7 +160,7 @@ function QuestionsAnswers(props) {
                 <input type="text" value={state.email} name="email" placeholder="Why did you like the product or not?" onChange={handleChange}></input></label>
               <span>For authentication reasons, you will not be emailed.</span>
             </form>
-            <button id="submitquestion" onClick={(e) => { submit(); handlePost(e) }}>Submit</button>
+            <button id="submitquestion" className={answerClass} onClick={(e) => { submit(); handlePost(e) }}>Submit</button>
           </>} handleClose={toggleModal} />}
         <button className={questionClass} onClick={(e) => { increaseCount(); handlePost(e) }}>More questions</button>
       </div>
