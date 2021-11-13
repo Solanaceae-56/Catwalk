@@ -6,7 +6,8 @@
   "scripts": {
     "react-prod": "webpack --mode production --watch",
     "server-dev": " npx nodemon server",
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack --mode production"
   },
   "author": "Pepper",
   "license": "ISC",
