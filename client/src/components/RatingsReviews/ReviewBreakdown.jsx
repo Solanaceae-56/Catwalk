@@ -10,7 +10,6 @@ export default function ReviewBreakdown(props) {
 
   useEffect(() => {
     setRatingData(props.ratingData);
-    //console.log(ratingData)
     setTotalStar((+props.ratingData['5']) + (+props.ratingData['4']) + (+props.ratingData['3']) + (+props.ratingData['2']) + (+props.ratingData['1']));
 
   }, [props.ratingData])

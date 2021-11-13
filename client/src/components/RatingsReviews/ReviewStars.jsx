@@ -11,7 +11,7 @@ export default function ReviewStars(props) {
   },[props.value])
 return (
   <div>
-  <div><span className={`stars-container stars-${starNum}`}>🌶🌶🌶🌶🌶</span></div>
+  <div><span className={`stars-container stars-${starNum}`}>★★★★★</span></div>
 
 </div>
 )

@@ -9,7 +9,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
+  content: '★★★★★';
   color: lightgray;
 }
 
@@ -17,8 +17,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  content: '🌶🌶🌶🌶🌶';
-  color: yellow;
+  content: '★★★★★';
+  color: gold;
   overflow: hidden;
 }
 
