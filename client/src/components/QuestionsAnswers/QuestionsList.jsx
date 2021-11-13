@@ -44,8 +44,6 @@ function QuestionsList(props) {
       ...state,
       [e.target.name]: value
     });
-    //console.log(state.searchString);
-    //console.log(state.question);
   }
 
   function openModal() {
@@ -61,7 +59,6 @@ function QuestionsList(props) {
   }
 
   function submit() {
-    //console.log(props.id);
     if (!state.email || !state.nickname || !state.question) {
       alert('One or more fields left empty');
       return;
@@ -77,9 +74,7 @@ function QuestionsList(props) {
       name: state.nickname,
       body: state.question,
     }
-    //console.log(obj);
     axios.post("/qa/questions/", postObj).then((response) => {
-      //console.log(response);
     });
     closeModal();
     setState({
