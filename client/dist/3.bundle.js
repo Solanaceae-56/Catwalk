@@ -79,7 +79,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = {\n  token: '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'\n};\n\n//# sourceURL=webpack:///./config.js?");
+eval("module.exports = {\n  token: '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'\n};\n\n//# sourceURL=webpack:///./config.js?");
 
 /***/ }),
 
