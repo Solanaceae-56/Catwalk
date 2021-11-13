@@ -18,7 +18,7 @@ function Star_Rating(props) {
   return (
     <div className={lineColor} id='star-rating'>
       <ReviewStars value={props.rating}/>
-      <a className={refColor} id='readAll' href='http://localhost:3000/index.html#ratingsReviews'> Read all {props.reviewTotal} reviews</a>
+      <a className={refColor} id='readAll' href='http://localhost:3000/index.html#ratingsReviews'> See all {props.reviewTotal} ratings</a>
     </div>
   );
 }

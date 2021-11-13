@@ -178,13 +178,13 @@
 }
 
 .dark-size-selector {
-  border: 1px solid black;
+  border: none;
   color: white;
   background-color: rgb(100, 232, 241);
 }
 
 .light-size-selector {
-  border: 1px solid black;
+  border: none;
   background-color: rgb(247, 120, 240);
 }
 
@@ -204,12 +204,31 @@
   text-align: center;
 }
 
+.light-bag-invalid {
+  color: rgb(255, 176, 248);
+}
+
+.dark-bag-invalid {
+  color:rgb(134, 207, 212);
+}
+
+.light-bag {
+  background-color: rgb(247, 120, 240);
+  color: black;
+}
+
+.dark-bag {
+  background-color: rgb(100, 232, 241);
+  color: white;
+}
+
 #validEntry {
   grid-row: 5/7;
   grid-column: 1/9;
   text-align: center;
   font-size: 30px;
   border-radius: 5px;
+  border: none;
 }
 
 #invalidEntry {
@@ -217,8 +236,8 @@
   grid-column: 1/9;
   text-align: center;
   font-size: 30px;
-  color: rgb(255, 176, 248);
   border-radius: 5px;
+  border: none;
 }
 
 #image-Gallery {

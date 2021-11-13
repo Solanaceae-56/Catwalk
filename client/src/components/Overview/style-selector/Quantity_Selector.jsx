@@ -59,17 +59,23 @@ function Quantity_Selector(props) {
   }
 
   var darkLightClass;
+  var darkLightBagTextValid;
+  var darkLightBagTextInvalid;
   if (dark) {
     darkLightClass = 'dark-size-selector';
+    darkLightBagTextValid = 'dark-bag';
+    darkLightBagTextInvalid = 'dark-bag-invalid';
   } else {
     darkLightClass = 'light-size-selector';
+    darkLightBagTextValid = 'light-bag';
+    darkLightBagTextInvalid = 'light-bag-invalid';
   }
 
   var validAddToBag = function() {
     if (chosenQ > 0 && currentSize !== 'Select Size') {
-      return <button onClick={(e) => {addToCart(e), interaction.handleClick(e)}} className={darkLightClass} id='validEntry'>Add To Bag</button>;
+      return <button onClick={(e) => {addToCart(e), interaction.handleClick(e)}} className={darkLightBagTextValid} id='validEntry'>Add To Bag</button>;
     } else {
-      return <button id='invalidEntry' className='addToBag'>Add To Bag</button>;
+      return <button id='invalidEntry' className={darkLightBagTextInvalid}>Add To Bag</button>;
     }
   };
 
